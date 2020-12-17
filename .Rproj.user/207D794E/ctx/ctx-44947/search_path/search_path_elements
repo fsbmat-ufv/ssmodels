@@ -1,0 +1,17 @@
+.GlobalEnv
+MEPS2001
+MEPS2001
+MEPS2001
+MEPS2001
+MEPS2001
+MEPS2001
+package:ssmodels
+tools:rstudio
+package:stats
+package:graphics
+package:grDevices
+package:utils
+package:datasets
+package:methods
+Autoloads
+package:base

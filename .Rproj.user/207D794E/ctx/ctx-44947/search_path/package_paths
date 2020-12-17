@@ -1,0 +1,7 @@
+datasets="C:/Program Files/R/R-4.0.2/library/datasets"
+grDevices="C:/Program Files/R/R-4.0.2/library/grDevices"
+graphics="C:/Program Files/R/R-4.0.2/library/graphics"
+methods="C:/Program Files/R/R-4.0.2/library/methods"
+ssmodels="C:/Users/Dell/Documents/R/win-library/4.0/ssmodels"
+stats="C:/Program Files/R/R-4.0.2/library/stats"
+utils="C:/Program Files/R/R-4.0.2/library/utils"
