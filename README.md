@@ -16,13 +16,14 @@ existentes na literatura, criamos o pacote ssmodels. Nosso pacote
 permite o ajuste do modelo de Heckman clássico, e a estimação dos
 parâmetros desse modelo via método de máxima verossimilhança e método
 de dois passos, além do ajuste dos modelos Heckman-t, introduzido na
-literatura em 2012 por Marchenko and Genton (2012) e do modelo
-Heckman-Skew introduzido na literatura por Ogundimu and Hutton (2016) em
-2016. Implementamos, ainda, funções para o ajuste da versão generalizada
-do modelo de Heckman que permite a inclusão de covariáveis aos
-parâmetros de dispersão e correlação e uma função para o ajuste do
-modelo Heckman-BS que utiliza a distribuição Birnbaum-Saunders como
-distribuição conjunta das variáveis de seleção e regressão primária.
+literatura por Marchenko and Genton (2012) e do modelo Heckman-Skew
+introduzido na literatura por Ogundimu and Hutton (2016). Implementamos,
+ainda, funções para o ajuste da versão generalizada do modelo de Heckman
+que permite a inclusão de covariáveis aos parâmetros de dispersão e
+correlação e uma função para o ajuste do modelo Heckman-BS, introduzido
+por Souza Bastos and Barreto-Souza (2020) que utiliza a distribuição
+Birnbaum-Saunders como distribuição conjunta das variáveis de seleção e
+regressão primária.
 
 </p>
 
@@ -60,6 +61,14 @@ Model.” *Journal of the American Statistical Association* 107 (497):
 Ogundimu, Emmanuel O, and Jane L Hutton. 2016. “A Sample Selection Model
 with Skew-Normal Distribution.” *Scandinavian Journal of Statistics* 43
 (1): 172–90.
+
+</div>
+
+<div id="ref-bastos">
+
+Souza Bastos, Fernando de, and Wagner Barreto-Souza. 2020.
+“Birnbaum–Saunders Sample Selection Model.” *Journal of Applied
+Statistics* 0 (0): 1–21.
 
 </div>
 

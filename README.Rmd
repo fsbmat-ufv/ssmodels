@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 <p style="text-align: justify;">
-Com o objetivo de facilitar o ajuste dos modelos de seleção amostral existentes na literatura, criamos o pacote ssmodels. Nosso pacote permite o ajuste do modelo de Heckman clássico, e a estimação dos parâmetros desse modelo via método de máxima verossimilhança e método de dois passos, além do ajuste dos modelos Heckman-t, introduzido na literatura em 2012 por @marchenko2012heckman e do modelo Heckman-Skew introduzido na literatura por @ogundimu2016sample em 2016. Implementamos, ainda, funções para o ajuste da versão generalizada do modelo de Heckman que permite a inclusão de covariáveis aos parâmetros de dispersão e correlação e uma função para o ajuste do modelo Heckman-BS que utiliza a distribuição Birnbaum-Saunders como distribuição conjunta das variáveis de seleção e regressão primária. 
+Com o objetivo de facilitar o ajuste dos modelos de seleção amostral existentes na literatura, criamos o pacote ssmodels. Nosso pacote permite o ajuste do modelo de Heckman clássico, e a estimação dos parâmetros desse modelo via método de máxima verossimilhança e método de dois passos, além do ajuste dos modelos Heckman-t, introduzido na literatura por @marchenko2012heckman e do modelo Heckman-Skew introduzido na literatura por @ogundimu2016sample. Implementamos, ainda, funções para o ajuste da versão generalizada do modelo de Heckman que permite a inclusão de covariáveis aos parâmetros de dispersão e correlação e uma função para o ajuste do modelo Heckman-BS, introduzido por @bastos que utiliza a distribuição Birnbaum-Saunders como distribuição conjunta das variáveis de seleção e regressão primária. 
 </p>
 
 ## Installation
