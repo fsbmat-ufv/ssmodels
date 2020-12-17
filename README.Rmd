@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ssmodels
+# ssmodels <img src='man/figures/logo.png' align="right" height="139" />
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -22,39 +22,17 @@ The goal of ssmodels is to ...
 
 ## Installation
 
-You can install the released version of ssmodels from [CRAN](https://CRAN.R-project.org) with:
+You can install `ssmodels` from Github using the devtools package by running the following code:
 
-``` r
-install.packages("ssmodels")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
+```{r}
+#install.package("devtools")
 devtools::install_github("fsbmat-ufv/ssmodels")
 ```
-## Example
 
-This is a basic example which shows you how to solve a common problem:
+If you want to build the package vignettes (recommended), you'll want to run the following code instead
 
-```{r example}
-library(ssmodels)
-## basic example code
+```{r}
+#install.package("devtools")
+devtools::install_github("fsbmat-ufv/ssmodels", build = TRUE, 
+                         build_opts = c("--no-resave-data", "--no-manual"))
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
