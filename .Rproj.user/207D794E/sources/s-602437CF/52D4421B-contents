@@ -74,3 +74,12 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/fsbmat-ufv/ssmodels.git
 git push -u origin main
+
+logomeupac <- "C:\\Users\\Dell\\Downloads\\lupa.png"
+hexSticker::sticker(subplot = logomeupac, package = "ssmodels", 
+                    p_color = "#FFFFFF", #Texto do nome do pacote
+                    h_fill = "#32a852", #Fundo do hexagono
+                    h_color = "#8d948e", #Borda do hexagono
+                    filename = "C:\\Users\\Dell\\Downloads\\logo.png")
+
+usethis::use_news_md()
