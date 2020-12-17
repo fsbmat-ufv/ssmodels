@@ -84,17 +84,48 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="ssmodels" class="section level1">
+
+<div id="ssmodels-a-package-for-fit-the-sample-selection-models" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#ssmodels" class="anchor"></a>ssmodels</h1></div>
-<p>You can install <code>ssmodels</code> from Github using the devtools package by running the following code:</p>
-<pre class="{r}"><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">#install.package("devtools")
-devtools::install_github("fsbmat-ufv/ssmodels")</a></code></pre>
-<p>If you want to build the package vignettes (recommended), you’ll want to run the following code instead</p>
-<pre class="{r}"><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">#install.package("devtools")
-devtools::install_github("fsbmat-ufv/ssmodels", build = TRUE, 
-                         build_opts = c("--no-resave-data", "--no-manual"))</a></code></pre>
+<a href="#ssmodels-a-package-for-fit-the-sample-selection-models" class="anchor"></a>ssmodels: A package for fit the sample selection models</h1></div>
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 </div>
+<div id="ssmodels-" class="section level1">
+<h1 class="hasAnchor">
+<a href="#ssmodels-" class="anchor"></a>ssmodels <img src="reference/figures/logo.png" align="right" height="139">
+</h1>
+<!-- badges: start -->
+<!-- badges: end -->
+<p style="text-align: justify;">
+</p>
+<p>Com o objetivo de facilitar o ajuste dos modelos de seleção amostral existentes na literatura, criamos o pacote ssmodels. Nosso pacote permite o ajuste do modelo de Heckman clássico, e a estimação dos parâmetros desse modelo via método de máxima verossimilhança e método de dois passos, além do ajuste dos modelos Heckman-t, introduzido na literatura por Marchenko and Genton (2012) e do modelo Heckman-Skew introduzido na literatura por Ogundimu and Hutton (2016). Implementamos, ainda, funções para o ajuste da versão generalizada do modelo de Heckman que permite a inclusão de covariáveis aos parâmetros de dispersão e correlação e uma função para o ajuste do modelo Heckman-BS, introduzido por Souza Bastos and Barreto-Souza (2020) que utiliza a distribuição Birnbaum-Saunders como distribuição conjunta das variáveis de seleção e regressão primária.</p>
+
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install <code>ssmodels</code> from Github using the devtools package by running the following code:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#install.package("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"fsbmat-ufv/ssmodels"</span><span class="op">)</span></code></pre></div>
+<p>If you want to build the package vignettes (recommended), you’ll want to run the following code instead</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#install.package("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"fsbmat-ufv/ssmodels"</span>, build <span class="op">=</span> <span class="cn">TRUE</span>, 
+                         build_opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"--no-resave-data"</span>, <span class="st">"--no-manual"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div id="refs" class="references">
+<div id="ref-marchenko2012heckman">
+<p>Marchenko, Yulia V, and Marc G Genton. 2012. “A Heckman Selection-T Model.” <em>Journal of the American Statistical Association</em> 107 (497): 304–17.</p>
+</div>
+<div id="ref-ogundimu2016sample">
+<p>Ogundimu, Emmanuel O, and Jane L Hutton. 2016. “A Sample Selection Model with Skew-Normal Distribution.” <em>Scandinavian Journal of Statistics</em> 43 (1): 172–90.</p>
+</div>
+<div id="ref-bastos">
+<p>Souza Bastos, Fernando de, and Wagner Barreto-Souza. 2020. “Birnbaum–Saunders Sample Selection Model.” <em>Journal of Applied Statistics</em> 0 (0): 1–21.</p>
+</div>
+</div>
+</div>
+</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
