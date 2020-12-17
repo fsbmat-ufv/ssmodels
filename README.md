@@ -7,7 +7,22 @@
 
 <!-- badges: end -->
 
-The goal of ssmodels is to …
+<p style="text-align: justify;">
+
+Com o objetivo de facilitar o ajuste dos modelos de seleção amostral
+existentes na literatura, criamos o pacote ssmodels. Nosso pacote
+permite o ajuste do modelo de Heckman clássico, e a estimação dos
+parâmetros desse modelo via método de máxima verossimilhança e método
+de dois passos, além do ajuste dos modelos Heckman-t, introduzido na
+literatura em 2012 por @marchenko2012heckman e do modelo Heckman-Skew
+introduzido na literatura por @ogundimu2016sample em 2016.
+Implementamos, ainda, funções para o ajuste da versão generalizada do
+modelo de Heckman que permite a inclusão de covariáveis aos parâmetros
+de dispersão e correlação e uma função para o ajuste do modelo
+Heckman-BS que utiliza a distribuição Birnbaum-Saunders como
+distribuição conjunta das variáveis de seleção e regressão primária.
+
+</p>
 
 ## Installation
 
@@ -17,30 +32,6 @@ running the following code:
 ``` r
 #install.package("devtools")
 devtools::install_github("fsbmat-ufv/ssmodels")
-#> Downloading GitHub repo fsbmat-ufv/ssmodels@HEAD
-#> quantreg (5.67  -> 5.75) [CRAN]
-#> Rdpack   (1.0.0 -> 2.1 ) [CRAN]
-#> Installing 2 packages: quantreg, Rdpack
-#> Installing packages into 'C:/Users/Dell/AppData/Local/Temp/Rtmp0OZ47w/temp_libpath34e023ef316f'
-#> (as 'lib' is unspecified)
-#> package 'quantreg' successfully unpacked and MD5 sums checked
-#> package 'Rdpack' successfully unpacked and MD5 sums checked
-#> 
-#> The downloaded binary packages are in
-#>  C:\Users\Dell\AppData\Local\Temp\RtmpQZCo2q\downloaded_packages
-#>          checking for file 'C:\Users\Dell\AppData\Local\Temp\RtmpQZCo2q\remotes2ca493a71e0\fsbmat-ufv-ssmodels-f63608a/DESCRIPTION' ...  v  checking for file 'C:\Users\Dell\AppData\Local\Temp\RtmpQZCo2q\remotes2ca493a71e0\fsbmat-ufv-ssmodels-f63608a/DESCRIPTION' (395ms)
-#>       -  preparing 'ssmodels':
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   v  checking DESCRIPTION meta-information
-#>       -  installing the package to process help pages
-#>      Loading required namespace: ssmodels
-#>       -  saving partial Rd database
-#>       -  checking for LF line-endings in source and make files and shell scripts
-#>       -  checking for empty or unneeded directories
-#>       -  building 'ssmodels_0.0.0.9000.tar.gz'
-#>      
-#> 
-#> Installing package into 'C:/Users/Dell/AppData/Local/Temp/Rtmp0OZ47w/temp_libpath34e023ef316f'
-#> (as 'lib' is unspecified)
 ```
 
 If you want to build the package vignettes (recommended), you’ll want to
@@ -50,6 +41,4 @@ run the following code instead
 #install.package("devtools")
 devtools::install_github("fsbmat-ufv/ssmodels", build = TRUE, 
                          build_opts = c("--no-resave-data", "--no-manual"))
-#> Skipping install of 'ssmodels' from a github remote, the SHA1 (f63608a3) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```
