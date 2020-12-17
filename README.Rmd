@@ -1,5 +1,9 @@
 ---
-output: github_document
+title: "ssmodels: A package for fit the sample selection models"
+output:
+  github_document
+bibliography: "inst/REFERENCES.bib"
+biblio-style: "apalike"
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
