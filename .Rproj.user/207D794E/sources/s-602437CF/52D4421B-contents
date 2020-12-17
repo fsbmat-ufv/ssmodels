@@ -83,3 +83,6 @@ hexSticker::sticker(subplot = logomeupac, package = "ssmodels",
                     filename = "C:\\Users\\Dell\\Downloads\\logo.png")
 
 usethis::use_news_md()
+usethis::use_readme_rmd()
+usethis::use_pkgdown()
+pkgdown::build_site()

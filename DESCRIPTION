@@ -1,7 +1,6 @@
 Package: ssmodels
 Title: Sample Selection Models 
 Version: 0.0.0.9000
-Date: 2019-08-30
 Authors@R: c(
   person( given = "Fernando", family = "de Souza Bastos", role = c( "aut", "cre" ),
           email = "fernando.bastos@ufv.br" ),

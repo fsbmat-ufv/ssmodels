@@ -1,5 +1,5 @@
 ---
-title: "ssmodels: A package for fit the sample selection models."
+title: "ssmodels: A package for fit the sample selection models"
 output: 
   rmarkdown::html_vignette:
     fig_caption: yes
