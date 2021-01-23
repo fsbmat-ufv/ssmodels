@@ -31,7 +31,7 @@ options(knitr.table.format = "latex")
 knitr::opts_chunk$set(echo = TRUE, fig.align = "center", message=FALSE, 
                       warning=FALSE, fig.height=5, fig.width=7.2)
 ```
-
+<!--
 # Introduction
 
 <p style="text-align: justify;">
@@ -309,6 +309,7 @@ kable(Results, format = "html", align = c("c", "c", "c", "c", "c"))
 <p style="text-align: justify;">
 É importante ainda observar que os valores estimados do parâmetro de graus de liberdade do modelo Heckman-t e do parâmetro estimado pelo modelo Heckman-Skew indicam que os dados transformados possuem distribuição normal e, provavelmente por isso, apresentam resultados tão próximos do modelo clássico de Heckman. 
 </p>
+-->
 
 # Reals Database
 
