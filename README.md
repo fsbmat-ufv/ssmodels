@@ -1,75 +1,37 @@
-ssmodels: A package for fit the sample selection models
-================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ssmodels <img src='man/figures/logo.png' align="right" height="139" />
+# ssmodels
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-<p style="text-align: justify;">
-
-Com o objetivo de facilitar o ajuste dos modelos de seleção amostral
-existentes na literatura, criamos o pacote ssmodels. Nosso pacote
-permite o ajuste do modelo de Heckman clássico, e a estimação dos
-parâmetros desse modelo via método de máxima verossimilhança e método
-de dois passos, além do ajuste dos modelos Heckman-t, introduzido na
-literatura por Marchenko and Genton (2012) e do modelo Heckman-Skew
-introduzido na literatura por Ogundimu and Hutton (2016). Implementamos,
-ainda, funções para o ajuste da versão generalizada do modelo de Heckman
-que permite a inclusão de covariáveis aos parâmetros de dispersão e
-correlação e uma função para o ajuste do modelo Heckman-BS, introduzido
-por Souza Bastos and Barreto-Souza (2020) que utiliza a distribuição
-Birnbaum-Saunders como distribuição conjunta das variáveis de seleção e
-regressão primária.
-
-</p>
+The goal of ssmodels is to …
 
 ## Installation
 
-You can install `ssmodels` from Github using the devtools package by
-running the following code:
+You can install the released version of ssmodels from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-#install.package("devtools")
+install.packages("ssmodels")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
 devtools::install_github("fsbmat-ufv/ssmodels")
 ```
 
-If you want to build the package vignettes (recommended), you’ll want to
-run the following code instead
+## Example
+
+This is a basic example which shows you how to solve a common problem:
 
 ``` r
-#install.package("devtools")
-devtools::install_github("fsbmat-ufv/ssmodels", build = TRUE, 
-                         build_opts = c("--no-resave-data", "--no-manual"))
+library(ssmodels)
+#> If you have questions, suggestions,
+#>   or comments regarding the 'ssmodels' package, please contact: fernando.bastos@ufv.br
+## basic example code
 ```
-
-<div id="refs" class="references">
-
-<div id="ref-marchenko2012heckman">
-
-Marchenko, Yulia V, and Marc G Genton. 2012. “A Heckman Selection-T
-Model.” *Journal of the American Statistical Association* 107 (497):
-304–17.
-
-</div>
-
-<div id="ref-ogundimu2016sample">
-
-Ogundimu, Emmanuel O, and Jane L Hutton. 2016. “A Sample Selection Model
-with Skew-Normal Distribution.” *Scandinavian Journal of Statistics* 43
-(1): 172–90.
-
-</div>
-
-<div id="ref-bastos">
-
-Souza Bastos, Fernando de, and Wagner Barreto-Souza. 2020.
-“Birnbaum–Saunders Sample Selection Model.” *Journal of Applied
-Statistics* 0 (0): 1–21.
-
-</div>
-
-</div>
