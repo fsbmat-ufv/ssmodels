@@ -31,13 +31,22 @@ options(knitr.table.format = "latex")
 knitr::opts_chunk$set(echo = TRUE, fig.align = "center", message=FALSE, 
                       warning=FALSE, fig.height=5, fig.width=7.2)
 ```
-<!--
+
 # Introduction
+
+
+<p style="text-align: justify;">
+In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model, and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature in 2012 by @marchenko2012heckman and the Heckman-Skew model introduced in the literature by @ogundimu2016sample in 2016. We also implemented functions to adjust the generalized version of the Heckman model that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced in 2020 by @bastos that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
+</p>
+
+<!--
 
 <p style="text-align: justify;">
 Com o objetivo de facilitar o ajuste dos modelos de seleção amostral existentes na literatura, 
 criamos o pacote ssmodels. Nosso pacote permite o ajuste do modelo de Heckman clássico, e a estimação dos parâmetros desse modelo via método de máxima verossimilhança e método de dois passos, além do ajuste dos modelos Heckman-t, introduzido na literatura em 2012 por @marchenko2012heckman e do modelo Heckman-Skew introduzido na literatura por @ogundimu2016sample em 2016. Implementamos, ainda, funções para o ajuste da versão generalizada do modelo de Heckman que permite a inclusão de covariáveis aos parâmetros de dispersão e correlação e uma função para o ajuste do modelo Heckman-BS que utiliza a distribuição Birnbaum-Saunders como distribuição conjunta das variáveis de seleção e regressão primária. 
 </p>
+
+
 
 <p style="text-align: justify;">
 Comparamos nesse texto os resultados obtidos com o ajuste das funções do nosso pacote e funções do pacote sampleSelection de @sampleSelection a dados simulados e também a banco de dados reais que foram incluídos no pacote.
@@ -311,7 +320,7 @@ kable(Results, format = "html", align = c("c", "c", "c", "c", "c"))
 </p>
 -->
 
-# Reals Database
+# Real Databases
 
 ## MEPS 2001
 <p style="text-align: justify;">
@@ -372,7 +381,7 @@ $H_{0}:\rho=0$ against $H_{1}:\rho\neq 0,$ the conclusion is that there is not s
 selection bias present in the data and rejected the normality hypothesis of the data. However, we understand that the adjustment of the dispersion and/or the correlation can be an alternative to study these data without the need to modify the assumption of normality of the errors, because as our simulations indicate, the estimations of the parameters obtained by the adjustment of the model Heckman can be more severely affected by heteroscedasticity than by incorrect distribution of error terms.
 </p>
 <p style="text-align: justify;">
-No entanto, devido a assimetria dos dados, ajustamos também o modelo Heckman-BS. Thus, we consider the following system of equations for classic and generalized Heckman models, Heckman-t and Heckman-Skew:
+However, due to data asymmetry, we also adjusted the Heckman-BS model. Thus, we consider the following system of equations for classic and generalized Heckman models, Heckman-t and Heckman-Skew:
 </p>
 \begin{align}
 lnambx &= \beta_{1}+ \beta_{2}age + \beta_{3}female + \beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins + \epsilon_{1i}, \label{eq_reg_aplic1} \\
@@ -416,19 +425,19 @@ in such a way that
 \rho_{i}&=\tanh{(\kappa_{0})}, i=1,\cdots, 3328.
 \end{align*}
 
-Para ajuste do modelo Heckman-BS consideramos
+To adjust the Heckman-BS model we consider
 \begin{align*}
 \log\mu_{1i} &= \beta_{1} + \beta_{2}age + \beta_{3}female  + \beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins,\\
 \log\mu_{2i} &= \gamma_{1}+\gamma_{2}age + \gamma_{3}female + \gamma_{4}educ + \gamma_{5}blhisp + 
 \gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income,\quad i=1,2,\cdots,3328. 
 \end{align*}
 <p style="text-align: justify;">
-and $(ambexp,dambexp)$ é independentemente distribuido com distribuição Birnbaum-Saunders (BS) Bivariada de parâmetros $\mu_{1}>0, \mu_{2}>0, \phi_{1}=\phi>0, \phi_{2}=1$ e $-1<\rho<1,$ ou seja, 
+and $(ambexp,dambexp)$ is independently distributed with Birnbaum-Saunders (BS) Bivariate parameter distribution $\mu_{1}>0, \mu_{2}>0, \phi_{1}=\phi>0, \phi_{2}=1$ and $-1<\rho<1,$ that is, 
 $$(ambexp_{i},dambexp_{i})\stackrel{ind}{\sim}\mbox{ BS}(\mu_{1i},\mu_{2i}, 
 \phi,1,\rho), \mu_{1i}>0, \mu_{2i}>0, \phi>0\quad \textrm{and}\quad -1<\rho<1, i=1,\cdots, n$$
 </p>
 <p style="text-align: justify;">
-Observamos valores semelhantes para os parâmetros estimados por todos os modelos, principalmente, os parâmetros da variável de interesse. No entanto, o único modelo que permite uma interpretação direta de tais parâmetros é o modelo Heckman-BS. Podemos, por exemplo, afirmar, baseado no resultado desse modelo, que mantidos os demais parâmetros fixos, a mudança de uma unidade na idade representa o aumento de $24.6\%$ no gasto com despesas ambulatoriais. Para os demais modelos a interpretação é relacionada ao log das despesas ambulatoriais. Vejam os resultados das estimativas dos parâmetros abaixo: 
+We observed similar values for the parameters estimated by all models, mainly the parameters of the variable of interest. However, the only model that allows a direct interpretation of such parameters is the Heckman-BS model. We can, for example, affirm, based on the result of this model, that keeping the other parameters fixed, changing a unit in age represents an increase of $24.6\%$ in ambulatory expenses. For the other models, the interpretation is related to the log of outpatient expenses. See the results of the estimates of the parameters below:
 </p>
 ```{r, warning=FALSE}
 selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
@@ -457,31 +466,31 @@ Results <- data.frame("Parameters"= Parameters,
 kable(Results, format = "html", align = c("c", "c", "c", "c", "c"))
 ```
 <p style="text-align: justify;">
-Além disso, há ainda os resultados da significância dos parâmetros. O modelo de Heckman clássico ajustado a tais dados indica ausência de correlação entre as variáveis valor gasto e a decisão de gastar. Conforme @colin2009microeconometrics, tal resultado é suspeito e deve ser melhor analisado. 
+In addition, there are also the results of the significance of the parameters. The classic Heckman model adjusted to such data indicates no correlation between the variables value spent and the decision to spend. According to @colin2009microeconometrics, such a result is suspect and should be better analyzed. 
 </p>
 ```{r, warning=FALSE}
 summary(mCL)
 ```
 <p style="text-align: justify;">
-Já o modelo Heckman generalizado indica que há a presença de heterocedasticidade nos dados e, provavelmente, devido a isso, o modelo clássico de Heckman não é o mais indicado para a modelagem desses dados. Nosso modelo, além de indicar a presença de dispersão variável também indica correlação significativa entre as variáveis valor gasto e a decisão de gastar.
+The generalized Heckman model, on the other hand, indicates that there is the presence of heteroscedasticity in the data and, probably, due to this, the classic Heckman model is not the most suitable for modeling these data. Our model, in addition to indicating the presence of variable dispersion, also indicates a significant correlation between the variables amount spent and the decision to spend.
 </p>
 ```{r, warning=FALSE}
 summary(mGe)
 ```
 <p style="text-align: justify;">
-Por outro lado, como os dados observados apresentam assimetria, o modelo Heckman-BS pode ser uma boa indicação para ajustar tais dados. Notemos que o modelo Heckman-BS também indica a presença de correlação significativa. Ele apresenta também, como ressaltado anteriormente, a vantagem da parcimônia e da interpretação direta da relação dos parâmetros com a variável resposta de interesse.
+On the other hand, as the observed data show asymmetry, the Heckman-BS model can be a good indication to adjust such data. Note that the Heckman-BS model also indicates the presence of a significant correlation. It also presents, as previously mentioned, the advantage of parsimony and the direct interpretation of the relationship of the parameters with the response variable of interest.
 </p>
 ```{r, warning=FALSE}
 summary(mBS)
 ```
 <p style="text-align: justify;">
-O modelo Heckman-t mesmo ajustado ao log das despesas indica a presença de desvio da normalidade, uma vez que, o parâmetro de grau de liberdade é aproximadamente igual a $13$ e é significativo. Tal modelo também observa o parâmetro de correlação significativo.
+The Heckman-t model, even adjusted to the expense log, indicates the presence of deviation from normality, since the degree of freedom parameter is approximately equal to $13$ and is significant. Such a model also observes the significant correlation parameter.
 </p>
 ```{r, warning=FALSE}
 summary(mtS)
 ```
 <p style="text-align: justify;">
-Por fim, o modelo Heckman-Skew também indica presença de correlação significativa entre as variáveis de interesse e de seleção. Além disso, também indica desvio da normalidade dos dados transformados. É importante ressaltar que sem a transformação dos dados, o método iterativo de estimação dos parâmetros do modelo Heckman-Skew não converge.
+Finally, the Heckman-Skew model also indicates the presence of a significant correlation between the variables of interest and selection. In addition, it also indicates deviation from the normality of the transformed data. It is important to note that without the data transformation, the iterative method of estimating the parameters of the Heckman-Skew model does not converge.
 </p>
 ```{r, warning=FALSE}
 summary(mSK)
