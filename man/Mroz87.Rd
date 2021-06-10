@@ -10,7 +10,7 @@ An object of class \code{data.frame} with 753 rows and 22 columns.
 \source{
 PSID Staff, The Panel Study of Income Dynamics,
 Institute for Social ResearchPanel Study of Income
-Dynamics, University of Michigan, \url{http://psidonline.isr.umich.edu}
+Dynamics, University of Michigan, \url{https://psidonline.isr.umich.edu/}
 }
 \usage{
 Mroz87

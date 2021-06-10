@@ -19,7 +19,7 @@ study of health care cost, utilization and outcome in the United States.
 It is the only randomized study of health insurance, and the only study
 which can give definitive evidence as to the causal effects of different
 health insurance plans. For more information about the database visit:
-\url{http://en.wikipedia.org/w/index.php?title=RAND_Health_Insurance_Experiment&oldid=110166949}
+\url{https://en.wikipedia.org/w/index.php?title=RAND_Health_Insurance_Experiment&oldid=110166949}
 accessed september 09, 2019). This data frame contains the following columns:
 \itemize{
 \item{plan: HIE plan number.}
