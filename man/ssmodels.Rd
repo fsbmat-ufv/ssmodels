@@ -77,10 +77,7 @@ the presence of heteroscedasticity.}
 \author{
 Fernando de Souza Bastos, Wagner Barreto de Souza
 }
-\keyword{2,}
 \keyword{Heckman}
-\keyword{Models}
-\keyword{Models,}
 \keyword{Sample}
-\keyword{Selection}
-\keyword{Tobit}
+\keyword{Selection,}
+\keyword{Tobit,}

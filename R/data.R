@@ -61,7 +61,7 @@
 #'
 #' @author Fernando de Souza Bastos, Wagner Barreto de Souza
 #'
-#' @keywords Sample Selection Models, Tobit 2, Heckman Models
+#' @keywords Sample Selection, Tobit, Heckman
 #'
 #' @docType package
 #' @name ssmodels
@@ -161,7 +161,7 @@ NULL
 #' }
 #' @source PSID Staff, The Panel Study of Income Dynamics,
 #' Institute for Social ResearchPanel Study of Income
-#' Dynamics, University of Michigan, \url{http://psidonline.isr.umich.edu.}
+#' Dynamics, University of Michigan, \url{http://psidonline.isr.umich.edu}
 #'
 #' @references{
 #'   \insertRef{mroz1987}{ssmodels}
@@ -294,7 +294,7 @@ NULL
 #'   \insertRef{wikiRand}{ssmodels}
 #' }
 #'
-#' @keywords datasets, RandHIE
+#' @keywords RandHIE
 #'
 #' @examples
 #' ##Cameron and Trivedi (2005): Section 16.6

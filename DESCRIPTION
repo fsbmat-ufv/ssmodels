@@ -24,10 +24,7 @@ Suggests:
     kfigr (>= 1.2),
     ggplot2 (>= 3.2.1),
     gridExtra (>= 2.3)
-Description: Models to fit data with selection bias problems. 
-    There is the classic Heckman model with Maximum Likelihood 
-    estimation and the two-step method and the Generalized Heckman model, 
-    the Heckman-Skew model, the Heckman-t model, and the Heckman-BS model.
+Description: Models to fit data with selection bias problems.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
