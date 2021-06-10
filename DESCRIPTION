@@ -1,6 +1,6 @@
 Package: ssmodels
 Title: Sample Selection Models 
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: c(
   person( given = "Fernando", family = "de Souza Bastos", role = c( "aut", "cre" ),
           email = "fernando.bastos@ufv.br" ),
@@ -34,3 +34,4 @@ LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1.9000
 RdMacros: Rdpack
+BugReports: https://github.com/fsbmat-ufv/ssmodels/issues
