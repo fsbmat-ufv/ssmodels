@@ -103,7 +103,7 @@
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p style="text-align: justify;">
-In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model, and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature in 2012 by <span class="citation">Marchenko and Genton (2012)</span> and the Heckman-Skew model introduced in the literature by <span class="citation">Ogundimu and Hutton (2016)</span> in 2016. We also implemented functions to adjust the generalized version of the Heckman model, introduced by <span class="citation">Bastos, Barreto-Souza, and Genton (2021)</span>, that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced in 2020 by <span class="citation">Souza Bastos and Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
+In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model (<span class="citation">Heckman (1976)</span>, <span class="citation">Heckman (1979)</span>), and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature by <span class="citation">Marchenko and Genton (2012)</span> and the Heckman-Skew model introduced in the literature by <span class="citation">Ogundimu and Hutton (2016)</span>. We also implemented functions to adjust the generalized version of the Heckman model, introduced by <span class="citation">Bastos, Barreto-Souza, and Genton (2021)</span>, that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced by <span class="citation">Bastos and Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
 </p>
 <!--
 
@@ -2130,20 +2130,26 @@ NA
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bastos" class="csl-entry">
+Bastos, Fernando de Souza, and Wagner Barreto-Souza. 2020. <span>“Birnbaum–Saunders Sample Selection Model.”</span> <em>Journal of Applied Statistics</em>.
+</div>
 <div id="ref-bastosBarreto" class="csl-entry">
 Bastos, Fernando de Souza, Wagner Barreto-Souza, and Marc G Genton. 2021. <span>“A Generalized Heckman Model with Varying Sample Selection Bias and Dispersion Parameters.”</span> <em>Statistica Sinica</em>.
 </div>
 <div id="ref-colin2009microeconometrics" class="csl-entry">
 Colin, Cameron A, and Pravin K Trivedi. 2009. <span>“Microeconometrics Using STATA.”</span> <em>Lakeway Drive, TX: Stata Press Books</em>.
 </div>
+<div id="ref-heckman1976common" class="csl-entry">
+Heckman, James J. 1976. <span>“The Common Structure of Statistical Models of Truncation, Sample Selection and Limited Dependent Variables and a Simple Estimator for Such Models.”</span> In <em>Annals of Economic and Social Measurement, Volume 5, Number 4</em>, 475–92. NBER.
+</div>
+<div id="ref-heckman1979sample" class="csl-entry">
+———. 1979. <span>“Sample Selection Bias as a Specification Error.”</span> <em>Econometrica: Journal of the Econometric Society</em>, 153–61.
+</div>
 <div id="ref-marchenko2012heckman" class="csl-entry">
 Marchenko, Yulia V, and Marc G Genton. 2012. <span>“A Heckman Selection-t Model.”</span> <em>Journal of the American Statistical Association</em> 107 (497): 304–17.
 </div>
 <div id="ref-ogundimu2016sample" class="csl-entry">
 Ogundimu, Emmanuel O, and Jane L Hutton. 2016. <span>“A Sample Selection Model with Skew-Normal Distribution.”</span> <em>Scandinavian Journal of Statistics</em> 43 (1): 172–90.
-</div>
-<div id="ref-bastos" class="csl-entry">
-Souza Bastos, Fernando de, and Wagner Barreto-Souza. 2020. <span>“Birnbaum–Saunders Sample Selection Model.”</span> <em>Journal of Applied Statistics</em> 0 (0): 1–21.
 </div>
 <div id="ref-zhelonkin2016robust" class="csl-entry">
 Zhelonkin, Mikhail, Marc G Genton, and Elvezio Ronchetti. 2016. <span>“Robust Inference in Sample Selection Models.”</span> <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 78 (4): 805–27.
