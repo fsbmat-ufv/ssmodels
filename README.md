@@ -6,7 +6,19 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ssmodels is to …
+In order to facilitate the adjustment of the sample selection models
+existing in the literature, we created the ssmodels package. Our package
+allows the adjustment of the classic Heckman model, and the estimation
+of the parameters of this model via the maximum likelihood method and
+two-step method, in addition to the adjustment of the Heckman-t models,
+introduced in the literature in 2012 by @marchenko2012heckman and the
+Heckman-Skew model introduced in the literature by @ogundimu2016sample
+in 2016. We also implemented functions to adjust the generalized version
+of the Heckman model, introduced by @bastosBarreto, that allows the
+inclusion of covariables to the dispersion and correlation parameters
+and a function to adjust the Heckman-BS model introduced in 2020 by
+@bastos that uses the Birnbaum-Saunders distribution as a joint
+distribution of the selection and primary regression variables.
 
 ## Installation
 
@@ -23,38 +35,3 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("fsbmat-ufv/ssmodels")
 ```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(ssmodels)
-#> If you have questions, suggestions,
-#>   or comments regarding the 'ssmodels' package, please contact: fernando.bastos@ufv.br
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub!

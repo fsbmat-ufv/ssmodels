@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ssmodels is to ...
+In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model, and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature in 2012 by @marchenko2012heckman and the Heckman-Skew model introduced in the literature by @ogundimu2016sample in 2016. We also implemented functions to adjust the generalized version of the Heckman model, introduced by @bastosBarreto, that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced in 2020 by @bastos that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
 
 ## Installation
 
@@ -34,27 +34,4 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("fsbmat-ufv/ssmodels")
 ```
-## Example
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-library(ssmodels)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

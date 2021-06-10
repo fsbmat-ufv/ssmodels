@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ssmodels</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -69,7 +69,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/fsbmat-ufv/ssmodels/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -85,7 +92,7 @@
       <h1 data-toc-skip>ssmodels: A package for fit the sample selection models</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/fsbmat-ufv/ssmodels/blob/master/vignettes/vignette.Rmd"><code>vignettes/vignette.Rmd</code></a></small>
       <div class="hidden name"><code>vignette.Rmd</code></div>
 
     </div>
@@ -96,7 +103,7 @@
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p style="text-align: justify;">
-In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model, and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature in 2012 by <span class="citation">Marchenko and Genton (2012)</span> and the Heckman-Skew model introduced in the literature by <span class="citation">Ogundimu and Hutton (2016)</span> in 2016. We also implemented functions to adjust the generalized version of the Heckman model that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced in 2020 by <span class="citation">Souza Bastos and Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
+In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model, and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature in 2012 by <span class="citation">Marchenko and Genton (2012)</span> and the Heckman-Skew model introduced in the literature by <span class="citation">Ogundimu and Hutton (2016)</span> in 2016. We also implemented functions to adjust the generalized version of the Heckman model, introduced by <span class="citation">Bastos, Barreto-Souza, and Genton (2021)</span>, that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced in 2020 by <span class="citation">Souza Bastos and Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
 </p>
 <!--
 
@@ -2123,6 +2130,9 @@ NA
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bastosBarreto" class="csl-entry">
+Bastos, Fernando de Souza, Wagner Barreto-Souza, and Marc G Genton. 2021. <span>“A Generalized Heckman Model with Varying Sample Selection Bias and Dispersion Parameters.”</span> <em>Statistica Sinica</em>.
+</div>
 <div id="ref-colin2009microeconometrics" class="csl-entry">
 Colin, Cameron A, and Pravin K Trivedi. 2009. <span>“Microeconometrics Using STATA.”</span> <em>Lakeway Drive, TX: Stata Press Books</em>.
 </div>
