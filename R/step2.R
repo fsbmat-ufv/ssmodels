@@ -1,11 +1,27 @@
 #' Heckman's two-step method
 #'
+#' @description
 #' Estimate model parameters via two-step method
-#'
+#' @return
+#' Returns a numerical vector with the parameter estimates of the Classical
+#' Heckman model via a two-step method. For more information see
+#' \insertCite{heckman1979sample;textual}{ssmodels}
 #' @param YS Selection vector.
 #' @param XS Selection Matrix.
 #' @param YO Interest vector.
 #' @param XO Matrix of the equation of interest.
+#' @examples
+#' data(MEPS2001)
+#' attach(MEPS2001)
+#' YS <- dambexp
+#' XS <- cbind(age, female, educ, blhisp, totchr, ins)
+#' YO <- lnambx
+#' XO <- cbind(age, female, educ, blhisp, totchr, ins, income)
+#' step2(YS, XS, YO, XO)
+#' @importFrom Rdpack reprompt
+#' @references {
+#' \insertAllCited{}
+#' }
 #' @export
 step2 <- function(YS, XS, YO, XO) {
     # Two-step estimation

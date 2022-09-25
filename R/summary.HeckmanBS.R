@@ -1,5 +1,6 @@
 #' Summary of Birnbaum-Saunders Heckman Model
 #'
+#' @return
 #' Print estimates of the parameters of the Heckman-BS model
 #' @param object HeckmanBS class object.
 #' @param ... others functions.

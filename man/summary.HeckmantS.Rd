@@ -11,6 +11,9 @@
 
 \item{...}{others functions.}
 }
-\description{
+\value{
 Print estimates of the parameters of the Heckman-ts model
+}
+\description{
+Summary of Heckman-ts Model
 }

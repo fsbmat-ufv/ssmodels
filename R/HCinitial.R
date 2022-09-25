@@ -1,6 +1,24 @@
 #' Two-Step Method for Parameter Estimation of the Heckman Model
 #'
-#' Estimates the parameters of the classic Heckman model via the two-step method.
+#' @description
+#' Estimates the parameters of the classic
+#' Heckman model via the two-step method.
+#'
+#' @return
+#'
+#' Returns a numerical vector with estimates
+#' of the parameters of the classical Heckman
+#' model using the two-step method
+#'
+#' @details
+#' Generally, the two-step method is very
+#' useful for finding initial values for
+#' the Likelihood Estimation method. In
+#' first step performs a probit analysis
+#' on a selection equation. The second
+#' step analyzes an outcome equation based
+#' on the first-step binary probit model.
+#'
 #'
 #' @param selection Selection equation.
 #' @param outcome Primary Regression Equation.
@@ -11,6 +29,7 @@
 #' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
 #' outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
 #' HCinitial(selectEq,outcomeEq, data = MEPS2001)
+#'
 #' @export
 HCinitial <- function(selection, outcome, data = sys.frame(sys.parent())) {
     # Extrair matriz do modelo e matriz das equações de seleção e regressão Matriz

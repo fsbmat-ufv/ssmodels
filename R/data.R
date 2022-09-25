@@ -61,7 +61,7 @@
 #'
 #' @author Fernando de Souza Bastos, Wagner Barreto de Souza
 #'
-#' @keywords Sample Selection, Tobit, Heckman
+#' @keywords Heckman
 #'
 #' @docType package
 #' @name ssmodels

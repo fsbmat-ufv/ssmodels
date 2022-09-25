@@ -1,5 +1,6 @@
 #' Summary of Skew-Normal Heckman Model
 #'
+#' @return
 #' Print estimates of the parameters of the Heckman-SK model
 #' @param object HeckmanSK class object.
 #' @param ... others functions.

@@ -11,6 +11,9 @@
 
 \item{...}{others functions.}
 }
-\description{
+\value{
 Print estimates of the parameters of the Heckman-BS model
+}
+\description{
+Summary of Birnbaum-Saunders Heckman Model
 }

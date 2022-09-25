@@ -2,7 +2,8 @@
 % Please edit documentation in R/HeckmanGe.R
 \name{HeckmanGe}
 \alias{HeckmanGe}
-\title{Function for fit of the Generalized Heckman Model}
+\title{Function for fit of the Generalized
+Heckman Model}
 \usage{
 HeckmanGe(
   selection,
@@ -18,16 +19,87 @@ HeckmanGe(
 
 \item{outcome}{Primary Regression Equation.}
 
-\item{outcomeS}{Matrix with Covariables for fit of the Dispersion Parameter.}
+\item{outcomeS}{Matrix with Covariates for fit of the Dispersion Parameter.}
 
-\item{outcomeC}{Matrix with Covariates for Adjusting the Correlation Parameter.}
+\item{outcomeC}{Matrix with Covariates for fit of the Correlation Parameter.}
 
 \item{data}{Database.}
 
 \item{start}{initial values.}
 }
 \description{
-Estimates the parameters of the Generalized Heckman model
+Estimates the parameters of the Generalized
+Heckman model
+
+#' @return
+
+Returns a list with the following components.
+
+Coefficients: Returns a numerical vector with the best estimated values
+of the model parameters;
+
+Value: The value of function to be minimized (or maximized) corresponding
+to par.
+
+loglik: Negative of value. Minimum (or maximum) of the likelihood function
+calculated from the estimated coefficients.
+
+counts: Component of the Optim function. A two-element integer vector
+giving the number of calls to fn and gr respectively. This excludes
+those calls needed to compute the Hessian, if requested, and any calls
+to fn to compute a finite-difference approximation to the gradient.
+
+hessian: Component of the Optim function, with pre-defined option
+hessian=TRUE. A symmetric matrix giving an estimate of the Hessian
+at the solution found. Note that this is the Hessian of the unconstrained
+problem even if the box constraints are active.
+
+fisher_infoHG: Fisher information matrix
+
+prop_sigmaHG: Square root of the Fisher information matrix diagonal
+
+level: Selection variable levels
+
+nObs: Numeric value representing the size of the database
+
+nParam: Numerical value representing the number of model parameters
+
+N0: Numerical value representing the number of unobserved entries
+
+N1: Numerical value representing the number of complete entries
+
+NXS: Numerical value representing the number of parameters of the
+selection model
+
+NXO: Numerical value representing the number of parameters of the
+regression model
+
+df: Numerical value that represents the difference between the size
+of the response vector of the selection equation and the number of
+model parameters
+
+aic: Numerical value representing Akaike's information criterion.
+
+bic: Numerical value representing Schwarz's Bayesian Criterion
+
+initial.value: Numerical vector that represents the input values
+(Initial Values) used in the parameter estimation.
+
+NE: Numerical value that represents the number
+of parameters related to the covariates fitted
+to the dispersion parameter considering the
+constant parameter.
+
+NV: Numerical value that represents the number
+of parameters related to the covariates fitted
+to the correlation parameter considering the
+constant parameter.
+}
+\details{
+The HeckmanGe() function fits a generalization of the Heckman sample
+selection model, allowing sample selection bias and dispersion parameters
+to depend on covariates. For more information, see
+\insertCite{bastosBarreto;textual}{ssmodels}
 }
 \examples{
 data(MEPS2001)
@@ -37,4 +109,9 @@ outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
 outcomeS <- cbind(age,female,totchr,ins)
 outcomeC <- 1
 HeckmanGe(selectEq, outcomeEq,outcomeS, outcomeC, data = MEPS2001)
+}
+\references{
+{
+\insertAllCited{}
+}
 }

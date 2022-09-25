@@ -1,5 +1,6 @@
 #' Summary of Classic Heckman Model
 #'
+#' @return
 #' Print estimates of the parameters of the Classic Heckman model
 #' @param object HeckmanCL class object.
 #' @param ... others functions.

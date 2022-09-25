@@ -11,6 +11,9 @@
 
 \item{...}{others functions.}
 }
+\value{
+Print estimates of the parameters of the Generalized Heckman model
+}
 \description{
-Print eEstimates of the parameters of the Generalized Heckman model
+Summary of Generalized Heckman Model
 }

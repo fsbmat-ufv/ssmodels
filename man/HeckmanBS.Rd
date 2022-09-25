@@ -15,8 +15,68 @@ HeckmanBS(selection, outcome, data = sys.frame(sys.parent()), start = NULL)
 
 \item{start}{initial values.}
 }
+\value{
+Returns a list with the following components.
+
+Coefficients: Returns a numerical vector with the best estimated values
+of the model parameters;
+
+Value: The value of function to be minimized (or maximized) corresponding
+to par.
+
+loglik: Negative of value. Minimum (or maximum) of the likelihood function
+calculated from the estimated coefficients.
+
+counts: Component of the Optim function. A two-element integer vector
+giving the number of calls to fn and gr respectively. This excludes
+those calls needed to compute the Hessian, if requested, and any calls
+to fn to compute a finite-difference approximation to the gradient.
+
+hessian: Component of the Optim function, with pre-defined option
+hessian=TRUE. A symmetric matrix giving an estimate of the Hessian
+at the solution found. Note that this is the Hessian of the unconstrained
+problem even if the box constraints are active.
+
+fisher_infoBS: Fisher information matrix
+
+prop_sigmaBS: Square root of the Fisher information matrix diagonal
+
+level: Selection variable levels
+
+nObs: Numeric value representing the size of the database
+
+nParam: Numerical value representing the number of model parameters
+
+N0: Numerical value representing the number of unobserved entries
+
+N1: Numerical value representing the number of complete entries
+
+NXS: Numerical value representing the number of parameters of the
+selection model
+
+NXO: Numerical value representing the number of parameters of the
+regression model
+
+df: Numerical value that represents the difference between the size
+of the response vector of the selection equation and the number of
+model parameters
+
+aic: Numerical value representing Akaike's information criterion.
+
+bic: Numerical value representing Schwarz's Bayesian Criterion
+
+initial.value: Numerical vector that represents the input values
+(Initial Values) used in the parameter estimation.
+}
 \description{
 Estimates the parameters of the Heckman-BS model
+}
+\details{
+The HeckmanBS() function fits the Sample Selection Model
+based on the Birnbaum–Saunders bivariate distribution,
+it has the same number of parameters as the classical
+Heckman model. For more information see
+\insertCite{bastos;textual}{ssmodels}
 }
 \examples{
 data(MEPS2001)
@@ -24,4 +84,9 @@ attach(MEPS2001)
 selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
 outcomeBS <- ambexp ~ age + female + educ + blhisp + totchr + ins
 HeckmanBS(selectEq, outcomeBS, data = MEPS2001)
+}
+\references{
+{
+\insertAllCited{}
+}
 }

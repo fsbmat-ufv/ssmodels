@@ -1,5 +1,6 @@
 #' Summary of Heckman-ts Model
 #'
+#' @return
 #' Print estimates of the parameters of the Heckman-ts model
 #' @param object HeckmantS class object.
 #' @param ... others functions.

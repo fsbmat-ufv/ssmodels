@@ -1,10 +1,24 @@
 #' Heckman's two-step method
 #'
+#' @description
 #' Estimate model parameters via two-step method
-#'
+#' @return
+#' Returns a numerical vector with the parameter estimates of the Classical
+#' Heckman model via a two-step method. For more information see
+#' \insertCite{heckman1979sample;textual}{ssmodels}
 #' @param selection Selection equation.
 #' @param outcome Primary Regression Equation.
 #' @param data Database.
+#' @examples
+#' data(MEPS2001)
+#' attach(MEPS2001)
+#' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
+#' outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
+#' twostep(selectEq, outcomeEq)
+#' @importFrom Rdpack reprompt
+#' @references {
+#' \insertAllCited{}
+#' }
 #' @export
 twostep <- function(selection, outcome, data = sys.frame(sys.parent())) {
     ############################################################################################################################################## Extrair matriz do modelo e matriz das equações de seleção e regressão # Matriz

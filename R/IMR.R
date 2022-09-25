@@ -1,9 +1,16 @@
 #' Inverse Mills Ratio
 #'
+#' @description
 #' Column vector of the inverse ratio of Mills
-#'
+#' @return
+#' Return column vector of the inverse ratio of Mills
 #' @param selection Selection equation.
 #' @param data Database.
+#' @examples
+#' data(MEPS2001)
+#' attach(MEPS2001)
+#' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
+#' IMR(selectEq)
 #' @export
 IMR <- function(selection, data = sys.frame(sys.parent())) {
     ############################################################################################################################################## Extrair matriz do modelo e matriz da equação de seleção # Matriz de seleção #

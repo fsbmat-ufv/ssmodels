@@ -1,6 +1,7 @@
 #' Summary of Generalized Heckman Model
 #'
-#' Print eEstimates of the parameters of the Generalized Heckman model
+#' @return
+#' Print estimates of the parameters of the Generalized Heckman model
 #' @param object HeckmanGe class object.
 #' @param ... others functions.
 #' @export summary.HeckmanGe

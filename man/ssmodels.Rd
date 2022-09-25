@@ -78,6 +78,3 @@ the presence of heteroscedasticity.}
 Fernando de Souza Bastos, Wagner Barreto de Souza
 }
 \keyword{Heckman}
-\keyword{Sample}
-\keyword{Selection,}
-\keyword{Tobit,}

@@ -11,6 +11,9 @@
 
 \item{...}{others functions.}
 }
-\description{
+\value{
 Print estimates of the parameters of the Heckman-SK model
+}
+\description{
+Summary of Skew-Normal Heckman Model
 }
