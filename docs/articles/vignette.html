@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ssmodels</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -71,7 +67,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/fsbmat-ufv/ssmodels/">
+  <a href="https://github.com/fsbmat-ufv/ssmodels/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -86,24 +82,40 @@
 
       
 
-      </header><script src="vignette_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>ssmodels: A package for fit the sample selection models</h1>
+      <h1 data-toc-skip>ssmodels: A package for fit the sample selection
+models</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/fsbmat-ufv/ssmodels/blob/master/vignettes/vignette.Rmd"><code>vignettes/vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/fsbmat-ufv/ssmodels/blob/HEAD/vignettes/vignette.Rmd" class="external-link"><code>vignettes/vignette.Rmd</code></a></small>
       <div class="hidden name"><code>vignette.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p style="text-align: justify;">
-In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model (<span class="citation">Heckman (1976)</span>, <span class="citation">Heckman (1979)</span>), and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature by <span class="citation">Marchenko and Genton (2012)</span> and the Heckman-Skew model introduced in the literature by <span class="citation">Ogundimu and Hutton (2016)</span>. We also implemented functions to adjust the generalized version of the Heckman model, introduced by <span class="citation">Bastos, Barreto-Souza, and Genton (2021)</span>, that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced by <span class="citation">Bastos and Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
+In order to facilitate the adjustment of the sample selection models
+existing in the literature, we created the ssmodels package. Our package
+allows the adjustment of the classic Heckman model (<span class="citation">Heckman (1976)</span>, <span class="citation">Heckman
+(1979)</span>), and the estimation of the parameters of this model via
+the maximum likelihood method and two-step method, in addition to the
+adjustment of the Heckman-t models, introduced in the literature by
+<span class="citation">Marchenko and Genton (2012)</span> and the
+Heckman-Skew model introduced in the literature by <span class="citation">Ogundimu and Hutton (2016)</span>. We also implemented
+functions to adjust the generalized version of the Heckman model,
+introduced by <span class="citation">Bastos, Barreto-Souza, and Genton
+(2022)</span>, that allows the inclusion of covariables to the
+dispersion and correlation parameters and a function to adjust the
+Heckman-BS model introduced by <span class="citation">Bastos and
+Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution
+as a joint distribution of the selection and primary regression
+variables.
 </p>
 <!--
 
@@ -216,7 +228,7 @@ summary(m1)
 ## Tobit 2 model (sample selection model)
 ## Maximum Likelihood estimation
 ## Newton-Raphson maximisation, 7 iterations
-## Return code 1: gradient close to zero
+## Return code 1: gradient close to zero (gradtol)
 ## Log-Likelihood: -169.1171 
 ## 100 observations (30 censored and 70 observed)
 ## 6 free parameters (df = 94)
@@ -644,14 +656,23 @@ kable(Results, format = "html", align = c("c", "c", "c", "c", "c"))
 </p>
 -->
 </div>
-<div id="real-databases" class="section level1">
-<h1 class="hasAnchor">
-<a href="#real-databases" class="anchor"></a>Real Databases</h1>
-<div id="meps-2001" class="section level2">
-<h2 class="hasAnchor">
-<a href="#meps-2001" class="anchor"></a>MEPS 2001</h2>
+<div class="section level2">
+<h2 id="real-databases">Real Databases<a class="anchor" aria-label="anchor" href="#real-databases"></a>
+</h2>
+<div class="section level3">
+<h3 id="meps-2001">MEPS 2001<a class="anchor" aria-label="anchor" href="#meps-2001"></a>
+</h3>
 <p style="text-align: justify;">
-The MEPS is a set of large-scale surveys of families, individuals and their medical providers (doctors, hospitals, pharmacies, etc.) in the United States. It has data on the health services Americans use, how often they use them, the cost of these services and how they are paid, as well as data on the cost and reach of health insurance available to American workers. The sample is restricted to persons aged between 21 and 64 years and contains a variable response with 3328 observations of outpatient costs, of which 526 (15.8%) correspond to unobserved expenditure values and identified as zero expenditure for adjustment of the models. It also includes the following explanatory variables:
+The MEPS is a set of large-scale surveys of families, individuals and
+their medical providers (doctors, hospitals, pharmacies, etc.) in the
+United States. It has data on the health services Americans use, how
+often they use them, the cost of these services and how they are paid,
+as well as data on the cost and reach of health insurance available to
+American workers. The sample is restricted to persons aged between 21
+and 64 years and contains a variable response with 3328 observations of
+outpatient costs, of which 526 (15.8%) correspond to unobserved
+expenditure values and identified as zero expenditure for adjustment of
+the models. It also includes the following explanatory variables:
 </p>
 <ul>
 <li>educ: education status</li>
@@ -677,44 +698,81 @@ The MEPS is a set of large-scale surveys of families, individuals and their medi
 <li>lnambx: a numeric vector</li>
 <li>ins: insurance status
 <p style="text-align: justify;">
-These data were also used by <span class="citation">Colin and Trivedi (2009)</span>, <span class="citation">Marchenko and Genton (2012)</span> and <span class="citation">Zhelonkin, Genton, and Ronchetti (2016)</span> to fit the classical Heckman and Heckman-t models and the robust version of the two-step method, respectively. We use the variable of interest <span class="math inline">\(Y_{1}^{*}={\rm ambexp}\)</span>, which represents expenditure on medical services, on the logarithmic scale, since it is highly asymmetric, see <a href="#fig4">Figura 4</a>. The variable <span class="math inline">\(Y_{2}^{*}={\rm dambexp},\)</span> representing the willingness to spend, is not observed. We observe <span class="math inline">\(U=1\{Y_{2}^{*}&gt;0\},\)</span> which represents the decision to spend on medical care.
+These data were also used by <span class="citation">Colin and Trivedi
+(2009)</span>, <span class="citation">Marchenko and Genton (2012)</span>
+and <span class="citation">Zhelonkin, Genton, and Ronchetti
+(2016)</span> to fit the classical Heckman and Heckman-t models and the
+robust version of the two-step method, respectively. We use the variable
+of interest <span class="math inline">\(Y_{1}^{*}={\rm ambexp}\)</span>,
+which represents expenditure on medical services, on the logarithmic
+scale, since it is highly asymmetric, see <a href="#fig4">Figura 4</a>.
+The variable <span class="math inline">\(Y_{2}^{*}={\rm
+dambexp},\)</span> representing the willingness to spend, is not
+observed. We observe <span class="math inline">\(U=1\{Y_{2}^{*}&gt;0\},\)</span> which represents
+the decision to spend on medical care.
 </p>
 <a name="fig4"></a>
 </li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ssmodels</span><span class="op">)</span>
-<span class="co">#Leitura do dados MEPS2001</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">MEPS2001</span><span class="op">)</span>
-<span class="co">#tornando visiveis as colunas do data-frame</span>
-<span class="kw"><a href="https://rdrr.io/r/base/attach.html">attach</a></span><span class="op">(</span><span class="va">MEPS2001</span><span class="op">)</span>
-<span class="va">barfill</span> <span class="op">&lt;-</span> <span class="st">"grey"</span>
-<span class="va">barlines</span> <span class="op">&lt;-</span> <span class="st">"black"</span>
-<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">MEPS2001</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">ambexp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"(a) Expenditures Medical"</span>,
-                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15000</span>, <span class="fl">2500</span><span class="op">)</span>,
-                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15000</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Count"</span>,
-                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">800</span>, <span class="fl">100</span><span class="op">)</span>,
-                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">800</span><span class="op">)</span><span class="op">)</span>
-<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">MEPS2001</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">lambexp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"(b) Log of Expenditures Medical"</span>,
-                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">11</span>, <span class="fl">1</span><span class="op">)</span>,
-                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Count"</span>,
-                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">300</span>, <span class="fl">100</span><span class="op">)</span>,
-                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">300</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">grid.arrange</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ssmodels</span><span class="op">)</span></span>
+<span><span class="co">#Leitura do dados MEPS2001</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">MEPS2001</span><span class="op">)</span></span>
+<span><span class="co">#tornando visiveis as colunas do data-frame</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">MEPS2001</span><span class="op">)</span></span>
+<span><span class="va">barfill</span> <span class="op">&lt;-</span> <span class="st">"grey"</span></span>
+<span><span class="va">barlines</span> <span class="op">&lt;-</span> <span class="st">"black"</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">MEPS2001</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">ambexp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"(a) Expenditures Medical"</span>,</span>
+<span>                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15000</span>, <span class="fl">2500</span><span class="op">)</span>,</span>
+<span>                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15000</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Count"</span>,</span>
+<span>                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">800</span>, <span class="fl">100</span><span class="op">)</span>,</span>
+<span>                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">800</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">MEPS2001</span>,<span class="fu">aes</span><span class="op">(</span><span class="va">lambexp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu">geom_histogram</span><span class="op">(</span>colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"(b) Log of Expenditures Medical"</span>,</span>
+<span>                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">11</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Count"</span>,</span>
+<span>                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">300</span>, <span class="fl">100</span><span class="op">)</span>,</span>
+<span>                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">300</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">grid.arrange</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <img src="vignette_files/figure-html/fig4-1.png" width="691.2" style="display: block; margin: auto;"><p style="text-align: justify;">
-According <span class="citation">Marchenko and Genton (2012)</span> and <span class="citation">Zhelonkin, Genton, and Ronchetti (2016)</span> it is natural to fit a sample selection model to such data, since the willingness to spend <span class="math inline">\((Y_{2}^{*})\)</span> is likely to be related to the expense amount <span class="math inline">\((Y_{1}^{*}).\)</span> However, after fitting the classic Heckman model and using the Wald, likelihood ratio, or gradient tests for <span class="math inline">\(H_{0}:\rho=0\)</span> against <span class="math inline">\(H_{1}:\rho\neq 0,\)</span> the conclusion is that there is not sufficient evidence <span class="math inline">\((p\textrm{-valor}&gt;0.1)\)</span> to reject <span class="math inline">\(H_{0},\)</span> that is, there is no bias of selection. <span class="citation">Colin and Trivedi (2009)</span> suspected this conclusion and <span class="citation">Marchenko and Genton (2012)</span> argued that a more robust model could evidence the selection bias present in the data and rejected the normality hypothesis of the data. However, we understand that the adjustment of the dispersion and/or the correlation can be an alternative to study these data without the need to modify the assumption of normality of the errors, because as our simulations indicate, the estimations of the parameters obtained by the adjustment of the model Heckman can be more severely affected by heteroscedasticity than by incorrect distribution of error terms.
+According <span class="citation">Marchenko and Genton (2012)</span> and
+<span class="citation">Zhelonkin, Genton, and Ronchetti (2016)</span> it
+is natural to fit a sample selection model to such data, since the
+willingness to spend <span class="math inline">\((Y_{2}^{*})\)</span> is
+likely to be related to the expense amount <span class="math inline">\((Y_{1}^{*}).\)</span> However, after fitting the
+classic Heckman model and using the Wald, likelihood ratio, or gradient
+tests for <span class="math inline">\(H_{0}:\rho=0\)</span> against
+<span class="math inline">\(H_{1}:\rho\neq 0,\)</span> the conclusion is
+that there is not sufficient evidence <span class="math inline">\((p\textrm{-valor}&gt;0.1)\)</span> to reject <span class="math inline">\(H_{0},\)</span> that is, there is no bias of
+selection. <span class="citation">Colin and Trivedi (2009)</span>
+suspected this conclusion and <span class="citation">Marchenko and
+Genton (2012)</span> argued that a more robust model could evidence the
+selection bias present in the data and rejected the normality hypothesis
+of the data. However, we understand that the adjustment of the
+dispersion and/or the correlation can be an alternative to study these
+data without the need to modify the assumption of normality of the
+errors, because as our simulations indicate, the estimations of the
+parameters obtained by the adjustment of the model Heckman can be more
+severely affected by heteroscedasticity than by incorrect distribution
+of error terms.
 </p>
 <p style="text-align: justify;">
-However, due to data asymmetry, we also adjusted the Heckman-BS model. Thus, we consider the following system of equations for classic and generalized Heckman models, Heckman-t and Heckman-Skew:
+However, due to data asymmetry, we also adjusted the Heckman-BS model.
+Thus, we consider the following system of equations for classic and
+generalized Heckman models, Heckman-t and Heckman-Skew:
 </p>
 <p><span class="math display">\[\begin{align}
-lnambx &amp;= \beta_{1}+ \beta_{2}age + \beta_{3}female + \beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins + \epsilon_{1i}, \label{eq_reg_aplic1} \\
-dambexp&amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female + \gamma_{4}educ + \gamma_{5}blhisp + \gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income + \epsilon_{2i}, \label{eq_sel_aplic1} 
-\end{align}\]</span> where errors are defined for classic Heckman models, Heckman-t and Heckman-Skew according to <span class="math display">\[\begin{align}\label{2:disterro}
+lnambx &amp;= \beta_{1}+ \beta_{2}age + \beta_{3}female + \beta_{4}educ
++ \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins + \epsilon_{1i},
+\label{eq_reg_aplic1} \\
+dambexp&amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female +
+\gamma_{4}educ + \gamma_{5}blhisp + \gamma_{6}totchr + \gamma_{7}ins +
+\gamma_{8}income + \epsilon_{2i}, \label{eq_sel_aplic1}
+\end{align}\]</span> where errors are defined for classic Heckman
+models, Heckman-t and Heckman-Skew according to <span class="math display">\[\begin{align}\label{2:disterro}
 \begin{pmatrix}\epsilon_{1i}\\
 \epsilon_{2i}
 \end{pmatrix} &amp;\overset{ind.}{\sim} \mathcal{N}
@@ -743,46 +801,62 @@ dambexp&amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female + \gamma_{4}educ + \ga
 \end{pmatrix}
 \end{bmatrix}, i=1,\cdots,n,
 \end{align}\]</span> in such a way that <span class="math display">\[\begin{align*}
-\log{(\sigma_{i})} &amp;= \lambda_{1}+\lambda_{2}age + \lambda_{3}female + \lambda_{4}totchr + \lambda_{5}ins\quad \textrm{and}\\ 
+\log{(\sigma_{i})} &amp;= \lambda_{1}+\lambda_{2}age + \lambda_{3}female
++ \lambda_{4}totchr + \lambda_{5}ins\quad \textrm{and}\\
 \rho_{i}&amp;=\tanh{(\kappa_{0})}, i=1,\cdots, 3328.
 \end{align*}\]</span></p>
 To adjust the Heckman-BS model we consider <span class="math display">\[\begin{align*}
-\log\mu_{1i} &amp;= \beta_{1} + \beta_{2}age + \beta_{3}female  + \beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins,\\
-\log\mu_{2i} &amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female + \gamma_{4}educ + \gamma_{5}blhisp + 
-\gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income,\quad i=1,2,\cdots,3328. 
+\log\mu_{1i} &amp;= \beta_{1} + \beta_{2}age + \beta_{3}female  +
+\beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins,\\
+\log\mu_{2i} &amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female +
+\gamma_{4}educ + \gamma_{5}blhisp +
+\gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income,\quad
+i=1,2,\cdots,3328.
 \end{align*}\]</span>
 <p style="text-align: justify;">
-and <span class="math inline">\((ambexp,dambexp)\)</span> is independently distributed with Birnbaum-Saunders (BS) Bivariate parameter distribution <span class="math inline">\(\mu_{1}&gt;0, \mu_{2}&gt;0, \phi_{1}=\phi&gt;0, \phi_{2}=1\)</span> and <span class="math inline">\(-1&lt;\rho&lt;1,\)</span> that is, <span class="math display">\[(ambexp_{i},dambexp_{i})\stackrel{ind}{\sim}\mbox{ BS}(\mu_{1i},\mu_{2i}, 
-\phi,1,\rho), \mu_{1i}&gt;0, \mu_{2i}&gt;0, \phi&gt;0\quad \textrm{and}\quad -1&lt;\rho&lt;1, i=1,\cdots, n\]</span>
+and <span class="math inline">\((ambexp,dambexp)\)</span> is
+independently distributed with Birnbaum-Saunders (BS) Bivariate
+parameter distribution <span class="math inline">\(\mu_{1}&gt;0,
+\mu_{2}&gt;0, \phi_{1}=\phi&gt;0, \phi_{2}=1\)</span> and <span class="math inline">\(-1&lt;\rho&lt;1,\)</span> that is, <span class="math display">\[(ambexp_{i},dambexp_{i})\stackrel{ind}{\sim}\mbox{
+BS}(\mu_{1i},\mu_{2i},
+\phi,1,\rho), \mu_{1i}&gt;0, \mu_{2i}&gt;0, \phi&gt;0\quad
+\textrm{and}\quad -1&lt;\rho&lt;1, i=1,\cdots, n\]</span>
 </p>
 <p style="text-align: justify;">
-We observed similar values for the parameters estimated by all models, mainly the parameters of the variable of interest. However, the only model that allows a direct interpretation of such parameters is the Heckman-BS model. We can, for example, affirm, based on the result of this model, that keeping the other parameters fixed, changing a unit in age represents an increase of <span class="math inline">\(24.6\%\)</span> in ambulatory expenses. For the other models, the interpretation is related to the log of outpatient expenses. See the results of the estimates of the parameters below:
+We observed similar values for the parameters estimated by all models,
+mainly the parameters of the variable of interest. However, the only
+model that allows a direct interpretation of such parameters is the
+Heckman-BS model. We can, for example, affirm, based on the result of
+this model, that keeping the other parameters fixed, changing a unit in
+age represents an increase of <span class="math inline">\(24.6\%\)</span> in ambulatory expenses. For the
+other models, the interpretation is related to the log of outpatient
+expenses. See the results of the estimates of the parameters below:
 </p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">selectEq</span> <span class="op">&lt;-</span> <span class="va">dambexp</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">blhisp</span> <span class="op">+</span> <span class="va">totchr</span> <span class="op">+</span> <span class="va">ins</span> <span class="op">+</span> <span class="va">income</span>
-<span class="va">outcomeEq</span> <span class="op">&lt;-</span> <span class="va">lnambx</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">blhisp</span> <span class="op">+</span> <span class="va">totchr</span> <span class="op">+</span> <span class="va">ins</span> 
-<span class="va">outcomeS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">age</span>,<span class="va">female</span>,<span class="va">totchr</span>,<span class="va">ins</span><span class="op">)</span>
-<span class="va">outcomeC</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-<span class="va">outcomeBS</span> <span class="op">&lt;-</span> <span class="va">ambexp</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">blhisp</span> <span class="op">+</span> <span class="va">totchr</span> <span class="op">+</span> <span class="va">ins</span> 
-<span class="va">mCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanCL.html">HeckmanCL</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">MEPS2001</span><span class="op">)</span>
-<span class="va">mBS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanBS.html">HeckmanBS</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeBS</span>, data <span class="op">=</span> <span class="va">MEPS2001</span><span class="op">)</span>
-<span class="va">mSK</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanSK.html">HeckmanSK</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">MEPS2001</span>,lambda <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">mtS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmantS.html">HeckmantS</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">MEPS2001</span>,df<span class="op">=</span><span class="fl">12</span><span class="op">)</span>
-<span class="va">mGe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanGe.html">HeckmanGe</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeEq</span>,<span class="va">outcomeS</span>, <span class="va">outcomeC</span>, data <span class="op">=</span> <span class="va">MEPS2001</span><span class="op">)</span>
-<span class="va">Parameters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Intercept"</span>, <span class="st">"age"</span>, <span class="st">"female"</span>, <span class="st">"educ"</span>, <span class="st">"blhisp"</span>, <span class="st">"totchr"</span>, <span class="st">"ins"</span>, <span class="st">"income"</span>,
-   <span class="st">"Intercept"</span>, <span class="st">"age"</span>, <span class="st">"female"</span>, <span class="st">"educ"</span>, <span class="st">"blhisp"</span>, <span class="st">"totchr"</span>, <span class="st">"ins"</span>, <span class="st">"sigma"</span>, <span class="st">"age"</span>, <span class="st">"female"</span>, <span class="st">"totchr"</span>, <span class="st">"ins"</span>, <span class="st">"rho"</span>, <span class="st">"nu"</span>, <span class="st">"lambda"</span><span class="op">)</span>
-<span class="va">HBS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mBS</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="va">HCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mCL</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="va">HSK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mSK</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="va">HtS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="va">HGe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mGe</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="va">Results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"Parameters"</span><span class="op">=</span> <span class="va">Parameters</span>,
-                      <span class="st">"HeckmanGe"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HGe</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">21</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>, 
-                      <span class="st">"HeckmanCL"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HCL</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="va">HCL</span><span class="op">[</span><span class="fl">17</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>,
-                      <span class="st">"HeckmanBS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HBS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="va">HBS</span><span class="op">[</span><span class="fl">17</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>, 
-                      <span class="st">"HeckmantS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HtS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="va">HtS</span><span class="op">[</span><span class="fl">17</span><span class="op">:</span><span class="fl">18</span><span class="op">]</span>, <span class="st">"NA"</span> <span class="op">)</span>,
-                      <span class="st">"HeckmanSK"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HSK</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="va">HSK</span><span class="op">[</span><span class="fl">17</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="va">HSK</span><span class="op">[</span><span class="fl">18</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">kable</span><span class="op">(</span><span class="va">Results</span>, format <span class="op">=</span> <span class="st">"html"</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">selectEq</span> <span class="op">&lt;-</span> <span class="va">dambexp</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">blhisp</span> <span class="op">+</span> <span class="va">totchr</span> <span class="op">+</span> <span class="va">ins</span> <span class="op">+</span> <span class="va">income</span></span>
+<span><span class="va">outcomeEq</span> <span class="op">&lt;-</span> <span class="va">lnambx</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">blhisp</span> <span class="op">+</span> <span class="va">totchr</span> <span class="op">+</span> <span class="va">ins</span> </span>
+<span><span class="va">outcomeS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">age</span>,<span class="va">female</span>,<span class="va">totchr</span>,<span class="va">ins</span><span class="op">)</span></span>
+<span><span class="va">outcomeC</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">outcomeBS</span> <span class="op">&lt;-</span> <span class="va">ambexp</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">blhisp</span> <span class="op">+</span> <span class="va">totchr</span> <span class="op">+</span> <span class="va">ins</span> </span>
+<span><span class="va">mCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanCL.html">HeckmanCL</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">MEPS2001</span><span class="op">)</span></span>
+<span><span class="va">mBS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanBS.html">HeckmanBS</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeBS</span>, data <span class="op">=</span> <span class="va">MEPS2001</span><span class="op">)</span></span>
+<span><span class="va">mSK</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanSK.html">HeckmanSK</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">MEPS2001</span>,lambda <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">mtS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmantS.html">HeckmantS</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">MEPS2001</span>,df<span class="op">=</span><span class="fl">12</span><span class="op">)</span></span>
+<span><span class="va">mGe</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanGe.html">HeckmanGe</a></span><span class="op">(</span><span class="va">selectEq</span>, <span class="va">outcomeEq</span>,<span class="va">outcomeS</span>, <span class="va">outcomeC</span>, data <span class="op">=</span> <span class="va">MEPS2001</span><span class="op">)</span></span>
+<span><span class="va">Parameters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Intercept"</span>, <span class="st">"age"</span>, <span class="st">"female"</span>, <span class="st">"educ"</span>, <span class="st">"blhisp"</span>, <span class="st">"totchr"</span>, <span class="st">"ins"</span>, <span class="st">"income"</span>,</span>
+<span>   <span class="st">"Intercept"</span>, <span class="st">"age"</span>, <span class="st">"female"</span>, <span class="st">"educ"</span>, <span class="st">"blhisp"</span>, <span class="st">"totchr"</span>, <span class="st">"ins"</span>, <span class="st">"sigma"</span>, <span class="st">"age"</span>, <span class="st">"female"</span>, <span class="st">"totchr"</span>, <span class="st">"ins"</span>, <span class="st">"rho"</span>, <span class="st">"nu"</span>, <span class="st">"lambda"</span><span class="op">)</span></span>
+<span><span class="va">HBS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mBS</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">HCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mCL</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">HSK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mSK</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">HtS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">HGe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mGe</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">Results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"Parameters"</span><span class="op">=</span> <span class="va">Parameters</span>,</span>
+<span>                      <span class="st">"HeckmanGe"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HGe</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">21</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>, </span>
+<span>                      <span class="st">"HeckmanCL"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HCL</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="va">HCL</span><span class="op">[</span><span class="fl">17</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>,</span>
+<span>                      <span class="st">"HeckmanBS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HBS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="va">HBS</span><span class="op">[</span><span class="fl">17</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>, </span>
+<span>                      <span class="st">"HeckmantS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HtS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="va">HtS</span><span class="op">[</span><span class="fl">17</span><span class="op">:</span><span class="fl">18</span><span class="op">]</span>, <span class="st">"NA"</span> <span class="op">)</span>,</span>
+<span>                      <span class="st">"HeckmanSK"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HSK</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span>, <span class="va">HSK</span><span class="op">[</span><span class="fl">17</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="va">HSK</span><span class="op">[</span><span class="fl">18</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">Results</span>, format <span class="op">=</span> <span class="st">"html"</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:center;">
@@ -1268,291 +1342,325 @@ NA
 </tbody>
 </table>
 <p style="text-align: justify;">
-In addition, there are also the results of the significance of the parameters. The classic Heckman model adjusted to such data indicates no correlation between the variables value spent and the decision to spend. According to <span class="citation">Colin and Trivedi (2009)</span>, such a result is suspect and should be better analyzed.
+In addition, there are also the results of the significance of the
+parameters. The classic Heckman model adjusted to such data indicates no
+correlation between the variables value spent and the decision to spend.
+According to <span class="citation">Colin and Trivedi (2009)</span>,
+such a result is suspect and should be better analyzed.
 </p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mCL</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##           Classic Heckman Model (Package: ssmodels)           
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 22 
-## Log-Likelihood: -5836.219 
-## AIC: 11706.44 BIC: 11810.31 
-## Number of observations: ( 526 censored and 2802 observed ) 
-## 17 free parameters ( df= 3311 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.676054   0.194029  -3.484  0.00050 ***
-## age          0.087936   0.027421   3.207  0.00135 ** 
-## female       0.662665   0.060937  10.875  &lt; 2e-16 ***
-## educ         0.061948   0.012029   5.150 2.76e-07 ***
-## blhisp      -0.363937   0.061874  -5.882 4.46e-09 ***
-## totchr       0.796952   0.071130  11.204  &lt; 2e-16 ***
-## ins          0.170137   0.062871   2.706  0.00684 ** 
-## income       0.002708   0.001316   2.057  0.03973 *  
-## --------------------------------------------------------------
-## Outcome equation:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  5.04406    0.22813  22.111  &lt; 2e-16 ***
-## age          0.21197    0.02301   9.213  &lt; 2e-16 ***
-## female       0.34814    0.06011   5.791 7.64e-09 ***
-## educ         0.01872    0.01055   1.774 0.076078 .  
-## blhisp      -0.21857    0.05967  -3.663 0.000253 ***
-## totchr       0.53992    0.03933  13.727  &lt; 2e-16 ***
-## ins         -0.02999    0.05109  -0.587 0.557260    
-## --------------------------------------------------------------
-## Error terms:
-##       Estimate Std. Error t value Pr(&gt;|t|)    
-## sigma  1.27102    0.01838  69.157   &lt;2e-16 ***
-## rho   -0.13060    0.14708  -0.888    0.375    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mCL</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##           Classic Heckman Model (Package: ssmodels)           </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 22 </span></span>
+<span><span class="co">## Log-Likelihood: -5836.219 </span></span>
+<span><span class="co">## AIC: 11706.44 BIC: 11810.31 </span></span>
+<span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
+<span><span class="co">## 17 free parameters ( df= 3311 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept) -0.676054   0.194029  -3.484  0.00050 ***</span></span>
+<span><span class="co">## age          0.087936   0.027421   3.207  0.00135 ** </span></span>
+<span><span class="co">## female       0.662665   0.060937  10.875  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.061948   0.012029   5.150 2.76e-07 ***</span></span>
+<span><span class="co">## blhisp      -0.363937   0.061874  -5.882 4.46e-09 ***</span></span>
+<span><span class="co">## totchr       0.796952   0.071130  11.204  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.170137   0.062871   2.706  0.00684 ** </span></span>
+<span><span class="co">## income       0.002708   0.001316   2.057  0.03973 *  </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  5.04406    0.22813  22.111  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.21197    0.02301   9.213  &lt; 2e-16 ***</span></span>
+<span><span class="co">## female       0.34814    0.06011   5.791 7.64e-09 ***</span></span>
+<span><span class="co">## educ         0.01872    0.01055   1.774 0.076078 .  </span></span>
+<span><span class="co">## blhisp      -0.21857    0.05967  -3.663 0.000253 ***</span></span>
+<span><span class="co">## totchr       0.53992    0.03933  13.727  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins         -0.02999    0.05109  -0.587 0.557260    </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Error terms:</span></span>
+<span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma  1.27102    0.01838  69.157   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho   -0.13060    0.14708  -0.888    0.375    </span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 <p style="text-align: justify;">
-The generalized Heckman model, on the other hand, indicates that there is the presence of heteroscedasticity in the data and, probably, due to this, the classic Heckman model is not the most suitable for modeling these data. Our model, in addition to indicating the presence of variable dispersion, also indicates a significant correlation between the variables amount spent and the decision to spend.
+The generalized Heckman model, on the other hand, indicates that there
+is the presence of heteroscedasticity in the data and, probably, due to
+this, the classic Heckman model is not the most suitable for modeling
+these data. Our model, in addition to indicating the presence of
+variable dispersion, also indicates a significant correlation between
+the variables amount spent and the decision to spend.
 </p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mGe</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##        Generalized Heckman Model (Package: ssmodels)          
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 68 
-## Log-Likelihood: -5804.973 
-## AIC: 11651.95 BIC: 11780.26 
-## Number of observations: ( 526 censored and 2802 observed ) 
-## 21 free parameters ( df= 3307 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.589895   0.184517  -3.197 0.001402 ** 
-## age          0.093828   0.025969   3.613 0.000307 ***
-## female       0.631622   0.058818  10.739  &lt; 2e-16 ***
-## educ         0.055187   0.011359   4.858 1.24e-06 ***
-## blhisp      -0.329940   0.058875  -5.604 2.27e-08 ***
-## totchr       0.722090   0.068092  10.605  &lt; 2e-16 ***
-## ins          0.164968   0.060096   2.745 0.006082 ** 
-## income       0.002379   0.001208   1.969 0.049045 *  
-## --------------------------------------------------------------
-## Outcome equation:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  5.8622175  0.1931949  30.344  &lt; 2e-16 ***
-## age          0.1721672  0.0236647   7.275  4.3e-13 ***
-## female       0.1498488  0.0554233   2.704  0.00689 ** 
-## educ         0.0009664  0.0101716   0.095  0.92431    
-## blhisp      -0.1346592  0.0577309  -2.333  0.01973 *  
-## totchr       0.4131455  0.0285553  14.468  &lt; 2e-16 ***
-## ins         -0.1090664  0.0513537  -2.124  0.03376 *  
-## --------------------------------------------------------------
-## Dispersion terms:
-##            Estimate Std. Error t value Pr(&gt;|t|)    
-## interceptS  0.61322    0.06434   9.531  &lt; 2e-16 ***
-## age        -0.02863    0.01274  -2.247   0.0247 *  
-## female     -0.12974    0.02849  -4.554 5.46e-06 ***
-## totchr     -0.11853    0.01849  -6.411 1.66e-10 ***
-## ins        -0.11224    0.02792  -4.021 5.93e-05 ***
-## --------------------------------------------------------------
-## Correlation terms:
-##     Estimate Std. Error t value Pr(&gt;|t|)    
-## rho  -0.6306     0.1024  -6.159  8.2e-10 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mGe</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##        Generalized Heckman Model (Package: ssmodels)          </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 68 </span></span>
+<span><span class="co">## Log-Likelihood: -5804.973 </span></span>
+<span><span class="co">## AIC: 11651.95 BIC: 11780.26 </span></span>
+<span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
+<span><span class="co">## 21 free parameters ( df= 3307 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept) -0.589895   0.184517  -3.197 0.001402 ** </span></span>
+<span><span class="co">## age          0.093828   0.025969   3.613 0.000307 ***</span></span>
+<span><span class="co">## female       0.631622   0.058818  10.739  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.055187   0.011359   4.858 1.24e-06 ***</span></span>
+<span><span class="co">## blhisp      -0.329940   0.058875  -5.604 2.27e-08 ***</span></span>
+<span><span class="co">## totchr       0.722090   0.068092  10.605  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.164968   0.060096   2.745 0.006082 ** </span></span>
+<span><span class="co">## income       0.002379   0.001208   1.969 0.049045 *  </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  5.8622175  0.1931949  30.344  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.1721672  0.0236647   7.275  4.3e-13 ***</span></span>
+<span><span class="co">## female       0.1498488  0.0554233   2.704  0.00689 ** </span></span>
+<span><span class="co">## educ         0.0009664  0.0101716   0.095  0.92431    </span></span>
+<span><span class="co">## blhisp      -0.1346592  0.0577309  -2.333  0.01973 *  </span></span>
+<span><span class="co">## totchr       0.4131455  0.0285553  14.468  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins         -0.1090664  0.0513537  -2.124  0.03376 *  </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Dispersion terms:</span></span>
+<span><span class="co">##            Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## interceptS  0.61322    0.06434   9.531  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age        -0.02863    0.01274  -2.247   0.0247 *  </span></span>
+<span><span class="co">## female     -0.12974    0.02849  -4.554 5.46e-06 ***</span></span>
+<span><span class="co">## totchr     -0.11853    0.01849  -6.411 1.66e-10 ***</span></span>
+<span><span class="co">## ins        -0.11224    0.02792  -4.021 5.93e-05 ***</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Correlation terms:</span></span>
+<span><span class="co">##     Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## rho  -0.6306     0.1024  -6.159  8.2e-10 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 <p style="text-align: justify;">
-On the other hand, as the observed data show asymmetry, the Heckman-BS model can be a good indication to adjust such data. Note that the Heckman-BS model also indicates the presence of a significant correlation. It also presents, as previously mentioned, the advantage of parsimony and the direct interpretation of the relationship of the parameters with the response variable of interest.
+On the other hand, as the observed data show asymmetry, the Heckman-BS
+model can be a good indication to adjust such data. Note that the
+Heckman-BS model also indicates the presence of a significant
+correlation. It also presents, as previously mentioned, the advantage of
+parsimony and the direct interpretation of the relationship of the
+parameters with the response variable of interest.
 </p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mBS</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##    Birnbaum-Saunders Heckman Model (Package: ssmodels)        
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 26 
-## Log-Likelihood: -24470.39 
-## AIC: 48974.79 BIC: 49078.66 
-## Number of observations: ( 526 censored and 2802 observed ) 
-## 17 free parameters ( df= 3311 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.117214   0.235265   0.498  0.61836    
-## age          0.089502   0.031571   2.835  0.00461 ** 
-## female       0.721876   0.069037  10.456  &lt; 2e-16 ***
-## educ         0.068319   0.014689   4.651 3.43e-06 ***
-## blhisp      -0.399014   0.074350  -5.367 8.57e-08 ***
-## totchr       0.805651   0.068209  11.812  &lt; 2e-16 ***
-## ins          0.179379   0.073102   2.454  0.01419 *  
-## income       0.003425   0.001430   2.395  0.01668 *  
-## --------------------------------------------------------------
-## Outcome equation:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  5.778691   0.172658  33.469  &lt; 2e-16 ***
-## age          0.246156   0.022143  11.117  &lt; 2e-16 ***
-## female       0.410538   0.048236   8.511  &lt; 2e-16 ***
-## educ        -0.006632   0.009890  -0.671    0.503    
-## blhisp      -0.215212   0.053172  -4.047  5.3e-05 ***
-## totchr       0.588751   0.034299  17.165  &lt; 2e-16 ***
-## ins         -0.061326   0.049610  -1.236    0.216    
-## --------------------------------------------------------------
-## Error terms:
-##       Estimate Std. Error t value Pr(&gt;|t|)    
-## sigma  0.70281    0.02072  33.917  &lt; 2e-16 ***
-## rho    0.27305    0.05737   4.759 2.02e-06 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mBS</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##    Birnbaum-Saunders Heckman Model (Package: ssmodels)        </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 26 </span></span>
+<span><span class="co">## Log-Likelihood: -24470.39 </span></span>
+<span><span class="co">## AIC: 48974.79 BIC: 49078.66 </span></span>
+<span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
+<span><span class="co">## 17 free parameters ( df= 3311 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  0.117214   0.235265   0.498  0.61836    </span></span>
+<span><span class="co">## age          0.089502   0.031571   2.835  0.00461 ** </span></span>
+<span><span class="co">## female       0.721876   0.069037  10.456  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.068319   0.014689   4.651 3.43e-06 ***</span></span>
+<span><span class="co">## blhisp      -0.399014   0.074350  -5.367 8.57e-08 ***</span></span>
+<span><span class="co">## totchr       0.805651   0.068209  11.812  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.179379   0.073102   2.454  0.01419 *  </span></span>
+<span><span class="co">## income       0.003425   0.001430   2.395  0.01668 *  </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  5.778691   0.172658  33.469  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.246156   0.022143  11.117  &lt; 2e-16 ***</span></span>
+<span><span class="co">## female       0.410538   0.048236   8.511  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ        -0.006632   0.009890  -0.671    0.503    </span></span>
+<span><span class="co">## blhisp      -0.215212   0.053172  -4.047  5.3e-05 ***</span></span>
+<span><span class="co">## totchr       0.588751   0.034299  17.165  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins         -0.061326   0.049610  -1.236    0.216    </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Error terms:</span></span>
+<span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma  0.70281    0.02072  33.917  &lt; 2e-16 ***</span></span>
+<span><span class="co">## rho    0.27305    0.05737   4.759 2.02e-06 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 <p style="text-align: justify;">
-The Heckman-t model, even adjusted to the expense log, indicates the presence of deviation from normality, since the degree of freedom parameter is approximately equal to <span class="math inline">\(13\)</span> and is significant. Such a model also observes the significant correlation parameter.
+The Heckman-t model, even adjusted to the expense log, indicates the
+presence of deviation from normality, since the degree of freedom
+parameter is approximately equal to <span class="math inline">\(13\)</span> and is significant. Such a model also
+observes the significant correlation parameter.
 </p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##       t-Student Heckman Model (Package: ssmodels)             
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 25 
-## Log-Likelihood: -5822.076 
-## AIC: 11680.15 BIC: 11790.13 
-## Number of observations: ( 526 censored and 2802 observed ) 
-## 18 free parameters ( df= 3310 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.747972   0.207700  -3.601 0.000321 ***
-## age          0.098549   0.029746   3.313 0.000933 ***
-## female       0.724862   0.068559  10.573  &lt; 2e-16 ***
-## educ         0.064839   0.012805   5.063 4.34e-07 ***
-## blhisp      -0.393569   0.066529  -5.916 3.64e-09 ***
-## totchr       0.890081   0.087252  10.201  &lt; 2e-16 ***
-## ins          0.180029   0.068010   2.647 0.008157 ** 
-## income       0.002978   0.001447   2.058 0.039636 *  
-## --------------------------------------------------------------
-## Outcome equation:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  5.20584    0.20961  24.835  &lt; 2e-16 ***
-## age          0.20683    0.02260   9.152  &lt; 2e-16 ***
-## female       0.30653    0.05640   5.435 5.87e-08 ***
-## educ         0.01731    0.01026   1.688 0.091591 .  
-## blhisp      -0.19297    0.05775  -3.342 0.000842 ***
-## totchr       0.51271    0.03583  14.310  &lt; 2e-16 ***
-## ins         -0.05250    0.05048  -1.040 0.298439    
-## --------------------------------------------------------------
-## Error terms:
-##       Estimate Std. Error t value Pr(&gt;|t|)    
-## sigma  1.19485    0.02365  50.524  &lt; 2e-16 ***
-## rho   -0.32199    0.12210  -2.637   0.0084 ** 
-## df    12.93032    2.85903   4.523 6.32e-06 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##       t-Student Heckman Model (Package: ssmodels)             </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 25 </span></span>
+<span><span class="co">## Log-Likelihood: -5822.076 </span></span>
+<span><span class="co">## AIC: 11680.15 BIC: 11790.13 </span></span>
+<span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
+<span><span class="co">## 18 free parameters ( df= 3310 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept) -0.747972   0.207700  -3.601 0.000321 ***</span></span>
+<span><span class="co">## age          0.098549   0.029746   3.313 0.000933 ***</span></span>
+<span><span class="co">## female       0.724862   0.068559  10.573  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.064839   0.012805   5.063 4.34e-07 ***</span></span>
+<span><span class="co">## blhisp      -0.393569   0.066529  -5.916 3.64e-09 ***</span></span>
+<span><span class="co">## totchr       0.890081   0.087252  10.201  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.180029   0.068010   2.647 0.008157 ** </span></span>
+<span><span class="co">## income       0.002978   0.001447   2.058 0.039636 *  </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  5.20584    0.20961  24.835  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.20683    0.02260   9.152  &lt; 2e-16 ***</span></span>
+<span><span class="co">## female       0.30653    0.05640   5.435 5.87e-08 ***</span></span>
+<span><span class="co">## educ         0.01731    0.01026   1.688 0.091591 .  </span></span>
+<span><span class="co">## blhisp      -0.19297    0.05775  -3.342 0.000842 ***</span></span>
+<span><span class="co">## totchr       0.51271    0.03583  14.310  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins         -0.05250    0.05048  -1.040 0.298439    </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Error terms:</span></span>
+<span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma  1.19485    0.02365  50.524  &lt; 2e-16 ***</span></span>
+<span><span class="co">## rho   -0.32199    0.12210  -2.637   0.0084 ** </span></span>
+<span><span class="co">## df    12.93032    2.85903   4.523 6.32e-06 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 <p style="text-align: justify;">
-Finally, the Heckman-Skew model also indicates the presence of a significant correlation between the variables of interest and selection. In addition, it also indicates deviation from the normality of the transformed data. It is important to note that without the data transformation, the iterative method of estimating the parameters of the Heckman-Skew model does not converge.
+Finally, the Heckman-Skew model also indicates the presence of a
+significant correlation between the variables of interest and selection.
+In addition, it also indicates deviation from the normality of the
+transformed data. It is important to note that without the data
+transformation, the iterative method of estimating the parameters of the
+Heckman-Skew model does not converge.
 </p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mSK</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##       Skew Normal Heckman Model (Package: ssmodels)           
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 79 
-## Log-Likelihood: -5805.744 
-## AIC: 11647.49 BIC: 11757.47 
-## Number of observations: ( 526 censored and 2802 observed ) 
-## 18 free parameters ( df= 3310 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -0.899099   0.205570  -4.374 1.26e-05 ***
-## age          0.086608   0.026563   3.260  0.00112 ** 
-## female       0.644807   0.061736  10.445  &lt; 2e-16 ***
-## educ         0.060281   0.011774   5.120 3.23e-07 ***
-## blhisp      -0.350940   0.060960  -5.757 9.35e-09 ***
-## totchr       0.774834   0.072534  10.682  &lt; 2e-16 ***
-## ins          0.169602   0.061055   2.778  0.00550 ** 
-## income       0.002657   0.001278   2.079  0.03770 *  
-## --------------------------------------------------------------
-## Outcome equation:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  6.45165    0.22388  28.818  &lt; 2e-16 ***
-## age          0.20218    0.02211   9.146  &lt; 2e-16 ***
-## female       0.28739    0.05507   5.218 1.92e-07 ***
-## educ         0.01334    0.01007   1.325 0.185146    
-## blhisp      -0.20148    0.05637  -3.575 0.000356 ***
-## totchr       0.49158    0.03589  13.696  &lt; 2e-16 ***
-## ins         -0.08050    0.04979  -1.617 0.106042    
-## --------------------------------------------------------------
-## Error terms:
-##        Estimate Std. Error t value Pr(&gt;|t|)    
-## sigma    1.7359     0.0470  36.938   &lt;2e-16 ***
-## rho     -0.3390     0.1411  -2.402   0.0164 *  
-## lambda  -1.6620     0.1434 -11.587   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mSK</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##       Skew Normal Heckman Model (Package: ssmodels)           </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 79 </span></span>
+<span><span class="co">## Log-Likelihood: -5805.744 </span></span>
+<span><span class="co">## AIC: 11647.49 BIC: 11757.47 </span></span>
+<span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
+<span><span class="co">## 18 free parameters ( df= 3310 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept) -0.899099   0.205570  -4.374 1.26e-05 ***</span></span>
+<span><span class="co">## age          0.086608   0.026563   3.260  0.00112 ** </span></span>
+<span><span class="co">## female       0.644807   0.061736  10.445  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.060281   0.011774   5.120 3.23e-07 ***</span></span>
+<span><span class="co">## blhisp      -0.350940   0.060960  -5.757 9.35e-09 ***</span></span>
+<span><span class="co">## totchr       0.774834   0.072534  10.682  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.169602   0.061055   2.778  0.00550 ** </span></span>
+<span><span class="co">## income       0.002657   0.001278   2.079  0.03770 *  </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  6.45165    0.22388  28.818  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.20218    0.02211   9.146  &lt; 2e-16 ***</span></span>
+<span><span class="co">## female       0.28739    0.05507   5.218 1.92e-07 ***</span></span>
+<span><span class="co">## educ         0.01334    0.01007   1.325 0.185146    </span></span>
+<span><span class="co">## blhisp      -0.20148    0.05637  -3.575 0.000356 ***</span></span>
+<span><span class="co">## totchr       0.49158    0.03589  13.696  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins         -0.08050    0.04979  -1.617 0.106042    </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Error terms:</span></span>
+<span><span class="co">##        Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma    1.7359     0.0470  36.938   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho     -0.3390     0.1411  -2.402   0.0164 *  </span></span>
+<span><span class="co">## lambda  -1.6620     0.1434 -11.587   &lt;2e-16 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 </div>
-<div id="nhanes-2003-2004" class="section level2">
-<h2 class="hasAnchor">
-<a href="#nhanes-2003-2004" class="anchor"></a>Nhanes 2003-2004</h2>
+<div class="section level3">
+<h3 id="nhanes-2003-2004">Nhanes 2003-2004<a class="anchor" aria-label="anchor" href="#nhanes-2003-2004"></a>
+</h3>
 <p style="text-align: justify;">
-The US National Health and Nutrition Examination Study (NHANES) is a survey data collected by the US National Center for Health Statistics. The survey data dates back to 1999, where individuals of all ages are interviewed in their home annually and complete the health examination component of the survey. The study variables include demographic variables (e.g. age and annual household income), physical measurements (e.g. BMI – body mass index), health variables (e.g. diabetes status), and lifestyle variables (e.g. smoking status). This data frame contains the following columns:
+The US National Health and Nutrition Examination Study (NHANES) is a
+survey data collected by the US National Center for Health Statistics.
+The survey data dates back to 1999, where individuals of all ages are
+interviewed in their home annually and complete the health examination
+component of the survey. The study variables include demographic
+variables (e.g. age and annual household income), physical measurements
+(e.g. BMI – body mass index), health variables (e.g. diabetes status),
+and lifestyle variables (e.g. smoking status). This data frame contains
+the following columns:
 </p>
 <ul>
 <li>id: Individual identifier</li>
 <li>age: Age</li>
 <li>gender: Sex 1=male, 0=female</li>
-<li>educ: Education is dichotomized into high school and above versus less than high school</li>
+<li>educ: Education is dichotomized into high school and above versus
+less than high school</li>
 <li>race: categorical variable with five levels</li>
-<li>income: Household income ($1000 per year) was reported as a range of values in dollar (e.g. 0–4999, 5000–9999, etc.)</li>
-<li>and had 10 interval categories. *Income: Household income ($1000 per year) was reported as a range of values in dollar (e.g. 0–4999, 5000–9999, etc.)</li>
+<li>income: Household income ($1000 per year) was reported as a range of
+values in dollar (e.g. 0–4999, 5000–9999, etc.)</li>
+<li>and had 10 interval categories. *Income: Household income ($1000 per
+year) was reported as a range of values in dollar (e.g. 0–4999,
+5000–9999, etc.)</li>
 <li>and had 10 interval categories.</li>
 <li>bmi: body mass index</li>
 <li>sbp: systolic blood pressure</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ssmodels</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">nhanes</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/attach.html">attach</a></span><span class="op">(</span><span class="va">nhanes</span><span class="op">)</span>
-<span class="va">perc</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">data</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">nna</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">!=</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span>,<span class="fl">0</span><span class="op">)</span>
-    <span class="va">perc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">!=</span><span class="fl">0</span>,<span class="op">(</span><span class="va">nna</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>,<span class="fl">0</span><span class="op">)</span>
-   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">perc</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="va">Variables</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SBP (mm Hg)"</span>, <span class="st">"Age (year)"</span>, <span class="st">"Gender"</span>, <span class="st">"BMI (Kg/$m^{2}$)"</span>, <span class="st">"Education (years)"</span>, <span class="st">"Race"</span>, <span class="st">"Income ($\\$1000$ per year)"</span>, <span class="st">"Numbers Obs."</span><span class="op">)</span>
-<span class="va">perc1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">sbp</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">age</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">gender</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">bmi</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">educ</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">race</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">Income</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">nObs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Income</span><span class="op">)</span>
-<span class="va">Percentage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">perc1</span>, <span class="va">perc2</span>, <span class="va">perc3</span>, <span class="va">perc4</span>, <span class="va">perc5</span>, <span class="va">perc6</span>, <span class="va">perc7</span>, <span class="va">nObs</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">nhanes</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">bmi</span><span class="op">)</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/attach.html">attach</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
-<span class="va">perc11</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">sbp</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">age</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc13</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">gender</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc14</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">bmi</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc15</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">educ</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc16</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">race</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">perc17</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">Income</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">nObs1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Income</span><span class="op">)</span>
-<span class="va">Percentage1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">perc11</span>, <span class="va">perc12</span>, <span class="va">perc13</span>, <span class="va">perc14</span>, <span class="va">perc15</span>, <span class="va">perc16</span>, <span class="va">perc17</span>, <span class="va">nObs1</span><span class="op">)</span>
-<span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"Variables"</span> <span class="op">=</span> <span class="va">Variables</span>, <span class="st">"Percentage of Missing"</span><span class="op">=</span> <span class="va">Percentage</span>, <span class="st">"Without Missing"</span><span class="op">=</span> <span class="va">Percentage1</span><span class="op">)</span>
-<span class="fu">kable</span><span class="op">(</span><span class="va">table</span>, format <span class="op">=</span> <span class="st">"html"</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ssmodels</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">nhanes</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">nhanes</span><span class="op">)</span></span>
+<span><span class="va">perc</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">data</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">nna</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">!=</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span>    <span class="va">perc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">!=</span><span class="fl">0</span>,<span class="op">(</span><span class="va">nna</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span>   <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">perc</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">Variables</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SBP (mm Hg)"</span>, <span class="st">"Age (year)"</span>, <span class="st">"Gender"</span>, <span class="st">"BMI (Kg/$m^{2}$)"</span>, <span class="st">"Education (years)"</span>, <span class="st">"Race"</span>, <span class="st">"Income ($\\$1000$ per year)"</span>, <span class="st">"Numbers Obs."</span><span class="op">)</span></span>
+<span><span class="va">perc1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">sbp</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">age</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">gender</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">bmi</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">educ</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">race</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">Income</span>,<span class="va">nhanes</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">nObs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">Income</span><span class="op">)</span></span>
+<span><span class="va">Percentage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">perc1</span>, <span class="va">perc2</span>, <span class="va">perc3</span>, <span class="va">perc4</span>, <span class="va">perc5</span>, <span class="va">perc6</span>, <span class="va">perc7</span>, <span class="va">nObs</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">nhanes</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">df</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">bmi</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="va">perc11</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">sbp</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">age</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc13</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">gender</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc14</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">bmi</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc15</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">educ</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc16</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">race</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">perc17</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">perc</span><span class="op">(</span><span class="va">Income</span>,<span class="va">df</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">nObs1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">Income</span><span class="op">)</span></span>
+<span><span class="va">Percentage1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">perc11</span>, <span class="va">perc12</span>, <span class="va">perc13</span>, <span class="va">perc14</span>, <span class="va">perc15</span>, <span class="va">perc16</span>, <span class="va">perc17</span>, <span class="va">nObs1</span><span class="op">)</span></span>
+<span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"Variables"</span> <span class="op">=</span> <span class="va">Variables</span>, <span class="st">"Percentage of Missing"</span><span class="op">=</span> <span class="va">Percentage</span>, <span class="st">"Without Missing"</span><span class="op">=</span> <span class="va">Percentage1</span><span class="op">)</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">table</span>, format <span class="op">=</span> <span class="st">"html"</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:center;">
@@ -1657,43 +1765,43 @@ Numbers Obs.
 </tbody>
 </table>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://ggplot2.tidyverse.org">"ggplot2"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"gridExtra"</span><span class="op">)</span>
-<span class="va">barfill</span> <span class="op">&lt;-</span> <span class="st">"grey"</span>
-<span class="va">barlines</span> <span class="op">&lt;-</span> <span class="st">"black"</span>
-<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Income</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span> breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">..density..</span><span class="op">)</span>, colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Income"</span>,
-                   breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span>,
-                   limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span> colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Log Systolic blood pressure"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"gridExtra"</span><span class="op">)</span></span>
+<span><span class="va">barfill</span> <span class="op">&lt;-</span> <span class="st">"grey"</span></span>
+<span><span class="va">barlines</span> <span class="op">&lt;-</span> <span class="st">"black"</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Income</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span> breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">0.5</span><span class="op">)</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">..density..</span><span class="op">)</span>, colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Income"</span>,</span>
+<span>                   breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>                   limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span> colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Log Systolic blood pressure"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="vignette_files/figure-html/unnamed-chunk-15-1.png" width="691.2" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span><span class="op">$</span><span class="va">YS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Income</span><span class="op">)</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="va">df</span><span class="op">$</span><span class="va">educ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">educ</span><span class="op">&lt;=</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="va">df</span><span class="op">$</span><span class="va">Income</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Income</span><span class="op">)</span>,<span class="fl">0</span>,<span class="va">df</span><span class="op">$</span><span class="va">Income</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/attach.html">attach</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
-<span class="va">selectionEq</span> <span class="op">&lt;-</span> <span class="va">YS</span><span class="op">~</span><span class="va">age</span><span class="op">+</span><span class="va">gender</span><span class="op">+</span><span class="va">educ</span><span class="op">+</span><span class="va">race</span>
-<span class="va">outcomeEq</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">~</span><span class="va">age</span><span class="op">+</span><span class="va">gender</span><span class="op">+</span><span class="va">educ</span><span class="op">+</span><span class="va">bmi</span><span class="op">+</span><span class="va">Income</span>
-<span class="va">outcomeBS</span>   <span class="op">&lt;-</span> <span class="va">sbp</span><span class="op">~</span><span class="va">age</span><span class="op">+</span><span class="va">gender</span><span class="op">+</span><span class="va">educ</span><span class="op">+</span><span class="va">bmi</span><span class="op">+</span><span class="va">Income</span>
-<span class="va">mCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanCL.html">HeckmanCL</a></span><span class="op">(</span><span class="va">selectionEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>
-<span class="va">mBS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanBS.html">HeckmanBS</a></span><span class="op">(</span><span class="va">selectionEq</span>, <span class="va">outcomeBS</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span>
-<span class="va">mSK</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanSK.html">HeckmanSK</a></span><span class="op">(</span><span class="va">selectionEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">df</span>, lambda <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-<span class="va">mtS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmantS.html">HeckmantS</a></span><span class="op">(</span><span class="va">selectionEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">df</span>, df <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
-
-    <span class="va">Parameters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Intercept"</span>, <span class="st">"age"</span>, <span class="st">"gender"</span>, <span class="st">"educ"</span>, <span class="st">"race"</span>, <span class="st">"Intercept"</span>, <span class="st">"age"</span>, <span class="st">"gender"</span>, <span class="st">"educ"</span>, <span class="st">"bmi"</span>, <span class="st">"income"</span>, <span class="st">"sigma"</span>, <span class="st">"rho"</span>, <span class="st">"nu"</span>, <span class="st">"lambda"</span><span class="op">)</span>
-<span class="va">HBS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mBS</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">HCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mCL</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">HSK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mSK</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">HtS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">Results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="st">"Parameters"</span><span class="op">=</span> <span class="va">Parameters</span>, 
-                      <span class="st">"HeckmanCL"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HCL</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>,
-                      <span class="st">"HeckmanBS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HBS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>, 
-                      <span class="st">"HeckmantS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HtS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, <span class="va">HtS</span><span class="op">[</span><span class="fl">14</span><span class="op">]</span>, <span class="st">"NA"</span><span class="op">)</span>,
-                      <span class="st">"HeckmanSK"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">HSK</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="va">HSK</span><span class="op">[</span><span class="fl">14</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="fu">kable</span><span class="op">(</span><span class="va">Results</span>, format <span class="op">=</span> <span class="st">"html"</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df</span><span class="op">$</span><span class="va">YS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Income</span><span class="op">)</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">educ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">educ</span><span class="op">&lt;=</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">Income</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Income</span><span class="op">)</span>,<span class="fl">0</span>,<span class="va">df</span><span class="op">$</span><span class="va">Income</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="va">selectionEq</span> <span class="op">&lt;-</span> <span class="va">YS</span><span class="op">~</span><span class="va">age</span><span class="op">+</span><span class="va">gender</span><span class="op">+</span><span class="va">educ</span><span class="op">+</span><span class="va">race</span></span>
+<span><span class="va">outcomeEq</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">~</span><span class="va">age</span><span class="op">+</span><span class="va">gender</span><span class="op">+</span><span class="va">educ</span><span class="op">+</span><span class="va">bmi</span><span class="op">+</span><span class="va">Income</span></span>
+<span><span class="va">outcomeBS</span>   <span class="op">&lt;-</span> <span class="va">sbp</span><span class="op">~</span><span class="va">age</span><span class="op">+</span><span class="va">gender</span><span class="op">+</span><span class="va">educ</span><span class="op">+</span><span class="va">bmi</span><span class="op">+</span><span class="va">Income</span></span>
+<span><span class="va">mCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanCL.html">HeckmanCL</a></span><span class="op">(</span><span class="va">selectionEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="va">mBS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanBS.html">HeckmanBS</a></span><span class="op">(</span><span class="va">selectionEq</span>, <span class="va">outcomeBS</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="va">mSK</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmanSK.html">HeckmanSK</a></span><span class="op">(</span><span class="va">selectionEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">df</span>, lambda <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">mtS</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/HeckmantS.html">HeckmantS</a></span><span class="op">(</span><span class="va">selectionEq</span>, <span class="va">outcomeEq</span>, data <span class="op">=</span> <span class="va">df</span>, df <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">Parameters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Intercept"</span>, <span class="st">"age"</span>, <span class="st">"gender"</span>, <span class="st">"educ"</span>, <span class="st">"race"</span>, <span class="st">"Intercept"</span>, <span class="st">"age"</span>, <span class="st">"gender"</span>, <span class="st">"educ"</span>, <span class="st">"bmi"</span>, <span class="st">"income"</span>, <span class="st">"sigma"</span>, <span class="st">"rho"</span>, <span class="st">"nu"</span>, <span class="st">"lambda"</span><span class="op">)</span></span>
+<span><span class="va">HBS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mBS</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">HCL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mCL</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">HSK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mSK</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">HtS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">$</span><span class="va">coefficients</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">Results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"Parameters"</span><span class="op">=</span> <span class="va">Parameters</span>, </span>
+<span>                      <span class="st">"HeckmanCL"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HCL</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>,</span>
+<span>                      <span class="st">"HeckmanBS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HBS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="st">"NA"</span><span class="op">)</span>, </span>
+<span>                      <span class="st">"HeckmantS"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HtS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, <span class="va">HtS</span><span class="op">[</span><span class="fl">14</span><span class="op">]</span>, <span class="st">"NA"</span><span class="op">)</span>,</span>
+<span>                      <span class="st">"HeckmanSK"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">HSK</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">]</span>, <span class="st">"NA"</span>, <span class="va">HSK</span><span class="op">[</span><span class="fl">14</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">Results</span>, format <span class="op">=</span> <span class="st">"html"</span>, align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:center;">
@@ -1971,188 +2079,205 @@ NA
 </tbody>
 </table>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mCL</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##           Classic Heckman Model (Package: ssmodels)           
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 27 
-## Log-Likelihood: -216.546 
-## AIC: 459.0919 BIC: 546.5972 
-## Number of observations: ( 1575 censored and 4618 observed ) 
-## 13 free parameters ( df= 6180 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.4400117  0.0751789   5.853 5.08e-09 ***
-## age          0.0111345  0.0008816  12.630  &lt; 2e-16 ***
-## gender       0.1362360  0.0344494   3.955 7.75e-05 ***
-## educ        -0.5359397  0.0384988 -13.921  &lt; 2e-16 ***
-## race        -0.0701069  0.0134076  -5.229 1.76e-07 ***
-## --------------------------------------------------------------
-## Outcome equation:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  4.516e+00  1.080e-02 418.113  &lt; 2e-16 ***
-## age          4.477e-03  9.126e-05  49.064  &lt; 2e-16 ***
-## gender      -2.290e-02  4.027e-03  -5.687 1.35e-08 ***
-## educ        -4.788e-02  4.864e-03  -9.844  &lt; 2e-16 ***
-## bmi          3.623e-03  2.905e-04  12.474  &lt; 2e-16 ***
-## Income       4.369e-04  7.609e-04   0.574    0.566    
-## --------------------------------------------------------------
-## Error terms:
-##       Estimate Std. Error t value Pr(&gt;|t|)    
-## sigma 0.143541   0.002325   61.74   &lt;2e-16 ***
-## rho   0.774464   0.022220   34.85   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mCL</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##           Classic Heckman Model (Package: ssmodels)           </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 27 </span></span>
+<span><span class="co">## Log-Likelihood: -216.546 </span></span>
+<span><span class="co">## AIC: 459.0919 BIC: 546.5972 </span></span>
+<span><span class="co">## Number of observations: ( 1575 censored and 4618 observed ) </span></span>
+<span><span class="co">## 13 free parameters ( df= 6180 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  0.4400117  0.0751789   5.853 5.08e-09 ***</span></span>
+<span><span class="co">## age          0.0111345  0.0008816  12.630  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender       0.1362360  0.0344494   3.955 7.75e-05 ***</span></span>
+<span><span class="co">## educ        -0.5359397  0.0384988 -13.921  &lt; 2e-16 ***</span></span>
+<span><span class="co">## race        -0.0701069  0.0134076  -5.229 1.76e-07 ***</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  4.516e+00  1.080e-02 418.113  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          4.477e-03  9.126e-05  49.064  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender      -2.290e-02  4.027e-03  -5.687 1.35e-08 ***</span></span>
+<span><span class="co">## educ        -4.788e-02  4.864e-03  -9.844  &lt; 2e-16 ***</span></span>
+<span><span class="co">## bmi          3.623e-03  2.905e-04  12.474  &lt; 2e-16 ***</span></span>
+<span><span class="co">## Income       4.369e-04  7.609e-04   0.574    0.566    </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Error terms:</span></span>
+<span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma 0.143541   0.002325   61.74   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho   0.774464   0.022220   34.85   &lt;2e-16 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##       t-Student Heckman Model (Package: ssmodels)             
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 100 
-## Log-Likelihood: -172.8373 
-## AIC: 373.6746 BIC: 467.911 
-## Number of observations: ( 1575 censored and 4618 observed ) 
-## 14 free parameters ( df= 6179 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.503962   0.079702   6.323 2.74e-10 ***
-## age          0.010794   0.001004  10.747  &lt; 2e-16 ***
-## gender       0.137302   0.036467   3.765 0.000168 ***
-## educ        -0.557147   0.040707 -13.687  &lt; 2e-16 ***
-## race        -0.077080   0.014286  -5.395 7.09e-08 ***
-## --------------------------------------------------------------
-## Outcome equation:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  4.528e+00  1.044e-02 433.844  &lt; 2e-16 ***
-## age          4.348e-03  8.977e-05  48.436  &lt; 2e-16 ***
-## gender      -2.622e-02  3.844e-03  -6.822  9.8e-12 ***
-## educ        -4.532e-02  4.959e-03  -9.139  &lt; 2e-16 ***
-## bmi          3.672e-03  2.854e-04  12.864  &lt; 2e-16 ***
-## Income       4.896e-04  7.432e-04   0.659     0.51    
-## --------------------------------------------------------------
-## Error terms:
-##        Estimate Std. Error t value Pr(&gt;|t|)    
-## sigma  0.130226   0.001353   96.26   &lt;2e-16 ***
-## rho    0.739803   0.050805   14.56   &lt;2e-16 ***
-## df    14.407064   1.097547   13.13   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##       t-Student Heckman Model (Package: ssmodels)             </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 100 </span></span>
+<span><span class="co">## Log-Likelihood: -172.8373 </span></span>
+<span><span class="co">## AIC: 373.6746 BIC: 467.911 </span></span>
+<span><span class="co">## Number of observations: ( 1575 censored and 4618 observed ) </span></span>
+<span><span class="co">## 14 free parameters ( df= 6179 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  0.503962   0.079702   6.323 2.74e-10 ***</span></span>
+<span><span class="co">## age          0.010794   0.001004  10.747  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender       0.137302   0.036467   3.765 0.000168 ***</span></span>
+<span><span class="co">## educ        -0.557147   0.040707 -13.687  &lt; 2e-16 ***</span></span>
+<span><span class="co">## race        -0.077080   0.014286  -5.395 7.09e-08 ***</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  4.528e+00  1.044e-02 433.844  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          4.348e-03  8.977e-05  48.436  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender      -2.622e-02  3.844e-03  -6.822  9.8e-12 ***</span></span>
+<span><span class="co">## educ        -4.532e-02  4.959e-03  -9.139  &lt; 2e-16 ***</span></span>
+<span><span class="co">## bmi          3.672e-03  2.854e-04  12.864  &lt; 2e-16 ***</span></span>
+<span><span class="co">## Income       4.896e-04  7.432e-04   0.659     0.51    </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Error terms:</span></span>
+<span><span class="co">##        Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma  0.130226   0.001353   96.26   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho    0.739803   0.050805   14.56   &lt;2e-16 ***</span></span>
+<span><span class="co">## df    14.407064   1.097547   13.13   &lt;2e-16 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mBS</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##    Birnbaum-Saunders Heckman Model (Package: ssmodels)        
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 76 
-## Log-Likelihood: -22281.19 
-## AIC: 44588.38 BIC: 44675.89 
-## Number of observations: ( 1575 censored and 4618 observed ) 
-## 13 free parameters ( df= 6180 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  1.355185   0.094721  14.307  &lt; 2e-16 ***
-## age          0.013492   0.001039  12.984  &lt; 2e-16 ***
-## gender       0.150982   0.043582   3.464 0.000535 ***
-## educ        -0.671716   0.049316 -13.621  &lt; 2e-16 ***
-## race        -0.090127   0.016965  -5.313 1.12e-07 ***
-## --------------------------------------------------------------
-## Outcome equation:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  4.528e+00  1.072e-02 422.194  &lt; 2e-16 ***
-## age          4.478e-03  9.105e-05  49.182  &lt; 2e-16 ***
-## gender      -2.355e-02  4.029e-03  -5.844 5.36e-09 ***
-## educ        -4.740e-02  4.851e-03  -9.772  &lt; 2e-16 ***
-## bmi          3.610e-03  2.907e-04  12.418  &lt; 2e-16 ***
-## Income       3.974e-04  7.621e-04   0.522    0.602    
-## --------------------------------------------------------------
-## Error terms:
-##       Estimate Std. Error t value Pr(&gt;|t|)    
-## sigma 96.68214    3.15376   30.66   &lt;2e-16 ***
-## rho    0.77208    0.02258   34.20   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mBS</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##    Birnbaum-Saunders Heckman Model (Package: ssmodels)        </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 76 </span></span>
+<span><span class="co">## Log-Likelihood: -22281.19 </span></span>
+<span><span class="co">## AIC: 44588.38 BIC: 44675.89 </span></span>
+<span><span class="co">## Number of observations: ( 1575 censored and 4618 observed ) </span></span>
+<span><span class="co">## 13 free parameters ( df= 6180 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  1.355185   0.094721  14.307  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.013492   0.001039  12.984  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender       0.150982   0.043582   3.464 0.000535 ***</span></span>
+<span><span class="co">## educ        -0.671716   0.049316 -13.621  &lt; 2e-16 ***</span></span>
+<span><span class="co">## race        -0.090127   0.016965  -5.313 1.12e-07 ***</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  4.528e+00  1.072e-02 422.194  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          4.478e-03  9.105e-05  49.182  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender      -2.355e-02  4.029e-03  -5.844 5.36e-09 ***</span></span>
+<span><span class="co">## educ        -4.740e-02  4.851e-03  -9.772  &lt; 2e-16 ***</span></span>
+<span><span class="co">## bmi          3.610e-03  2.907e-04  12.418  &lt; 2e-16 ***</span></span>
+<span><span class="co">## Income       3.974e-04  7.621e-04   0.522    0.602    </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Error terms:</span></span>
+<span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma 96.68214    3.15376   30.66   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho    0.77208    0.02258   34.20   &lt;2e-16 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mSK</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## --------------------------------------------------------------
-##       Skew Normal Heckman Model (Package: ssmodels)           
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 45 
-## Log-Likelihood: -202.82 
-## AIC: 433.6401 BIC: 527.8765 
-## Number of observations: ( 1575 censored and 4618 observed ) 
-## 14 free parameters ( df= 6179 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.8376493  0.0577195  14.512  &lt; 2e-16 ***
-## age          0.0106572  0.0006882  15.486  &lt; 2e-16 ***
-## gender       0.1207434  0.0271668   4.445 8.96e-06 ***
-## educ        -0.4204717  0.0331856 -12.670  &lt; 2e-16 ***
-## race        -0.0496700  0.0105806  -4.694 2.73e-06 ***
-## --------------------------------------------------------------
-## Outcome equation:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  4.6365130  0.0122797 377.575  &lt; 2e-16 ***
-## age          0.0048084  0.0001139  42.199  &lt; 2e-16 ***
-## gender      -0.0208051  0.0041517  -5.011 5.56e-07 ***
-## educ        -0.0510738  0.0048687 -10.490  &lt; 2e-16 ***
-## bmi          0.0036457  0.0002900  12.571  &lt; 2e-16 ***
-## Income       0.0003417  0.0007569   0.451    0.652    
-## --------------------------------------------------------------
-## Error terms:
-##        Estimate Std. Error t value Pr(&gt;|t|)    
-## sigma   0.21735    0.01093  19.885   &lt;2e-16 ***
-## rho     0.90901    0.01496  60.747   &lt;2e-16 ***
-## lambda -1.62376    0.18321  -8.863   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mSK</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">##       Skew Normal Heckman Model (Package: ssmodels)           </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Maximum Likelihood estimation </span></span>
+<span><span class="co">## optim function with method BFGS-iterations numbers: 45 </span></span>
+<span><span class="co">## Log-Likelihood: -202.82 </span></span>
+<span><span class="co">## AIC: 433.6401 BIC: 527.8765 </span></span>
+<span><span class="co">## Number of observations: ( 1575 censored and 4618 observed ) </span></span>
+<span><span class="co">## 14 free parameters ( df= 6179 ) </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Probit selection equation:</span></span>
+<span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  0.8376493  0.0577195  14.512  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.0106572  0.0006882  15.486  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender       0.1207434  0.0271668   4.445 8.96e-06 ***</span></span>
+<span><span class="co">## educ        -0.4204717  0.0331856 -12.670  &lt; 2e-16 ***</span></span>
+<span><span class="co">## race        -0.0496700  0.0105806  -4.694 2.73e-06 ***</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Outcome equation:</span></span>
+<span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  4.6365130  0.0122797 377.575  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.0048084  0.0001139  42.199  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender      -0.0208051  0.0041517  -5.011 5.56e-07 ***</span></span>
+<span><span class="co">## educ        -0.0510738  0.0048687 -10.490  &lt; 2e-16 ***</span></span>
+<span><span class="co">## bmi          0.0036457  0.0002900  12.571  &lt; 2e-16 ***</span></span>
+<span><span class="co">## Income       0.0003417  0.0007569   0.451    0.652    </span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span>
+<span><span class="co">## Error terms:</span></span>
+<span><span class="co">##        Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma   0.21735    0.01093  19.885   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho     0.90901    0.01496  60.747   &lt;2e-16 ***</span></span>
+<span><span class="co">## lambda -1.62376    0.18321  -8.863   &lt;2e-16 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 </div>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level2">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-bastos" class="csl-entry">
-Bastos, Fernando de Souza, and Wagner Barreto-Souza. 2020. <span>“Birnbaum–Saunders Sample Selection Model.”</span> <em>Journal of Applied Statistics</em>.
+Bastos, Fernando de Souza, and Wagner Barreto-Souza. 2020.
+<span>“Birnbaum–Saunders Sample Selection Model.”</span> <em>Journal of
+Applied Statistics</em>.
 </div>
 <div id="ref-bastosBarreto" class="csl-entry">
-Bastos, Fernando de Souza, Wagner Barreto-Souza, and Marc G Genton. 2021. <span>“A Generalized Heckman Model with Varying Sample Selection Bias and Dispersion Parameters.”</span> <em>Statistica Sinica</em>.
+Bastos, Fernando de Souza, Wagner Barreto-Souza, and Marc G Genton.
+2022. <span>“A Generalized Heckman Model with Varying Sample Selection
+Bias and Dispersion Parameters.”</span> <em>Statistica Sinica</em>.
 </div>
 <div id="ref-colin2009microeconometrics" class="csl-entry">
-Colin, Cameron A, and Pravin K Trivedi. 2009. <span>“Microeconometrics Using STATA.”</span> <em>Lakeway Drive, TX: Stata Press Books</em>.
+Colin, Cameron A, and Pravin K Trivedi. 2009. <span>“Microeconometrics
+Using STATA.”</span> <em>Lakeway Drive, TX: Stata Press Books</em>.
 </div>
 <div id="ref-heckman1976common" class="csl-entry">
-Heckman, James J. 1976. <span>“The Common Structure of Statistical Models of Truncation, Sample Selection and Limited Dependent Variables and a Simple Estimator for Such Models.”</span> In <em>Annals of Economic and Social Measurement, Volume 5, Number 4</em>, 475–92. NBER.
+Heckman, James J. 1976. <span>“The Common Structure of Statistical
+Models of Truncation, Sample Selection and Limited Dependent Variables
+and a Simple Estimator for Such Models.”</span> In <em>Annals of
+Economic and Social Measurement, Volume 5, Number 4</em>, 475–92. NBER.
 </div>
 <div id="ref-heckman1979sample" class="csl-entry">
-———. 1979. <span>“Sample Selection Bias as a Specification Error.”</span> <em>Econometrica: Journal of the Econometric Society</em>, 153–61.
+———. 1979. <span>“Sample Selection Bias as a Specification
+Error.”</span> <em>Econometrica: Journal of the Econometric
+Society</em>, 153–61.
 </div>
 <div id="ref-marchenko2012heckman" class="csl-entry">
-Marchenko, Yulia V, and Marc G Genton. 2012. <span>“A Heckman Selection-t Model.”</span> <em>Journal of the American Statistical Association</em> 107 (497): 304–17.
+Marchenko, Yulia V, and Marc G Genton. 2012. <span>“A Heckman
+Selection-t Model.”</span> <em>Journal of the American Statistical
+Association</em> 107 (497): 304–17.
 </div>
 <div id="ref-ogundimu2016sample" class="csl-entry">
-Ogundimu, Emmanuel O, and Jane L Hutton. 2016. <span>“A Sample Selection Model with Skew-Normal Distribution.”</span> <em>Scandinavian Journal of Statistics</em> 43 (1): 172–90.
+Ogundimu, Emmanuel O, and Jane L Hutton. 2016. <span>“A Sample Selection
+Model with Skew-Normal Distribution.”</span> <em>Scandinavian Journal of
+Statistics</em> 43 (1): 172–90.
 </div>
 <div id="ref-zhelonkin2016robust" class="csl-entry">
-Zhelonkin, Mikhail, Marc G Genton, and Elvezio Ronchetti. 2016. <span>“Robust Inference in Sample Selection Models.”</span> <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 78 (4): 805–27.
+Zhelonkin, Mikhail, Marc G Genton, and Elvezio Ronchetti. 2016.
+<span>“Robust Inference in Sample Selection Models.”</span> <em>Journal
+of the Royal Statistical Society: Series B (Statistical
+Methodology)</em> 78 (4): 805–27.
 </div>
 </div>
 </div>
@@ -2169,11 +2294,13 @@ Zhelonkin, Mikhail, Marc G Genton, and Elvezio Ronchetti. 2016. <span>“Robust 
 
 
       <footer><div class="copyright">
-  <p>Developed by Fernando de Souza Bastos, Wagner Barreto de Souza.</p>
+  <p></p>
+<p>Developed by Fernando de Souza Bastos, Wagner Barreto de Souza.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -2181,6 +2308,8 @@ Zhelonkin, Mikhail, Marc G Genton, and Elvezio Ronchetti. 2016. <span>“Robust 
 
   
 
+
+  
 
   </body>
 </html>
