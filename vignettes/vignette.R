@@ -114,7 +114,7 @@ abline(a=coef(m1)[3], b=coef(m1)[4], lty=5, col="red")
 ## ---- warning=FALSE-----------------------------------------------------------
 set.seed(0)
 n=200 #Tamanho das amostras
-#Valores iniciais dos parametros usados para gerar as vari?veis. 
+#Valores iniciais dos parametros usados para gerar as variaveis. 
 #Ou seja, Valor verdadeiro dos parametros
 #Para manter 30% de censura, manter os seguintes parametros:
 gamma0 <- 1.6
@@ -129,13 +129,13 @@ phi2   <- 1
 rho    <- -0.5
 lambda <- 1
 nu <- 10
-#Matriz de covari?veis para gerar mu1
+#Matriz de covariaveis para gerar mu1
 X1 <- rep(1,n)
 X2 <- rnorm(n,0,1)
 X3 <- rnorm(n,0,1)
 X4 <- rnorm(n,0,1)
 XO <- cbind(X2,X3)
-#Matriz de covari?veis para gerar mu2, sem restri??o de exclus?o
+#Matriz de covariaveis para gerar mu2, sem restriao de exclusao
 XS <- cbind(X2,X3,X4)
 #Vetor de valores verdadeiros dos parametros
 b <- rbind(beta0,beta1,beta2)
@@ -150,12 +150,12 @@ u2  <-rnorm(n)
 z1  <-(((sqrt(1+rho))+(sqrt(1-rho)))/2)*u1+(((sqrt(1+rho))-(sqrt(1-rho)))/2)*u2
 z2  <-(((sqrt(1+rho))-(sqrt(1-rho)))/2)*u1+(((sqrt(1+rho))+(sqrt(1-rho)))/2)*u2
 #################################################################
-#Vari?veis (T1,T2)~BSB(mu1,phi1,mu2,1,rho)
+#Variaveis (T1,T2)~BSB(mu1,phi1,mu2,1,rho)
 ##########################################################
 T1<-(mu1/(1+(1/phi1)))*((1/2)*(sqrt(2/phi1))*z1+sqrt(1+((1/2)*(sqrt(2/phi1))*z1)^2))^2
 T2<-(mu2/(1+(1/phi2)))*((1/2)*(sqrt(2/phi2))*z2+sqrt(1+((1/2)*(sqrt(2/phi2))*z2)^2))^2
 ################################################################
-#Vari?vel indicadora
+#Variavel indicadora
 ######################################
 YS<-1*(T2>1)
 #######################################################
