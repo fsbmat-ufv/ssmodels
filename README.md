@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ssmodels <a href='https://fsbmat-ufv.github.io/ssmodels/'><img src='man/figures/logo.png' align="right" height="138.5" style="margin:10px;" /></a>
+# ssmodels <a href='https://fsbmat-ufv.github.io/ssmodels/'><img src='man/figures/logo.png' align="right" height="80" style="margin:10px;" /></a>
 
 # ssmodels
 
