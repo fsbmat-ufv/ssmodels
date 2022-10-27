@@ -110,7 +110,7 @@ summary(m1)
 
 
 ```{r fig1, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura"}
-par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
 pch <- c(1, 16)
 plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.5, main = "Figura 1: Ajuste dos modelos de Heckman Clássico e modelo linear \n simples a dados simulados com censura.")
 # True dependence
@@ -120,6 +120,7 @@ abline(a=coef(m0)[3], b=coef(m0)[4], lty=2, col="red", lwd=2)
 # linear model
 cf <- coef(lm(yo ~ xo, subset=ys==1))
 abline(a=cf[1], b=cf[2], lty=3, col="blue", lwd=3)
+par(opar)
 ```
 
 ## Data with variable dispersion and correlation
@@ -170,7 +171,7 @@ summary(m1)
 Gráfico
 
 ```{r fig2, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura"}
-par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
 pch <- c(1, 16)
 plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.3, ylim = c(-8,8), main = "Figura 2: Ajuste dos modelos de Heckman Generalizados e Clássico \n e modelo linear simples a dados simulados com censura.")
 # True dependence
@@ -182,6 +183,7 @@ m2 <- coef(lm(y1 ~ xo, subset=ys==1))
 abline(a=m2[1], b=m2[2], lty=3, col="green", lwd=2)
 # Heckman Generalized
 abline(a=coef(m1)[3], b=coef(m1)[4], lty=5, col="red")
+par(opar)
 ```
 
 # Comparison of Parametric Sample Selection Models
@@ -276,7 +278,7 @@ mSK <- HeckmanSK(selection, outcome, data=dt2, lambda)
 Grafico
 
 ```{r fig3, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura"}
-par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
 library("ggplot2")
 library("gridExtra")
 barfill <- "grey"
