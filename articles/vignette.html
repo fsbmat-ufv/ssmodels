@@ -237,7 +237,7 @@ summary(m1)
 <a name="fig1"></a>
 
 ```r
-par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
 pch <- c(1, 16)
 plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.5, main = "Figura 1: Ajuste dos modelos de Heckman Clássico e modelo linear \n simples a dados simulados com censura.")
 # True dependence
@@ -250,6 +250,10 @@ abline(a=cf[1], b=cf[2], lty=3, col="blue", lwd=3)
 ```
 
 <img src="vignette_files/figure-html/fig1-1.png" width="691.2" style="display: block; margin: auto;" />
+
+```r
+par(opar)
+```
 
 ## Data with variable dispersion and correlation
 <p style="text-align: justify;">
@@ -375,7 +379,7 @@ Gráfico
 <a name="fig2"></a>
 
 ```r
-par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
 pch <- c(1, 16)
 plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.3, ylim = c(-8,8), main = "Figura 2: Ajuste dos modelos de Heckman Generalizados e Clássico \n e modelo linear simples a dados simulados com censura.")
 # True dependence
@@ -390,6 +394,10 @@ abline(a=coef(m1)[3], b=coef(m1)[4], lty=5, col="red")
 ```
 
 <img src="vignette_files/figure-html/fig2-1.png" width="691.2" style="display: block; margin: auto;" />
+
+```r
+par(opar)
+```
 
 # Comparison of Parametric Sample Selection Models
 <p style="text-align: justify;">
@@ -487,7 +495,7 @@ Grafico
 <a name="fig3"></a>
 
 ```r
-par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
 library("ggplot2")
 library("gridExtra")
 barfill <- "grey"
