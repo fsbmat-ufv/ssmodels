@@ -242,8 +242,12 @@ HeckmantS <- function(selection, outcome, data = sys.frame(sys.parent()), df, st
     }
 
     ####### Start#
-    if (is.null(start))
-    start <- c(step2(YS, XS, YO, XO), df)
+    #if (is.null(start))
+    #start <- c(step2(YS, XS, YO, XO), df)
+    if (is.null(start)) {
+      message("Start not provided using default start values.")
+      start <- c(rep(0, ncol(XS) + ncol(XO)), 1, 0, df)
+    }
     #### Optim function#
     theta_tS <- optim(start, loglik_tS, gradlik_tS, method = "BFGS", hessian = T,
         control = list(fnscale = -1))

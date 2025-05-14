@@ -27,12 +27,7 @@ HeckmanGe(
 
 \item{start}{initial values.}
 }
-\description{
-Estimates the parameters of the Generalized
-Heckman model
-
-#' @return
-
+\value{
 Returns a list with the following components.
 
 Coefficients: Returns a numerical vector with the best estimated values
@@ -94,6 +89,10 @@ NV: Numerical value that represents the number
 of parameters related to the covariates fitted
 to the correlation parameter considering the
 constant parameter.
+}
+\description{
+Estimates the parameters of the Generalized
+Heckman model
 }
 \details{
 The HeckmanGe() function fits a generalization of the Heckman sample

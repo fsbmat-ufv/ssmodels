@@ -225,8 +225,12 @@ HeckmanSK <- function(selection, outcome, data = sys.frame(sys.parent()), lambda
     }
 
     ####### Start#
-    if (is.null(start))
-        start <- c(step2(YS, XS, YO, XO), lambda)
+    #if (is.null(start))
+    #    start <- c(step2(YS, XS, YO, XO), lambda)
+    if (is.null(start)) {
+      message("Start not provided using default start values.")
+      start <- c(rep(0, ncol(XS) + ncol(XO)), 1, 0, lambda)
+    }
     #### Optim function#
     theta_SK <- optim(start,
         loglik_SK,

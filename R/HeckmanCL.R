@@ -187,8 +187,12 @@ HeckmanCL <- function(selection, outcome, data = sys.frame(sys.parent()), start 
     }
 
     ####### Start#
-    if (is.null(start))
-    start <- step2(YS, XS, YO, XO)
+    #if (is.null(start))
+    #start <- step2(YS, XS, YO, XO)
+    if (is.null(start)) {
+      message("Start not provided using default start values.")
+      start <- c(rep(0, ncol(XS) + ncol(XO)), 1, 0)
+    }
     #### Optim function#
     theta_HC <- optim(start,
         loglik_HC,

@@ -73,7 +73,7 @@ Estimates the parameters of the Heckman-BS model
 }
 \details{
 The HeckmanBS() function fits the Sample Selection Model
-based on the Birnbaum–Saunders bivariate distribution,
+based on the Birnbaum Saunders bivariate distribution,
 it has the same number of parameters as the classical
 Heckman model. For more information see
 \insertCite{bastos;textual}{ssmodels}

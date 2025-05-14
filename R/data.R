@@ -63,9 +63,9 @@
 #'
 #' @keywords Heckman
 #'
-#' @docType package
-#' @name ssmodels
-NULL
+#' @keywords internal
+"_PACKAGE"
+
 
 #' Medical Expenditure Panel Survey
 #'

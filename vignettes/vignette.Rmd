@@ -17,8 +17,6 @@ output:
 vignette: >
   %\VignetteIndexEntry{ssmodels: A package for fit the sample selection models}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
-  \usepackage{amsmath}
 bibliography: "../inst/REFERENCES.bib"
 biblio-style: "apalike"
 ---
@@ -373,7 +371,7 @@ p2 <- ggplot(MEPS2001,aes(lambexp))+geom_histogram(colour = barlines, fill = bar
   scale_y_continuous(name = "Count",
                      breaks = seq(0, 300, 100),
                      limits=c(0, 300))
-grid.arrange(p1, p2, ncol=2)
+gridExtra::grid.arrange(p1, p2, ncol=2)
 ```
 <p style="text-align: justify;">
 According @marchenko2012heckman and @zhelonkin2016robust it is natural to fit a sample selection model to such data, since the willingness to spend $(Y_{2}^{*})$ is likely to be related to the expense amount $(Y_{1}^{*}).$ However, after fitting the classic Heckman model and using the Wald, likelihood ratio, or gradient tests for 
