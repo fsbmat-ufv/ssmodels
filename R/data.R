@@ -62,10 +62,9 @@
 #' @author Fernando de Souza Bastos, Wagner Barreto de Souza
 #'
 #' @keywords Heckman
-#'
-#' @docType package
 #' @name ssmodels
-NULL
+"_PACKAGE"
+
 
 #' Medical Expenditure Panel Survey
 #'

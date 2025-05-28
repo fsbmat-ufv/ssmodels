@@ -5,7 +5,7 @@
 #' Estimates the parameters of the Generalized
 #' Heckman model
 #'
-#' #' @return
+#' @return
 #'
 #' Returns a list with the following components.
 #'

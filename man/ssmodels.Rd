@@ -2,6 +2,7 @@
 % Please edit documentation in R/data.R
 \docType{package}
 \name{ssmodels}
+\alias{ssmodels-package}
 \alias{ssmodels}
 \title{ssmodels: A package for fit the sample selection models.}
 \arguments{
