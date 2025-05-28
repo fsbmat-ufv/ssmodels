@@ -49,7 +49,7 @@ m1 <- selection(ys~xs, yo ~xo, method = "ml")
 summary(m1)
 
 ## ----fig1, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura"----
-par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
 pch <- c(1, 16)
 plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.5, main = "Figura 1: Ajuste dos modelos de Heckman Clássico e modelo linear \n simples a dados simulados com censura.")
 # True dependence
@@ -59,6 +59,7 @@ abline(a=coef(m0)[3], b=coef(m0)[4], lty=2, col="red", lwd=2)
 # linear model
 cf <- coef(lm(yo ~ xo, subset=ys==1))
 abline(a=cf[1], b=cf[2], lty=3, col="blue", lwd=3)
+par(opar)
 
 ## -----------------------------------------------------------------------------
 library("mvtnorm")
@@ -98,7 +99,7 @@ m1 <- HeckmanGe(ys~xs, yo ~xo, cbind(xo), cbind(xo))
 summary(m1)
 
 ## ----fig2, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura"----
-par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
 pch <- c(1, 16)
 plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.3, ylim = c(-8,8), main = "Figura 2: Ajuste dos modelos de Heckman Generalizados e Clássico \n e modelo linear simples a dados simulados com censura.")
 # True dependence
@@ -110,11 +111,12 @@ m2 <- coef(lm(y1 ~ xo, subset=ys==1))
 abline(a=m2[1], b=m2[2], lty=3, col="green", lwd=2)
 # Heckman Generalized
 abline(a=coef(m1)[3], b=coef(m1)[4], lty=5, col="red")
+par(opar)
 
 ## ---- warning=FALSE-----------------------------------------------------------
 set.seed(0)
 n=200 #Tamanho das amostras
-#Valores iniciais dos parametros usados para gerar as vari?veis. 
+#Valores iniciais dos parametros usados para gerar as variaveis. 
 #Ou seja, Valor verdadeiro dos parametros
 #Para manter 30% de censura, manter os seguintes parametros:
 gamma0 <- 1.6
@@ -129,13 +131,13 @@ phi2   <- 1
 rho    <- -0.5
 lambda <- 1
 nu <- 10
-#Matriz de covari?veis para gerar mu1
+#Matriz de covariaveis para gerar mu1
 X1 <- rep(1,n)
 X2 <- rnorm(n,0,1)
 X3 <- rnorm(n,0,1)
 X4 <- rnorm(n,0,1)
 XO <- cbind(X2,X3)
-#Matriz de covari?veis para gerar mu2, sem restri??o de exclus?o
+#Matriz de covariaveis para gerar mu2, sem restriao de exclusao
 XS <- cbind(X2,X3,X4)
 #Vetor de valores verdadeiros dos parametros
 b <- rbind(beta0,beta1,beta2)
@@ -150,12 +152,12 @@ u2  <-rnorm(n)
 z1  <-(((sqrt(1+rho))+(sqrt(1-rho)))/2)*u1+(((sqrt(1+rho))-(sqrt(1-rho)))/2)*u2
 z2  <-(((sqrt(1+rho))-(sqrt(1-rho)))/2)*u1+(((sqrt(1+rho))+(sqrt(1-rho)))/2)*u2
 #################################################################
-#Vari?veis (T1,T2)~BSB(mu1,phi1,mu2,1,rho)
+#Variaveis (T1,T2)~BSB(mu1,phi1,mu2,1,rho)
 ##########################################################
 T1<-(mu1/(1+(1/phi1)))*((1/2)*(sqrt(2/phi1))*z1+sqrt(1+((1/2)*(sqrt(2/phi1))*z1)^2))^2
 T2<-(mu2/(1+(1/phi2)))*((1/2)*(sqrt(2/phi2))*z2+sqrt(1+((1/2)*(sqrt(2/phi2))*z2)^2))^2
 ################################################################
-#Vari?vel indicadora
+#Variavel indicadora
 ######################################
 YS<-1*(T2>1)
 #######################################################
@@ -185,7 +187,7 @@ mtS <- HeckmantS(selection, outcome, data=dt2, nu)
 mSK <- HeckmanSK(selection, outcome, data=dt2, lambda)
 
 ## ----fig3, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura"----
-par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
 library("ggplot2")
 library("gridExtra")
 barfill <- "grey"

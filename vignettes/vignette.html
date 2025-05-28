@@ -381,7 +381,7 @@ adjustment of the Heckman-t models, introduced in the literature by
 Heckman-Skew model introduced in the literature by <span class="citation">Ogundimu and Hutton (2016)</span>. We also implemented
 functions to adjust the generalized version of the Heckman model,
 introduced by <span class="citation">Bastos, Barreto-Souza, and Genton
-(2021)</span>, that allows the inclusion of covariables to the
+(2022)</span>, that allows the inclusion of covariables to the
 dispersion and correlation parameters and a function to adjust the
 Heckman-BS model introduced by <span class="citation">Bastos and
 Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution
@@ -524,7 +524,7 @@ summary(m1)
 <a name="fig1"></a>
 
 ```r
-par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
 pch <- c(1, 16)
 plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.5, main = "Figura 1: Ajuste dos modelos de Heckman Clássico e modelo linear \n simples a dados simulados com censura.")
 # True dependence
@@ -537,6 +537,10 @@ abline(a=cf[1], b=cf[2], lty=3, col="blue", lwd=3)
 ```
 
 <img src="C:/Users/Dell/Documents/GitHub/ssmodels/vignettes/vignette_files/figure-html/fig1-1.png" style="display: block; margin: auto;" />
+
+```r
+par(opar)
+```
 
 ## Data with variable dispersion and correlation
 <p style="text-align: justify;">
@@ -662,7 +666,7 @@ Gráfico
 <a name="fig2"></a>
 
 ```r
-par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
 pch <- c(1, 16)
 plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.3, ylim = c(-8,8), main = "Figura 2: Ajuste dos modelos de Heckman Generalizados e Clássico \n e modelo linear simples a dados simulados com censura.")
 # True dependence
@@ -677,6 +681,10 @@ abline(a=coef(m1)[3], b=coef(m1)[4], lty=5, col="red")
 ```
 
 <img src="C:/Users/Dell/Documents/GitHub/ssmodels/vignettes/vignette_files/figure-html/fig2-1.png" style="display: block; margin: auto;" />
+
+```r
+par(opar)
+```
 
 # Comparison of Parametric Sample Selection Models
 <p style="text-align: justify;">
@@ -693,7 +701,7 @@ Quando desejamos ajustar um modelo de regressão a uma variável resposta que n�
 ```r
 set.seed(0)
 n=200 #Tamanho das amostras
-#Valores iniciais dos parametros usados para gerar as vari?veis. 
+#Valores iniciais dos parametros usados para gerar as variaveis. 
 #Ou seja, Valor verdadeiro dos parametros
 #Para manter 30% de censura, manter os seguintes parametros:
 gamma0 <- 1.6
@@ -708,13 +716,13 @@ phi2   <- 1
 rho    <- -0.5
 lambda <- 1
 nu <- 10
-#Matriz de covari?veis para gerar mu1
+#Matriz de covariaveis para gerar mu1
 X1 <- rep(1,n)
 X2 <- rnorm(n,0,1)
 X3 <- rnorm(n,0,1)
 X4 <- rnorm(n,0,1)
 XO <- cbind(X2,X3)
-#Matriz de covari?veis para gerar mu2, sem restri??o de exclus?o
+#Matriz de covariaveis para gerar mu2, sem restriao de exclusao
 XS <- cbind(X2,X3,X4)
 #Vetor de valores verdadeiros dos parametros
 b <- rbind(beta0,beta1,beta2)
@@ -729,12 +737,12 @@ u2  <-rnorm(n)
 z1  <-(((sqrt(1+rho))+(sqrt(1-rho)))/2)*u1+(((sqrt(1+rho))-(sqrt(1-rho)))/2)*u2
 z2  <-(((sqrt(1+rho))-(sqrt(1-rho)))/2)*u1+(((sqrt(1+rho))+(sqrt(1-rho)))/2)*u2
 #################################################################
-#Vari?veis (T1,T2)~BSB(mu1,phi1,mu2,1,rho)
+#Variaveis (T1,T2)~BSB(mu1,phi1,mu2,1,rho)
 ##########################################################
 T1<-(mu1/(1+(1/phi1)))*((1/2)*(sqrt(2/phi1))*z1+sqrt(1+((1/2)*(sqrt(2/phi1))*z1)^2))^2
 T2<-(mu2/(1+(1/phi2)))*((1/2)*(sqrt(2/phi2))*z2+sqrt(1+((1/2)*(sqrt(2/phi2))*z2)^2))^2
 ################################################################
-#Vari?vel indicadora
+#Variavel indicadora
 ######################################
 YS<-1*(T2>1)
 #######################################################
@@ -774,7 +782,7 @@ Grafico
 <a name="fig3"></a>
 
 ```r
-par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
+opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
 library("ggplot2")
 library("gridExtra")
 barfill <- "grey"
@@ -2504,7 +2512,7 @@ Applied Statistics</em>.
 </div>
 <div id="ref-bastosBarreto" class="csl-entry">
 Bastos, Fernando de Souza, Wagner Barreto-Souza, and Marc G Genton.
-2021. <span>“A Generalized Heckman Model with Varying Sample Selection
+2022. <span>“A Generalized Heckman Model with Varying Sample Selection
 Bias and Dispersion Parameters.”</span> <em>Statistica Sinica</em>.
 </div>
 <div id="ref-colin2009microeconometrics" class="csl-entry">
