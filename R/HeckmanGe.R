@@ -99,137 +99,90 @@ HeckmanGe <- function(selection, outcome, outcomeS, outcomeC, data = sys.frame(s
     ##############################################################################
     # Extract model matrix and matrix from selection and regression equations
     ##############################################################################
-  mfS <- model.frame(
-    formula = selection,
-    data = data,
-    drop.unused.levels = TRUE,
-    na.action = na.pass
-  )
-  mtS <- terms(mfS)
-  XS <- model.matrix(mtS, mfS)
-  NXS <- ncol(XS)
-  YS <- model.response(mfS)
-  YSLevels <- levels(as.factor(YS))
-  if (length(YSLevels) != 2) {
-    stop("the left hand side of the 'selection' formula\n",
-         "has to contain", " exactly two levels (e.g. FALSE and TRUE)")
-  }
-  mfO <- model.frame(
-    formula = outcome,
-    data = data,
-    drop.unused.levels = TRUE,
-    na.action = na.pass
-  )
-  mtO <- terms(mfO)
-  XO <- model.matrix(mtO, mfO)
-  NXO <- ncol(XO)
-  YO <- model.response(mfO)
+  components <- extract_model_components(selection = selection,
+                                         outcome = outcome,
+                                         outcomeS = outcomeS,
+                                         outcomeC = outcomeC,
+                                         data = data)
+  XS  <- components$XS
+  YS  <- components$YS
+  NXS <- components$NXS
+  XO  <- components$XO
+  YO  <- components$YO
+  NXO <- components$NXO
+  Msigma <- components$Msigma
+  NE <- components$NE
+  Mrho <- components$Mrho
+  NV <- components$NV
+  YSLevels <- components$YSLevels
 
 
-    #################### Dispersion Matrix #
-    E <- outcomeS
-    # NE <- ncol(E)
-    if (length(E) == 1) {
-        NE <- 1
-        Msigma <- cbind(rep(1, nrow(XO)))
-    } else {
-        NE <- dim(model.matrix(~E))[2] - 1
-        Msigma <- E
-    }
-    ################## Correlation Matrix #
-    V <- outcomeC
-    if (length(V) == 1) {
-        NV <- 1
-        Mrho <- cbind(rep(1, nrow(XO)))
-    } else {
-        NV <- dim(model.matrix(~V))[2] - 1
-        Mrho <- V
-    }
 
     ############################ Likelihood #
-    loglik_gen <- function(start) {
-        NXS <- dim(model.matrix(~XS))[2] - 1
-        NXO <- dim(model.matrix(~XO))[2] - 1
+  loglik_gen <- function(start) {
+    NXS <- ncol(model.matrix(~XS)) - 1
+    NXO <- ncol(model.matrix(~XO)) - 1
 
-        if (length(E) == 1) {
-            NE <- 1
-            Msigma <- cbind(rep(1, nrow(XO)))
-        } else {
-            NE <- dim(model.matrix(~E))[2]
-            Msigma <- E
-        }
-        if (length(V) == 1) {
-            NV <- 1
-            Mrho <- cbind(rep(1, nrow(XO)))
-        } else {
-            NV <- dim(model.matrix(~V))[2]
-            Mrho <- V
-        }
+    NE <- if (length(outcomeS) == 1) 1 else ncol(model.matrix(~outcomeS))
+    NV <- if (length(outcomeC) == 1) 1 else ncol(model.matrix(~outcomeC))
 
-        ## parameter indices
-        istartS <- 1:NXS
-        istartO <- seq(tail(istartS, 1) + 1, length = NXO)
-        ilambda <- seq(tail(istartO, 1) + 1, length = NE)
-        ikappa <- seq(tail(ilambda, 1) + 1, length = NV)
+    Msigma <- if (NE == 1) matrix(1, nrow(XO), 1) else outcomeS
+    Mrho   <- if (NV == 1) matrix(1, nrow(XO), 1) else outcomeC
 
-        g <- start[istartS]
-        b <- start[istartO]
-        lambda <- start[ilambda]
-        # if(sigma < 0) return(NA)
-        kappa <- start[ikappa]
-        # if( ( rho < -1) || ( rho > 1)) return(NA)
+    ## parameter indices
+    istartS <- 1:NXS
+    istartO <- (max(istartS) + 1):(max(istartS) + NXO)
+    ilambda <- (max(istartO) + 1):(max(istartO) + NE)
+    ikappa  <- (max(ilambda) + 1):(max(ilambda) + NV)
 
-        mu2 <- XS %*% g
-        mu1 <- XO %*% b
-        # sigma <- exp(model.matrix(~E) %*% lambda) rho <- tanh(model.matrix(~1,data =
-        # data.frame(rep(1,nrow(XO))))%*% kappa)
+    g <- start[istartS]
+    b <- start[istartO]
+    lambda <- start[ilambda]
+    kappa <- start[ikappa]
 
-        if (NE == 1) {
-            sigma <- exp(model.matrix(~1, data = data.frame(rep(1, nrow(XO)))) %*%
-                             lambda)
-        } else {
-            sigma <- exp(model.matrix(~Msigma) %*% lambda)
-        }
+    mu2 <- XS %*% g
+    mu1 <- XO %*% b
 
-        if (NV == 1) {
-            rho <- tanh(model.matrix(~1, data = data.frame(rep(1, nrow(XO)))) %*%
-                            kappa)
-        } else {
-            rho <- tanh(model.matrix(~Mrho) %*% kappa)
-        }
-
-        z1 <- YO - mu1
-        z <- z1 * (1/sigma)
-        r <- sqrt(1 - rho^2)
-        A_rho <- 1/r
-        A_rrho <- rho/r
-        zeta <- mu2 * A_rho + z * A_rrho
-        ll <- ifelse(YS == 0, (pnorm(-mu2, log.p = TRUE)), dnorm(z, log = TRUE) -
-                         log(sigma) + (pnorm(zeta, log.p = TRUE)))
-        sum(ll)
+    if (NE == 1) {
+      sigma <- exp(model.matrix(~1, data = data.frame(rep(1, nrow(XO)))) %*%
+                     lambda)
+    } else {
+      sigma <- exp(model.matrix(~Msigma) %*% lambda)
     }
+
+    if (NV == 1) {
+      rho <- tanh(model.matrix(~1, data = data.frame(rep(1, nrow(XO)))) %*%
+                    kappa)
+    } else {
+      rho <- tanh(model.matrix(~Mrho) %*% kappa)
+    }
+
+
+
+    z1 <- YO - mu1
+    z <- z1 * (1/sigma)
+    r <- sqrt(1 - rho^2)
+    A_rho <- 1/r
+    A_rrho <- rho/r
+    zeta <- mu2 * A_rho + z * A_rrho
+    ll <- ifelse(YS == 0, (pnorm(-mu2, log.p = TRUE)), dnorm(z, log = TRUE) -
+                   log(sigma) + (pnorm(zeta, log.p = TRUE)))
+    sum(ll)
+  }
+
     #######Gradient
     gradlik_gen <- function(start) {
-        NXS <- dim(model.matrix(~XS))[2] - 1
-        NXO <- dim(model.matrix(~XO))[2] - 1
+      NXS <- ncol(model.matrix(~XS)) - 1
+      NXO <- ncol(model.matrix(~XO)) - 1
 
-        if (length(E) == 1) {
-            NE <- 1
-            Msigma <- cbind(rep(1, nrow(XO)))
-        } else {
-            NE <- dim(model.matrix(~E))[2]
-            Msigma <- E
-        }
-        if (length(V) == 1) {
-            NV <- 1
-            Mrho <- cbind(rep(1, nrow(XO)))
-        } else {
-            NV <- dim(model.matrix(~V))[2]
-            Mrho <- V
-        }
-        nObs <- length(YS)
-        NO <- length(YS[YS > 0])
-        nParam <- NXS + NXO + NE + NV
+      NE <- if (length(outcomeS) == 1) 1 else ncol(model.matrix(~outcomeS))
+      NV <- if (length(outcomeC) == 1) 1 else ncol(model.matrix(~outcomeC))
+
+      Msigma <- if (NE == 1) matrix(1, nrow(XO), 1) else outcomeS
+      Mrho   <- if (NV == 1) matrix(1, nrow(XO), 1) else outcomeC
+
+      nObs <- length(YS)
+      nParam <- NXS + NXO + NE + NV
 
         XS0 <- XS[YS == 0, , drop = FALSE]
         XS1 <- XS[YS == 1, , drop = FALSE]
@@ -249,194 +202,130 @@ HeckmanGe <- function(selection, outcome, outcomeS, outcomeC, data = sys.frame(s
 
         ## parameter indices
         istartS <- 1:NXS
-        istartO <- seq(tail(istartS, 1) + 1, length = NXO)
-        ilambda <- seq(tail(istartO, 1) + 1, length = NE)
-        ikappa <- seq(tail(ilambda, 1) + 1, length = NV)
+        istartO <- (max(istartS) + 1):(max(istartS) + NXO)
+        ilambda <- (max(istartO) + 1):(max(istartO) + NE)
+        ikappa  <- (max(ilambda) + 1):(max(ilambda) + NV)
 
-        # if(sigma < 0) return(NA) ikappa <- tail(ilambda, 1) + 1
 
         g <- start[istartS]
         b <- start[istartO]
         lambda <- start[ilambda]
-        # if(sigma < 0) return(matrix(NA, nObs, nParam))
         kappa <- start[ikappa]
-        # if( ( rho < -1) || ( rho > 1)) return(matrix(NA, nObs, nParam))
+
         mu20 <- as.numeric(XS0 %*% g)
         mu21 <- as.numeric(XS1 %*% g)
         mu11 <- as.numeric(XO1 %*% b)
-        # sigma0 <- exp(as.numeric(model.matrix(~ES0) %*% lambda)) sigma1 <-
-        # exp(as.numeric(model.matrix(~ES1) %*% lambda)) rho0 <-
-        # tanh(as.numeric(model.matrix(~VS0) %*% kappa)) rho1 <-
-        # tanh(as.numeric(model.matrix(~VS1) %*% kappa))
-        if (NE == 1) {
-            sigma0 <- exp(as.numeric(model.matrix(~ES0 - 1) %*% lambda))
-            sigma1 <- exp(as.numeric(model.matrix(~ES1 - 1) %*% lambda))
-        } else {
-            sigma0 <- exp(as.numeric(model.matrix(~ES0) %*% lambda))
-            sigma1 <- exp(as.numeric(model.matrix(~ES1) %*% lambda))
-        }
 
-        if (NV == 1) {
-            rho0 <- tanh(as.numeric(model.matrix(~VS0 - 1) %*% kappa))
-            rho1 <- tanh(as.numeric(model.matrix(~VS1 - 1) %*% kappa))
-        } else {
-            rho0 <- tanh(as.numeric(model.matrix(~VS0) %*% kappa))
-            rho1 <- tanh(as.numeric(model.matrix(~VS1) %*% kappa))
-        }
-        z1 <- YO1 - mu11
-        z <- z1/sigma1
+        sigma1 <- as.numeric(exp(model.matrix(if (NE == 1) ~ES1 - 1 else ~ES1) %*% lambda))
+        rho1   <- as.numeric(tanh(model.matrix(if (NV == 1) ~VS1 - 1 else ~VS1) %*% kappa))
+
+        z <- (YO1 - mu11) / sigma1
         r <- sqrt(1 - rho1^2)
-        A_rho <- 1/r
-        A_rrho <- rho1/r
-        # B <- (XS1.g + rho/sigma*u2)/r
-        zeta <- (mu21 * A_rho + z * A_rrho)
+        A_rho <- 1 / r
+        A_rrho <- rho1 / r
+
+        zeta <- drop(mu21) * A_rho + z * A_rrho
         MZeta <- exp(dnorm(zeta, log = TRUE) - pnorm(zeta, log.p = TRUE))
         Mmu2 <- exp(dnorm(-mu20, log = TRUE) - pnorm(-mu20, log.p = TRUE))
-        Q_rho <- mu21 * rho1 * ((A_rho)^2) + z * (1 + A_rrho^2)
-        Q_rrho <- mu21 * (1 + 2 * A_rrho^2) + 2 * z * rho1 * (1 + A_rrho^2)
-
         gradient <- matrix(0, nObs, nParam)
         gradient[YS == 0, istartS] <- -u2 * XS0 * Mmu2
         gradient[YS == 1, istartS] <- u1 * XS1 * MZeta * A_rho
-        gradient[YS == 1, istartO] <- u1 * XO1 * (z - MZeta * A_rrho) * (1/sigma1)
-        if (NE == 1) {
-            gradient[YS == 1, ilambda] <- u1 * model.matrix(~ES1 - 1) * (z^2 - 1 -
-                                                                             MZeta * z * A_rrho)
-        } else {
-            gradient[YS == 1, ilambda] <- u1 * model.matrix(~ES1) * (z^2 - 1 - MZeta *
-                                                                         z * A_rrho)
-        }
-        if (NV == 1) {
-            gradient[YS == 1, ikappa] <- u1 * model.matrix(~VS1 - 1) * MZeta * A_rho *
-                ((pracma::sech(as.numeric(model.matrix(~VS1 - 1) %*% kappa)))^2) *
-                (mu21 * rho1 * (A_rho^2) + z * (1 + (A_rrho^2)))
-        } else {
-            gradient[YS == 1, ikappa] <- u1 * model.matrix(~VS1) * MZeta * A_rho *
-                ((pracma::sech(as.numeric(model.matrix(~VS1) %*% kappa)))^2) * (mu21 *
-                                                                                    rho1 * (A_rho^2) + z * (1 + (A_rrho^2)))
-        }
+        gradient[YS == 1, istartO] <- u1 * XO1 * (z - MZeta * A_rrho) / sigma1
+
+        form_sigma <- model.matrix(if (NE == 1) ~ES1 - 1 else ~ES1)
+        form_rho   <- model.matrix(if (NV == 1) ~VS1 - 1 else ~VS1)
+        sech_sq <- pracma::sech(form_rho %*% kappa)^2
+
+        gradient[YS == 1, ilambda] <- u1 * form_sigma * (z^2 - 1 - MZeta * z * A_rrho)
+        gradient[YS == 1, ikappa]  <- u1 * form_rho * MZeta * A_rho * sech_sq *
+          (drop(mu21) * rho1 * A_rho^2 + z * (1 + A_rrho^2))
         colSums(gradient)
     }
 
-    ##############################Start#
-    if (is.null(start))
-        start <- step2(YS, XS, YO, XO)
-    ####################################
-    ilambda <- rep(1, NE)
-    ikappa <- rep(0, NV)
-    if (length(V) == 1 & length(E) == 1) {
-        start <- c(start[(1:NXS)], start[((NXS + 1):(NXS + NXO))], start[(NXS + NXO +
-                                                                              1)], start[(NXS + NXO + 2)])
-        names(start) <- c(colnames(XS), colnames(XO), "sigma", colnames(E), "correlation")
-    } else {
-        if (length(V) == 1 & length(E) != 1) {
-            start <- c(start[(1:NXS)], start[((NXS + 1):(NXS + NXO))], start[(NXS +
-                                                                                  NXO + 1)], ilambda, start[(NXS + NXO + 2)])
-            names(start) <- c(colnames(XS), colnames(XO), "interceptS", colnames(E),
-                              "correlation")
-        } else {
-            if (length(V) != 1 & length(E) == 1) {
-                start <- c(start[(1:NXS)], start[((NXS + 1):(NXS + NXO))], start[(NXS +
-                                                                                      NXO + 1)], start[(NXS + NXO + 2)], ikappa)
-                names(start) <- c(colnames(XS), colnames(XO), "sigma", "interceptC",
-                                  colnames(V))
-            } else {
-                start <- c(start[(1:NXS)], start[((NXS + 1):(NXS + NXO))], start[(NXS +
-                                                                                      NXO + 1)], ilambda, start[(NXS + NXO + 2)], ikappa)
-                names(start) <- c(colnames(XS), colnames(XO), "interceptS", colnames(E),
-                                  "interceptC", colnames(V))
-            }
-        }
+    ############################## Start #
+    if (is.null(start)) {
+      start <- step2(YS, XS, YO, XO)
     }
+
+    # Criação dos vetores auxiliares para lambda e kappa
+    lambda_start <- rep(1, NE)
+    kappa_start  <- rep(0, NV)
+
+    # Parte comum: parâmetros da equação de seleção (g) e de resultado (b)
+    g_start <- start[1:NXS]
+    b_start <- start[(NXS + 1):(NXS + NXO)]
+    sigma_start <- start[NXS + NXO + 1]  # log(sigma) ou intercepto
+    rho_start   <- start[NXS + NXO + 2]  # atanh(rho) ou intercepto
+
+    # Composição do vetor final de start
+    start <- c(
+      g_start,
+      b_start,
+      if (NE == 1) sigma_start else c(sigma_start, lambda_start),
+      if (NV == 1) rho_start   else c(rho_start, kappa_start)
+    )
+
+    # Nomeação dos parâmetros
+    start_names <- c(
+      colnames(XS),
+      colnames(XO),
+      if (NE == 1) "sigma" else c("interceptS", colnames(outcomeS)),
+      if (NV == 1) "correlation" else c("interceptC", colnames(outcomeC))
+    )
+
+    names(start) <- start_names
+
 
     ###################### optim function
     theta_HG <- optim(start, loglik_gen, gradlik_gen, method = "BFGS", hessian = T,
                       control = list(fnscale = -1))
 
-    ############################Results#
-    if (length(E) == 1 & length(V) == 1) {
-        names(theta_HG$par) <- c(colnames(XS), colnames(XO), "Sigma", colnames(E),
-                                 "Rho", colnames(V))
-    } else {
-        if (length(E) != 1 & length(V) == 1) {
-            names(theta_HG$par) <- c(colnames(XS), colnames(XO), "interceptS", colnames(E),
-                                     "rho")
-        } else {
-            if (length(E) == 1 & length(V) != 1) {
-                names(theta_HG$par) <- c(colnames(XS), colnames(XO), "Sigma", "interceptC",
-                                         colnames(V))
-            } else {
-                names(theta_HG$par) <- c(colnames(XS), colnames(XO), "interceptS",
-                                         colnames(E), "interceptC", colnames(V))
-            }
-        }
-    }
+    theta_HG$par <- postprocess_theta(theta_HG$par, NXS, NXO, NE, NV, XS, XO, outcomeS, outcomeC)
 
 
-    if (length(E) == 1 & length(V) == 1) {
-        theta_HG$par <- c(theta_HG$par[1:(NXS+NXO)], exp(theta_HG$par[NXS+NXO+1]),tanh(theta_HG$par[NXS+NXO+2]))
-    } else {
-        if (length(E) != 1 & length(V) == 1) {
-            theta_HG$par <- c(theta_HG$par[1:(NXS+NXO)], theta_HG$par[(NXS+NXO+1):(NXS + NXO + NE+1)],tanh(theta_HG$par[NXS + NXO + NE+2]))
-        } else {
-            if (length(E) == 1 & length(V) != 1) {
-                theta_HG$par <- c(theta_HG$par[1:(NXS+NXO)], exp(theta_HG$par[(NXS+NXO+NE)]), theta_HG$par[(NXS + NXO + NE+1):(NXS + NXO + NE + NV + 1)])
-            } else {
-                theta_HG$par <- theta_HG$par
-            }
-        }
-    }
 
+    # Inferência e diagnóstico
+    nObs    <- length(YS)
+    nParam  <- length(start)
+    N0      <- sum(YS == 0)
+    N1      <- sum(YS == 1)
+    df      <- nObs - nParam
+    aic     <- -2 * theta_HG$value + 2 * nParam
+    bic     <- -2 * theta_HG$value + nParam * log(nObs)
 
-    a   <- start
-    a1  <- theta_HG$par
-    a2  <- theta_HG$value
-    a3  <- theta_HG$counts[2]
-    a4  <- theta_HG$hessian
-    a5  <- solve(-a4)
-    a6  <- sqrt(diag(a5))
-    a7  <- YSLevels
-    a8  <- length(YS)
-    a9  <- length(start)
-    a10 <- sum(YS == 0)
-    a11 <- sum(YS == 1)
-    a12 <- ncol(XS)
-    a13 <- ncol(XO)
-    a14 <- (a8-a9)
-    a15 <- -2*a2 + 2*a9
-    a16 <- -2*a2 + a9*log(a8)
-    if (length(E) == 1) {
-        NE <- 1
-    } else {
-        NE <- dim(model.matrix(~E))[2]
-    }
-    if (length(V) == 1) {
-        NV <- 1
-    } else {
-        NV <- dim(model.matrix(~V))[2]
-    }
+    # Verifica número de parâmetros nos termos adicionais
+    NE <- if (length(outcomeS) == 1) 1 else ncol(model.matrix(~outcomeS))
+    NV <- if (length(outcomeC) == 1) 1 else ncol(model.matrix(~outcomeC))
 
-    cl <- class(theta_HG)
-    result <- list(coefficients=a1,
-                   value         =  a2,
-                   loglik        = -a2,
-                   counts        =  a3,
-                   hessian       =  a4,
-                   fisher_infoHG =  a5,
-                   prop_sigmaHG  =  a6,
-                   level         =  a7,
-                   nObs          =  a8,
-                   nParam        =  a9,
-                   N0            = a10,
-                   N1            = a11,
-                   NXS           = a12,
-                   NXO           = a13,
-                   df            = a14,
-                   aic           = a15,
-                   bic           = a16,
-                   initial.value = a,
-                   NE            = NE,
-                   NV            = NV)
-    class(result) <- c("HeckmanGe", cl)
-    result
+    # Informações derivadas
+    fisher_infoHG <- tryCatch(solve(-theta_HG$hessian), error = function(e) matrix(NA, nParam, nParam))
+    prop_sigmaHG  <- sqrt(diag(fisher_infoHG))
+
+    # Output final
+    result <- list(
+      coefficients   = theta_HG$par,
+      value          = theta_HG$value,
+      loglik         = -theta_HG$value,
+      counts         = theta_HG$counts[2],
+      hessian        = theta_HG$hessian,
+      fisher_infoHG  = fisher_infoHG,
+      prop_sigmaHG   = prop_sigmaHG,
+      level          = YSLevels,
+      nObs           = nObs,
+      nParam         = nParam,
+      N0             = N0,
+      N1             = N1,
+      NXS            = ncol(XS),
+      NXO            = ncol(XO),
+      df             = df,
+      aic            = aic,
+      bic            = bic,
+      initial.value  = start,
+      NE             = NE,
+      NV             = NV
+    )
+
+    class(result) <- c("HeckmanGe", class(theta_HG))
+    return(result)
+
 }
