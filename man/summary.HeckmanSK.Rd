@@ -7,13 +7,13 @@
 \method{summary}{HeckmanSK}(object, ...)
 }
 \arguments{
-\item{object}{HeckmanSK class object.}
+\item{object}{An object of class \code{HeckmanSK}.}
 
-\item{...}{others functions.}
+\item{...}{Additional arguments (currently unused).}
 }
 \value{
-Print estimates of the parameters of the Heckman-SK model
+Prints the summary output including coefficient tables and model fit statistics.
 }
 \description{
-Summary of Skew-Normal Heckman Model
+Print estimates of the parameters of the Heckman-SK model using Maximum Likelihood Estimation.
 }

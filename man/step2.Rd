@@ -9,11 +9,11 @@ step2(YS, XS, YO, XO)
 \arguments{
 \item{YS}{Selection vector.}
 
-\item{XS}{Selection Matrix.}
+\item{XS}{Selection matrix.}
 
-\item{YO}{Interest vector.}
+\item{YO}{Outcome vector.}
 
-\item{XO}{Matrix of the equation of interest.}
+\item{XO}{Covariate matrix for the outcome equation.}
 }
 \value{
 Returns a numerical vector with the parameter estimates of the Classical
@@ -21,7 +21,7 @@ Heckman model via a two-step method. For more information see
 \insertCite{heckman1979sample;textual}{ssmodels}
 }
 \description{
-Estimate model parameters via two-step method
+Estimate model parameters via two-step method.
 }
 \examples{
 data(MEPS2001)
@@ -31,6 +31,7 @@ XS <- cbind(age, female, educ, blhisp, totchr, ins)
 YO <- lnambx
 XO <- cbind(age, female, educ, blhisp, totchr, ins, income)
 step2(YS, XS, YO, XO)
+
 }
 \references{
 {

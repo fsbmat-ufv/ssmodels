@@ -7,19 +7,18 @@
 twostep(selection, outcome, data = sys.frame(sys.parent()))
 }
 \arguments{
-\item{selection}{Selection equation.}
+\item{selection}{A formula for the selection equation.}
 
-\item{outcome}{Primary Regression Equation.}
+\item{outcome}{A formula for the outcome equation.}
 
-\item{data}{Database.}
+\item{data}{A data frame containing the variables used in the model.}
 }
 \value{
-Returns a numerical vector with the parameter estimates of the Classical
-Heckman model via a two-step method. For more information see
-\insertCite{heckman1979sample;textual}{ssmodels}
+Returns a numeric vector with the parameter estimates of the Classical Heckman model using the two-step method.
+For more information, see \insertCite{heckman1979sample;textual}{ssmodels}
 }
 \description{
-Estimate model parameters via two-step method
+Estimate model parameters via two-step method.
 }
 \examples{
 data(MEPS2001)
@@ -27,6 +26,7 @@ attach(MEPS2001)
 selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
 outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
 twostep(selectEq, outcomeEq)
+
 }
 \references{
 {

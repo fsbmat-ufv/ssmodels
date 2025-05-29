@@ -7,13 +7,13 @@
 \method{summary}{HeckmanCL}(object, ...)
 }
 \arguments{
-\item{object}{HeckmanCL class object.}
+\item{object}{An object of class \code{HeckmanCL}.}
 
-\item{...}{others functions.}
+\item{...}{Additional arguments (currently unused).}
 }
 \value{
-Print estimates of the parameters of the Classic Heckman model
+Prints the summary output including coefficient tables and model fit statistics.
 }
 \description{
-Summary of Classic Heckman Model
+Print estimates of the parameters of the Classic Heckman model using Maximum Likelihood Estimation.
 }

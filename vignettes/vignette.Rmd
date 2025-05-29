@@ -22,6 +22,7 @@ biblio-style: "apalike"
 ---
 
 ```{r setup, include=FALSE}
+library(ssmodels)
 require(knitr)
 require(kfigr)
 library(kableExtra)

@@ -7,19 +7,22 @@
 IMR(selection, data = sys.frame(sys.parent()))
 }
 \arguments{
-\item{selection}{Selection equation.}
+\item{selection}{A formula for the selection equation.}
 
-\item{data}{Database.}
+\item{data}{A data frame containing the variables.}
 }
 \value{
-Return column vector of the inverse ratio of Mills
+A column vector (matrix with one column) containing the Inverse Mills Ratio
+computed from the Probit model fitted to the selection equation.
 }
 \description{
-Column vector of the inverse ratio of Mills
+Computes the column vector of the Inverse Mills Ratio (IMR)
+from a Probit selection equation.
 }
 \examples{
 data(MEPS2001)
 attach(MEPS2001)
 selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
-IMR(selectEq)
+IMR(selectEq, data = MEPS2001)
+
 }

@@ -2,18 +2,18 @@
 % Please edit documentation in R/summary.HeckmantS.R
 \name{summary.HeckmantS}
 \alias{summary.HeckmantS}
-\title{Summary of Heckman-ts Model}
+\title{Summary of Heckman-t Model}
 \usage{
 \method{summary}{HeckmantS}(object, ...)
 }
 \arguments{
-\item{object}{HeckmantS class object.}
+\item{object}{An object of class \code{HeckmantS}.}
 
-\item{...}{others functions.}
+\item{...}{Additional arguments (currently unused).}
 }
 \value{
-Print estimates of the parameters of the Heckman-ts model
+Prints the summary output including coefficient tables and model fit statistics.
 }
 \description{
-Summary of Heckman-ts Model
+Print estimates of the parameters of the Heckman-t model using Maximum Likelihood Estimation.
 }
