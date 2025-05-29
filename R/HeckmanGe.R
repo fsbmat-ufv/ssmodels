@@ -99,33 +99,32 @@ HeckmanGe <- function(selection, outcome, outcomeS, outcomeC, data = sys.frame(s
     ##############################################################################
     # Extract model matrix and matrix from selection and regression equations
     ##############################################################################
-    mf <- match.call(expand.dots = FALSE)
-    m <- match(c("selection", "data", "subset"), names(mf), 0)
-    mfS <- mf[c(1, m)]
-    mfS$drop.unused.levels <- TRUE
-    mfS$na.action <- na.pass
-    mfS[[1]] <- as.name("model.frame")
-    names(mfS)[2] <- "formula"
-    # model.frame requires the parameter to be formula
-    mfS <- eval(mfS, parent.frame())
-    mtS <- terms(mfS)
-    XS <- model.matrix(mtS, mfS)
-    NXS <- ncol(XS)
-    YS <- model.response(mfS)
-    YSLevels <- levels(as.factor(YS))
-    ############################## Regression Matrix #
-    m <- match(c("outcome", "data", "subset", "weights", "offset"), names(mf), 0)
-    mfO <- mf[c(1, m)]
-    mfO$na.action <- na.pass
-    mfO$drop.unused.levels <- TRUE
-    mfO$na.action <- na.pass
-    mfO[[1]] <- as.name("model.frame")
-    names(mfO)[2] <- "formula"
-    mfO <- eval(mfO, parent.frame())
-    mtO <- attr(mfO, "terms")
-    XO <- model.matrix(mtO, mfO)
-    NXO <- ncol(XO)
-    YO <- model.response(mfO)
+  mfS <- model.frame(
+    formula = selection,
+    data = data,
+    drop.unused.levels = TRUE,
+    na.action = na.pass
+  )
+  mtS <- terms(mfS)
+  XS <- model.matrix(mtS, mfS)
+  NXS <- ncol(XS)
+  YS <- model.response(mfS)
+  YSLevels <- levels(as.factor(YS))
+  if (length(YSLevels) != 2) {
+    stop("the left hand side of the 'selection' formula\n",
+         "has to contain", " exactly two levels (e.g. FALSE and TRUE)")
+  }
+  mfO <- model.frame(
+    formula = outcome,
+    data = data,
+    drop.unused.levels = TRUE,
+    na.action = na.pass
+  )
+  mtO <- terms(mfO)
+  XO <- model.matrix(mtO, mfO)
+  NXO <- ncol(XO)
+  YO <- model.response(mfO)
+
 
     #################### Dispersion Matrix #
     E <- outcomeS

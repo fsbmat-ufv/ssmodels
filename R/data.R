@@ -62,8 +62,12 @@
 #' @author Fernando de Souza Bastos, Wagner Barreto de Souza
 #'
 #' @keywords Heckman
+<<<<<<< HEAD
 #'
 #' @keywords internal
+=======
+#' @name ssmodels
+>>>>>>> 57351e54d0ebb37e12b371fc1b83cafe09a5cf36
 "_PACKAGE"
 
 

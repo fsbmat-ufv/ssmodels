@@ -1,6 +1,6 @@
 Package: ssmodels
 Title: Sample Selection Models 
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
   person( given = "Fernando", family = "de Souza Bastos", role = c( "aut", "cre" ),
           email = "fernando.bastos@ufv.br" ),
@@ -10,10 +10,10 @@ Author: Fernando de Souza Bastos [aut, cre],
 Maintainer: Fernando de Souza Bastos <fernando.bastos@ufv.br>
 Depends: R (>= 3.6.0) 
 Imports: sn (>= 2.1.0), 
-          numDeriv (>= 2016.8-1.1), 
-          pracma (>= 2.3.8),
-          miscTools (>= 0.6-26),
-          Rdpack (>= 2.4)
+         numDeriv (>= 2016.8-1.1), 
+         pracma (>= 2.3.8),
+         miscTools (>= 0.6-26),
+         Rdpack (>= 2.4)
 Suggests: 
     knitr (>= 1.24),
     testthat (>= 3.0.0),

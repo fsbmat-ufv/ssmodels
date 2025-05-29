@@ -5,5 +5,13 @@
             "ascending": true
         }
     ],
+<<<<<<< HEAD
     "path": "~/GitHub/ssmodels/doc"
+=======
+<<<<<<< HEAD
+    "path": "~/GitHub/ssmodels/doc"
+=======
+    "path": "~/GitHub/ssmodels/docs"
+>>>>>>> f876017c2804e3588f3ef64a2e3291f2d4139ff6
+>>>>>>> 57351e54d0ebb37e12b371fc1b83cafe09a5cf36
 }
