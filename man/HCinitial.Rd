@@ -7,35 +7,34 @@
 HCinitial(selection, outcome, data = sys.frame(sys.parent()))
 }
 \arguments{
-\item{selection}{Selection equation.}
+\item{selection}{A formula for the selection equation.}
 
-\item{outcome}{Primary Regression Equation.}
+\item{outcome}{A formula for the outcome equation.}
 
-\item{data}{Database.}
+\item{data}{A data frame containing the variables.}
 }
 \value{
-Returns a numerical vector with estimates
-of the parameters of the classical Heckman
-model using the two-step method
+A numeric vector containing the estimated parameters of the classic Heckman model:
+\itemize{
+  \item Coefficients from the selection equation (Probit model),
+  \item Coefficients from the outcome equation (excluding the IMR),
+  \item Estimated standard deviation of the error term (\code{sigma}),
+  \item Estimated correlation between error terms (\code{rho}).
+}
 }
 \description{
-Estimates the parameters of the classic
-Heckman model via the two-step method.
+Estimates the parameters of the classical Heckman model using the two-step method.
 }
 \details{
-Generally, the two-step method is very
-useful for finding initial values for
-the Likelihood Estimation method. In
-first step performs a probit analysis
-on a selection equation. The second
-step analyzes an outcome equation based
-on the first-step binary probit model.
+This method is especially useful for obtaining initial values for maximum likelihood estimation.
+The first step fits a Probit model to the selection equation.
+The second step fits a linear regression to the outcome equation, adjusting for selection bias using the inverse Mills ratio.
 }
 \examples{
 data(MEPS2001)
 attach(MEPS2001)
 selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
 outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
-HCinitial(selectEq,outcomeEq, data = MEPS2001)
+HCinitial(selectEq, outcomeEq, data = MEPS2001)
 
 }

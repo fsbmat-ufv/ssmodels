@@ -7,13 +7,13 @@
 \method{summary}{HeckmanBS}(object, ...)
 }
 \arguments{
-\item{object}{HeckmanBS class object.}
+\item{object}{An object of class \code{HeckmanBS}.}
 
-\item{...}{others functions.}
+\item{...}{Additional arguments (currently unused).}
 }
 \value{
-Print estimates of the parameters of the Heckman-BS model
+Prints the summary output including coefficient tables and model fit statistics.
 }
 \description{
-Summary of Birnbaum-Saunders Heckman Model
+Print estimates of the parameters of the Heckman-BS model using Maximum Likelihood Estimation.
 }

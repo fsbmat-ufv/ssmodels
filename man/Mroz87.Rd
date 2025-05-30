@@ -54,10 +54,11 @@ includes the following explanatory variables:
 # Wooldridge(2016): page 247
 data(Mroz87)
 attach(Mroz87)
-selectEq  <- lfp ~ nwifeinc + educ + exper + I(exper^2) + age + kids5 + kids618
-outcomeEq <- log(wage) ~ educ + exper + I(exper^2)
-outcomeS  <- cbind(educ, exper)
-outcomeC  <- cbind(educ, exper)
+Mroz87$lwage <- ifelse(Mroz87$wage>0,log(Mroz87$wage), NA)
+selectEq <- lfp ~ nwifeinc + educ + exper + I(exper^2) + age + kids5 + kids618
+outcomeEq <- lwage ~ educ + exper + I(exper^2)
+outcomeS <- cbind(educ, exper)
+outcomeC <- 1
 outcomeBS <- wage ~ educ + exper + I(exper^2)
 outcomeBS <- wage ~ educ + exper + I(exper^2)
 HeckmanCL(selectEq, outcomeEq, data = Mroz87)

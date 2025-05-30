@@ -82,42 +82,23 @@
 #' }
 #' @export HeckmanBS
 #' @export
-HeckmanBS <- function (selection, outcome, data = sys.frame(sys.parent()),
-                       start = NULL)
-{
-  if (!inherits(selection, "formula")) stop("'selection' must be a formula.")
-  if (!inherits(outcome, "formula")) stop("'must be a formula.")
+HeckmanBS <- function(selection, outcome, data = sys.frame(sys.parent()), start = NULL) {
 
-  mfS <- model.frame(
-    formula = selection,
-    data = data,
-    drop.unused.levels = TRUE,
-    na.action = na.pass
-  )
-  mtS <- terms(mfS)
-  XS <- model.matrix(mtS, mfS)
-  NXS <- ncol(XS)
-  YS <- model.response(mfS)
-
-  mfO <- model.frame(
-    formula = outcome,
-    data = data,
-    drop.unused.levels = TRUE,
-    na.action = na.pass
-  )
-  mtO <- terms(mfO)
-  XO <- model.matrix(mtO, mfO)
-  NXO <- ncol(XO)
-  YO <- model.response(mfO)
+  components <- extract_model_components(selection = selection, outcome = outcome, data = data)
+  XS  <- components$XS
+  YS  <- components$YS
+  NXS <- components$NXS
+  XO  <- components$XO
+  YO  <- components$YO
+  NXO <- components$NXO
 
   if (is.null(start)) {
     message("Start not provided using default start values.")
-    start <- c(rep(0, ncol(XS) + ncol(XO)), 1, 0)
+    start <- c(rep(0, NXS + NXO), 1, 0)
   }
 
   # Auxiliary transformation: maps rho_star ∈ ℝ to rho ∈ (-1, 1)
   inv_logit_2 <- function(x) 2 / (1 + exp(-x)) - 1
-
   loglik_BS <- function(par) {
     # Check for invalid parameters
     if (any(!is.finite(par))) return(NA)

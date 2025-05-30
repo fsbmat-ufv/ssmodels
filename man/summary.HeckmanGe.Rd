@@ -7,13 +7,13 @@
 \method{summary}{HeckmanGe}(object, ...)
 }
 \arguments{
-\item{object}{HeckmanGe class object.}
+\item{object}{An object of class \code{HeckmanGe}.}
 
-\item{...}{others functions.}
+\item{...}{Additional arguments (currently unused).}
 }
 \value{
-Print estimates of the parameters of the Generalized Heckman model
+Prints the summary output including coefficient tables and model fit statistics.
 }
 \description{
-Summary of Generalized Heckman Model
+Print estimates of the parameters of the Generalized Heckman model using Maximum Likelihood Estimation.
 }
