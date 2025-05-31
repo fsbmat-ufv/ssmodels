@@ -1,23 +1,33 @@
-#' Two-Step Method for Parameter Estimation of the Heckman Model
+#' Two-Step Method for Parameter Estimation of the Classical Heckman Model
 #'
 #' @description
-#' Estimates the parameters of the classical Heckman model using the two-step method.
+#' Estimates the parameters of the classical Heckman sample selection model using the two-step estimation method.
 #'
 #' @details
-#' This method is especially useful for obtaining initial values for maximum likelihood estimation.
-#' The first step fits a Probit model to the selection equation.
-#' The second step fits a linear regression to the outcome equation, adjusting for selection bias using the inverse Mills ratio.
+#' This function implements the two-step approach proposed by Heckman (1979) to estimate the parameters
+#' of the classic sample selection model. It is particularly useful for obtaining initial values
+#' for maximum likelihood estimation (MLE).
 #'
-#' @param selection A formula for the selection equation.
-#' @param outcome A formula for the outcome equation.
-#' @param data A data frame containing the variables.
+#' In the first step, a probit model is fitted to the selection equation to estimate the probability of selection.
+#' The second step involves estimating a linear regression of the outcome equation for the observed (selected) data,
+#' incorporating the inverse Mills ratio (IMR) as an additional regressor to correct for sample selection bias.
 #'
-#' @return A numeric vector containing the estimated parameters of the classic Heckman model:
+#' The function also estimates:
 #' \itemize{
-#'   \item Coefficients from the selection equation (Probit model),
+#'   \item \code{sigma}: The standard deviation of the outcome equation's error term.
+#'   \item \code{rho}: The correlation coefficient between the errors of the selection and outcome equations.
+#' }
+#'
+#' @param selection A formula specifying the selection equation.
+#' @param outcome A formula specifying the outcome equation.
+#' @param data A data frame containing the variables in the model.
+#'
+#' @return A named numeric vector containing:
+#' \itemize{
+#'   \item Coefficients from the selection equation (probit model),
 #'   \item Coefficients from the outcome equation (excluding the IMR),
-#'   \item Estimated standard deviation of the error term (\code{sigma}),
-#'   \item Estimated correlation between error terms (\code{rho}).
+#'   \item Estimated \code{sigma},
+#'   \item Estimated \code{rho}.
 #' }
 #'
 #' @examples
@@ -27,7 +37,11 @@
 #' outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
 #' HCinitial(selectEq, outcomeEq, data = MEPS2001)
 #'
+#' @references
+#' \insertRef{heckman1979sample}{ssmodels}
+#'
 #' @export
+
 HCinitial <- function(selection, outcome, data = sys.frame(sys.parent())) {
 
   # Step 1: Construct model frame for selection equation

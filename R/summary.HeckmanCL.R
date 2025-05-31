@@ -1,15 +1,45 @@
 #' Summary of Classic Heckman Model
 #'
 #' @description
-#' Print estimates of the parameters of the Classic Heckman model using Maximum Likelihood Estimation.
+#' Prints a detailed summary of the parameter estimates and model fit
+#' statistics for an object of class \code{HeckmanCL}.
 #'
-#' @param object An object of class \code{HeckmanCL}.
+#' @details
+#' This method displays the maximum likelihood estimation results
+#' for the classical Heckman sample selection model. It includes
+#' separate coefficient tables for:
+#' \itemize{
+#'   \item Selection equation (Probit model),
+#'   \item Outcome equation,
+#'   \item Error terms (\code{sigma} and \code{rho}).
+#' }
+#' Additionally, it reports the model fit statistics (log-likelihood,
+#' AIC, BIC, and number of observations).
+#'
+#' @param object An object of class \code{HeckmanCL}, containing the
+#' fitted model results.
 #' @param ... Additional arguments (currently unused).
 #'
 #' @return
-#' Prints the summary output including coefficient tables and model fit statistics.
+#' Prints to the console:
+#' \itemize{
+#'   \item Model fit statistics (log-likelihood, AIC, BIC, number of observations).
+#'   \item Coefficient tables with standard errors and significance stars.
+#' }
+#' Invisibly returns \code{NULL}.
 #'
-#' @export summary.HeckmanCL
+#' @examples
+#' \dontrun{
+#' data(MEPS2001)
+#' attach(MEPS2001)
+#' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
+#' outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
+#' model <- HeckmanCL(selectEq, outcomeEq, data = MEPS2001)
+#' summary(model)
+#' }
+#'
+#' @seealso \code{\link{HeckmanCL}}
+#'
 #' @export
 summary.HeckmanCL <- function(object, ...) {
 

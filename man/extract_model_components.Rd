@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract_model_components.R
 \name{extract_model_components}
 \alias{extract_model_components}
-\title{Extract model components from formulas}
+\title{Extract Model Components for Selection Models}
 \usage{
 extract_model_components(
   selection,
@@ -14,36 +14,44 @@ extract_model_components(
 )
 }
 \arguments{
-\item{selection}{A formula representing the selection equation.}
+\item{selection}{A formula for the selection equation.}
 
-\item{outcome}{A formula representing the outcome equation.}
+\item{outcome}{A formula for the outcome equation.}
 
-\item{data}{A data frame containing all variables used in the formulas.}
+\item{data}{A data frame containing all variables.}
 
-\item{outcomeS}{Optional matrix or formula of covariates for the dispersion (sigma) parameter.}
+\item{outcomeS}{Optional formula or matrix for the dispersion model (\code{sigma}).}
 
-\item{outcomeC}{Optional matrix or formula of covariates for the correlation (rho) parameter.}
+\item{outcomeC}{Optional formula or matrix for the correlation model (\code{rho}).}
 
-\item{drop.levels}{Logical; if TRUE, unused factor levels are dropped.}
+\item{drop.levels}{Logical. If \code{TRUE}, drops unused factor levels.}
 }
 \value{
-A list containing:
-\itemize{
-  \item \code{XS}: model matrix for selection equation.
-  \item \code{YS}: response vector for selection equation.
-  \item \code{NXS}: number of covariates in the selection model.
-  \item \code{XO}: model matrix for outcome equation.
-  \item \code{YO}: response vector for outcome equation.
-  \item \code{NXO}: number of covariates in the outcome model.
-  \item \code{Msigma}: matrix for modeling dispersion (NULL if not specified).
-  \item \code{NE}: number of covariates for the dispersion model.
-  \item \code{Mrho}: matrix for modeling correlation (NULL if not specified).
-  \item \code{NV}: number of covariates for the correlation model.
-  \item \code{YSLevels}: factor levels of the selection response variable.
+A list with the following components:
+\describe{
+  \item{\code{XS}}{Model matrix for the selection equation.}
+  \item{\code{YS}}{Response vector for the selection equation.}
+  \item{\code{NXS}}{Number of covariates in the selection model.}
+  \item{\code{XO}}{Model matrix for the outcome equation.}
+  \item{\code{YO}}{Response vector for the outcome equation.}
+  \item{\code{NXO}}{Number of covariates in the outcome model.}
+  \item{\code{Msigma}}{Matrix for the dispersion model (or \code{NULL} if not provided).}
+  \item{\code{NE}}{Number of covariates for the dispersion model (0 if not provided).}
+  \item{\code{Mrho}}{Matrix for the correlation model (or \code{NULL} if not provided).}
+  \item{\code{NV}}{Number of covariates for the correlation model (0 if not provided).}
+  \item{\code{YSLevels}}{Factor levels of the binary selection response.}
 }
 }
 \description{
-This function extracts the model frame, model matrix, and model response from formulas and a dataset.
-It is used in models such as HeckmanCL, HeckmanGe, HeckmanSK, HeckmanBS, and HeckmantS.
-Optionally, it handles covariate matrices for modeling dispersion and correlation parameters.
+This internal utility function extracts key components—such as model frames, matrices,
+and response variables—from formulas and a data set. It is used by models like
+\code{HeckmanCL}, \code{HeckmanGe}, \code{HeckmanSK}, \code{HeckmanBS}, and \code{HeckmantS}.
+Additionally, it can handle covariate matrices for modeling dispersion (\code{sigma}) and
+correlation (\code{rho}) structures.
 }
+\details{
+If provided, \code{outcomeS} and \code{outcomeC} can be formulas or matrices for modeling
+dispersion and correlation structures, respectively. The function ensures that the
+selection equation response is binary.
+}
+\keyword{internal}

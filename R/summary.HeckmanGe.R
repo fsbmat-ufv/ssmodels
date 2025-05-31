@@ -1,15 +1,48 @@
 #' Summary of Generalized Heckman Model
 #'
 #' @description
-#' Print estimates of the parameters of the Generalized Heckman model using Maximum Likelihood Estimation.
+#' Prints a detailed summary of the parameter estimates and model fit
+#' statistics for an object of class \code{HeckmanGe}.
 #'
-#' @param object An object of class \code{HeckmanGe}.
+#' @details
+#' This method displays the maximum likelihood estimation results
+#' for the generalized Heckman sample selection model. It includes
+#' separate coefficient tables for:
+#' \itemize{
+#'   \item Selection equation (Probit model),
+#'   \item Outcome equation,
+#'   \item Dispersion (scale) model parameters,
+#'   \item Correlation model parameters.
+#' }
+#' Model fit statistics (log-likelihood, AIC, BIC, and number of observations)
+#' are also reported for interpretation and model assessment.
+#'
+#' @param object An object of class \code{HeckmanGe}, containing the
+#' fitted model results.
 #' @param ... Additional arguments (currently unused).
 #'
 #' @return
-#' Prints the summary output including coefficient tables and model fit statistics.
+#' Prints to the console:
+#' \itemize{
+#'   \item Model fit statistics (log-likelihood, AIC, BIC, number of observations).
+#'   \item Coefficient tables with standard errors and significance stars.
+#' }
+#' Invisibly returns \code{NULL}.
 #'
-#' @export summary.HeckmanGe
+#' @examples
+#' \dontrun{
+#' data(MEPS2001)
+#' attach(MEPS2001)
+#' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
+#' outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
+#' outcomeS <- ~ educ + income
+#' outcomeC <- ~ blhisp + female
+#' model <- HeckmanGe(selectEq, outcomeEq, outcomeS = outcomeS, outcomeC = outcomeC, data = MEPS2001)
+#' summary(model)
+#' }
+#'
+#' @seealso \code{\link{HeckmanGe}}
+#'
 #' @export
 summary.HeckmanGe <- function(object, ...) {
   # Extract components from the HeckmanGe object

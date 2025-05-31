@@ -2,26 +2,45 @@
 % Please edit documentation in R/step2.R
 \name{step2}
 \alias{step2}
-\title{Heckman's two-step method}
+\title{Heckman's Two-Step Method}
 \usage{
 step2(YS, XS, YO, XO)
 }
 \arguments{
-\item{YS}{Selection vector.}
+\item{YS}{A binary vector indicating selection (\code{1} if observed, \code{0} otherwise).}
 
-\item{XS}{Selection Matrix.}
+\item{XS}{A matrix of covariates for the selection equation.}
 
-\item{YO}{Interest vector.}
+\item{YO}{A numeric vector representing the outcome variable of interest.}
 
-\item{XO}{Matrix of the equation of interest.}
+\item{XO}{A matrix of covariates for the outcome equation.}
 }
 \value{
-Returns a numerical vector with the parameter estimates of the Classical
-Heckman model via a two-step method. For more information see
-\insertCite{heckman1979sample;textual}{ssmodels}
+A numeric vector containing the parameter estimates from the two-step Heckman model:
+\itemize{
+  \item Coefficients of the selection equation (probit model).
+  \item Coefficients of the outcome equation (excluding the IMR term).
+  \item Estimated \code{sigma}.
+  \item Estimated \code{rho}.
+}
 }
 \description{
-Estimate model parameters via two-step method
+Estimates the parameters of the classical Heckman selection model using the two-step method.
+The first step fits a probit model for the selection equation. In the second step, the inverse Mills ratio (IMR)
+is included as an additional regressor in the outcome equation.
+}
+\details{
+This function implements the two-step estimation procedure of the classical Heckman model.
+In the first step, a probit model is estimated to predict the selection indicator \code{YS} using
+the selection covariates \code{XS}. The IMR is calculated from this model.
+In the second step, an ordinary least squares (OLS) regression of the observed outcome \code{YO} on
+\code{XO} and the IMR is performed for the uncensored observations (\code{YS == 1}).
+
+The function also calculates:
+\itemize{
+  \item \code{sigma}: The estimated standard deviation of the outcome equation's error term.
+  \item \code{rho}: The estimated correlation between the error terms of the selection and outcome equations.
+}
 }
 \examples{
 data(MEPS2001)
@@ -31,9 +50,8 @@ XS <- cbind(age, female, educ, blhisp, totchr, ins)
 YO <- lnambx
 XO <- cbind(age, female, educ, blhisp, totchr, ins, income)
 step2(YS, XS, YO, XO)
+
 }
 \references{
-{
 \insertAllCited{}
-}
 }

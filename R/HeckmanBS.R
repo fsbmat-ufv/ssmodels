@@ -1,87 +1,67 @@
-#' Heckman BS Model fit Function
+#' Heckman-BS Model Fit Function
 #'
 #' @description
-#' Estimates the parameters of the Heckman-BS model
-#'
-#' @return
-#'
-#' Returns a list with the following components.
-#'
-#' Coefficients: Returns a numerical vector with the best estimated values
-#' of the model parameters;
-#'
-#' Value: The value of function to be minimized (or maximized) corresponding
-#' to par.
-#'
-#' loglik: Negative of value. Minimum (or maximum) of the likelihood function
-#' calculated from the estimated coefficients.
-#'
-#' counts: Component of the Optim function. A two-element integer vector
-#' giving the number of calls to fn and gr respectively. This excludes
-#' those calls needed to compute the Hessian, if requested, and any calls
-#' to fn to compute a finite-difference approximation to the gradient.
-#'
-#' hessian: Component of the Optim function, with pre-defined option
-#' hessian=TRUE. A symmetric matrix giving an estimate of the Hessian
-#' at the solution found. Note that this is the Hessian of the unconstrained
-#' problem even if the box constraints are active.
-#'
-#' fisher_infoBS: Fisher information matrix
-#'
-#' prop_sigmaBS: Square root of the Fisher information matrix diagonal
-#'
-#' level: Selection variable levels
-#'
-#' nObs: Numeric value representing the size of the database
-#'
-#' nParam: Numerical value representing the number of model parameters
-#'
-#' N0: Numerical value representing the number of unobserved entries
-#'
-#' N1: Numerical value representing the number of complete entries
-#'
-#' NXS: Numerical value representing the number of parameters of the
-#' selection model
-#'
-#' NXO: Numerical value representing the number of parameters of the
-#' regression model
-#'
-#' df: Numerical value that represents the difference between the size
-#' of the response vector of the selection equation and the number of
-#' model parameters
-#'
-#' aic: Numerical value representing Akaike's information criterion.
-#'
-#' bic: Numerical value representing Schwarz's Bayesian Criterion
-#'
-#' initial.value: Numerical vector that represents the input values
-#' (Initial Values) used in the parameter estimation.
+#' Fits the Heckman Sample Selection Model based on the Birnbaum-Saunders (BS) bivariate distribution.
+#' This function implements the maximum likelihood estimation of the model parameters.
 #'
 #' @details
-#' The HeckmanBS() function fits the Sample Selection Model
-#' based on the Birnbaum Saunders bivariate distribution,
-#' it has the same number of parameters as the classical
-#' Heckman model. For more information see
-#' \insertCite{bastos;textual}{ssmodels}
+#' The function estimates the parameters of the Heckman-BS model, which extends the classical Heckman model
+#' by assuming that the error terms follow a bivariate Birnbaum-Saunders distribution.
+#' The model has the same number of parameters as the classical Heckman model, including the correlation coefficient
+#' between the error terms. The optimization is performed using the \code{optim} function with the BFGS method.
 #'
+#' The estimated quantities include:
+#' \itemize{
+#'   \item Coefficients of the selection equation.
+#'   \item Coefficients of the outcome equation.
+#'   \item Estimated \code{sigma} (scale parameter of the outcome equation's error term).
+#'   \item Estimated \code{rho} (correlation coefficient between the error terms).
+#' }
+#' Additional outputs include measures of model fit, standard errors (approximated by the square root of
+#' the diagonal of the inverse Fisher information matrix), and diagnostic information.
 #'
-#' @param selection Selection equation.
-#' @param outcome Primary Regression Equation.
-#' @param data Database.
-#' @param start initial values.
+#' @param selection A formula object specifying the selection equation.
+#' @param outcome A formula object specifying the primary outcome equation.
+#' @param data A data frame containing the variables in the model.
+#' @param start An optional numeric vector of initial parameter values. If not provided, default values are used.
+#'
+#' @return
+#' A list containing:
+#' \itemize{
+#'   \item \code{coefficients}: A named numeric vector of estimated model parameters.
+#'   \item \code{value}: The value of the likelihood function at the optimum.
+#'   \item \code{loglik}: The (negative) maximum log-likelihood.
+#'   \item \code{counts}: Number of gradient evaluations performed.
+#'   \item \code{hessian}: The Hessian matrix at the optimum.
+#'   \item \code{fisher_infoBS}: The (approximate) Fisher information matrix.
+#'   \item \code{prop_sigmaBS}: Approximate standard errors (square root of the Fisher information diagonal).
+#'   \item \code{level}: Levels of the selection variable.
+#'   \item \code{nObs}: Number of observations in the dataset.
+#'   \item \code{nParam}: Number of parameters estimated.
+#'   \item \code{N0}: Number of observations where the selection variable is zero.
+#'   \item \code{N1}: Number of observations where the selection variable is one.
+#'   \item \code{NXS}: Number of parameters in the selection equation.
+#'   \item \code{NXO}: Number of parameters in the outcome equation.
+#'   \item \code{df}: Degrees of freedom (observations minus number of parameters).
+#'   \item \code{aic}: Akaike Information Criterion.
+#'   \item \code{bic}: Bayesian Information Criterion.
+#'   \item \code{initial.value}: Initial values used in the optimization.
+#' }
+#'
 #' @examples
 #' data(MEPS2001)
 #' attach(MEPS2001)
 #' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
 #' outcomeBS <- ambexp ~ age + female + educ + blhisp + totchr + ins
 #' HeckmanBS(selectEq, outcomeBS, data = MEPS2001)
+#'
 #' @importFrom Rdpack reprompt
 #' @importFrom stats model.frame
-#' @references {
+#' @references
 #' \insertAllCited{}
-#' }
-#' @export HeckmanBS
+#'
 #' @export
+
 HeckmanBS <- function(selection, outcome, data = sys.frame(sys.parent()), start = NULL) {
 
   components <- extract_model_components(selection = selection, outcome = outcome, data = data)

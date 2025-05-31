@@ -1,24 +1,39 @@
-#' Heckman's two-step method
+#' Two-Step Estimation of the Classic Heckman Model
 #'
 #' @description
-#' Estimate model parameters via two-step method
+#' Estimates the parameters of the classical Heckman sample selection model
+#' using the two-step procedure.
+#'
+#' @details
+#' The two-step method first estimates a Probit model for the selection equation,
+#' then fits an outcome equation that includes the Inverse Mills Ratio (IMR)
+#' as an additional regressor to correct for sample selection bias.
+#'
+#' @param selection A formula for the selection equation.
+#' @param outcome A formula for the outcome equation.
+#' @param data A data frame containing the variables.
+#'
 #' @return
-#' Returns a numerical vector with the parameter estimates of the Classical
-#' Heckman model via a two-step method. For more information see
-#' \insertCite{heckman1979sample;textual}{ssmodels}
-#' @param selection Selection equation.
-#' @param outcome Primary Regression Equation.
-#' @param data Database.
+#' A numeric vector containing:
+#' \itemize{
+#'   \item Estimated coefficients of the selection equation (Probit model),
+#'   \item Estimated coefficients of the outcome equation (excluding IMR),
+#'   \item Estimated standard deviation of the outcome errors (\code{phi}),
+#'   \item Estimated correlation between the error terms (\code{cor}).
+#' }
+#'
 #' @examples
 #' data(MEPS2001)
 #' attach(MEPS2001)
 #' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
 #' outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
-#' twostep(selectEq, outcomeEq)
-#' @importFrom Rdpack reprompt
-#' @references {
+#' twostep(selectEq, outcomeEq, data = MEPS2001)
+#'
+#' @references
 #' \insertAllCited{}
-#' }
+#' For details, see \insertCite{heckman1979sample;textual}{ssmodels}.
+#'
+#' @importFrom Rdpack reprompt
 #' @export
 twostep <- function(selection, outcome, data = sys.frame(sys.parent())) {
     ############################################################################################################################################## Extrair matriz do modelo e matriz das equações de seleção e regressão # Matriz

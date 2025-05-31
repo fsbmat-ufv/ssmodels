@@ -2,22 +2,28 @@
 % Please edit documentation in R/IMR.R
 \name{IMR}
 \alias{IMR}
-\title{Inverse Mills Ratio}
+\title{Inverse Mills Ratio (IMR) Calculation}
 \usage{
 IMR(selection, data = sys.frame(sys.parent()))
 }
 \arguments{
-\item{selection}{A formula for the selection equation.}
+\item{selection}{A formula specifying the selection equation.}
 
-\item{data}{A data frame containing the variables.}
+\item{data}{A data frame containing the variables in the model.}
 }
 \value{
-A column vector (matrix with one column) containing the Inverse Mills Ratio
-computed from the Probit model fitted to the selection equation.
+A numeric matrix with one column containing the IMR values
+for each observation.
 }
 \description{
-Computes the column vector of the Inverse Mills Ratio (IMR)
-from a Probit selection equation.
+Computes the column vector of the Inverse Mills Ratio (IMR) from
+a Probit selection equation.
+}
+\details{
+This function fits a Probit model to the provided selection equation
+and returns the Inverse Mills Ratio (IMR) for each observation.
+The IMR is useful for correcting sample selection bias in regression
+models, following the classical Heckman approach.
 }
 \examples{
 data(MEPS2001)

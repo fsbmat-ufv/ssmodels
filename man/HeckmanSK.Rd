@@ -2,7 +2,7 @@
 % Please edit documentation in R/HeckmanSK.R
 \name{HeckmanSK}
 \alias{HeckmanSK}
-\title{Normal Skew Model fit Function}
+\title{Skew-Normal Sample Selection Model Fit Function}
 \usage{
 HeckmanSK(
   selection,
@@ -13,87 +13,69 @@ HeckmanSK(
 )
 }
 \arguments{
-\item{selection}{Selection equation.}
+\item{selection}{A formula specifying the selection equation.}
 
-\item{outcome}{Primary Regression Equation.}
+\item{outcome}{A formula specifying the outcome equation.}
 
-\item{data}{Database.}
+\item{data}{A data frame containing the variables.}
 
-\item{lambda}{Initial start for asymmetry parameter.}
+\item{lambda}{Initial start value for the skewness parameter (\code{lambda}).}
 
-\item{start}{initial values.}
+\item{start}{Optional numeric vector of initial parameter values.}
 }
 \value{
-Returns a list with the following components.
-
-Coefficients: Returns a numerical vector with the best estimated values
-of the model parameters;
-
-Value: The value of function to be minimized (or maximized) corresponding
-to par.
-
-loglik: Negative of value. Minimum (or maximum) of the likelihood function
-calculated from the estimated coefficients.
-
-counts: Component of the Optim function. A two-element integer vector
-giving the number of calls to fn and gr respectively. This excludes
-those calls needed to compute the Hessian, if requested, and any calls
-to fn to compute a finite-difference approximation to the gradient.
-
-hessian: Component of the Optim function, with pre-defined option
-hessian=TRUE. A symmetric matrix giving an estimate of the Hessian
-at the solution found. Note that this is the Hessian of the unconstrained
-problem even if the box constraints are active.
-
-fisher_infoSK: Fisher information matrix
-
-prop_sigmaSK: Square root of the Fisher information matrix diagonal
-
-level: Selection variable levels
-
-nObs: Numeric value representing the size of the database
-
-nParam: Numerical value representing the number of model parameters
-
-N0: Numerical value representing the number of unobserved entries
-
-N1: Numerical value representing the number of complete entries
-
-NXS: Numerical value representing the number of parameters of the
-selection model
-
-NXO: Numerical value representing the number of parameters of the
-regression model
-
-df: Numerical value that represents the difference between the size
-of the response vector of the selection equation and the number of
-model parameters
-
-aic: Numerical value representing Akaike's information criterion.
-
-bic: Numerical value representing Schwarz's Bayesian Criterion
-
-initial.value: Numerical vector that represents the input values
-(Initial Values) used in the parameter estimation.
+A list containing:
+\itemize{
+  \item \code{coefficients}: Named vector of estimated model parameters.
+  \item \code{value}: The (negative) log-likelihood at convergence.
+  \item \code{loglik}: The maximum log-likelihood.
+  \item \code{counts}: Number of gradient evaluations.
+  \item \code{hessian}: Hessian matrix at the optimum.
+  \item \code{fisher_infoSK}: Approximate Fisher information matrix.
+  \item \code{prop_sigmaSK}: Standard errors for the estimates.
+  \item \code{level}: Levels of the selection variable.
+  \item \code{nObs}: Number of observations.
+  \item \code{nParam}: Number of model parameters.
+  \item \code{N0}: Number of censored (unobserved) observations.
+  \item \code{N1}: Number of observed (uncensored) observations.
+  \item \code{NXS}: Number of covariates in the selection equation.
+  \item \code{NXO}: Number of covariates in the outcome equation.
+  \item \code{df}: Degrees of freedom (observations minus parameters).
+  \item \code{aic}: Akaike Information Criterion.
+  \item \code{bic}: Bayesian Information Criterion.
+  \item \code{initial.value}: Initial parameter values used.
+}
 }
 \description{
-Estimates the parameters of the Sample Selection Model with Skew-Normal
-Distribution
+Fits a sample selection model based on the Skew-Normal distribution
+using Maximum Likelihood Estimation (MLE). This model allows for
+asymmetry in the distribution of the outcome variable's error term,
+addressing potential skewness.
 }
 \details{
-The HeckmanSK() function fits the Sample Selection Model
-based on the Skew-normal distribution. For more information see
-\insertCite{ogundimu2016sample;textual}{ssmodels}
+The function implements MLE for a sample selection model where
+the outcome equation's errors follow a Skew-Normal distribution,
+as proposed in \insertCite{ogundimu2016sample;textual}{ssmodels}.
+The optimization is performed via the BFGS algorithm.
+
+The results include estimates for:
+\itemize{
+  \item Selection equation coefficients.
+  \item Outcome equation coefficients.
+  \item Standard deviation of the error term (\code{sigma}).
+  \item Correlation between the selection and outcome errors (\code{rho}).
+  \item Skewness parameter (\code{lambda}).
+  \item Robust standard errors from the Fisher information matrix.
+}
 }
 \examples{
 data("Mroz87")
 attach(Mroz87)
 selectEq <- lfp ~ huswage + kids5 + mtr + fatheduc + educ + city
-outcomeEq <- log(wage) ~ educ+city
+outcomeEq <- log(wage) ~ educ + city
 HeckmanSK(selectEq, outcomeEq, data = Mroz87, lambda = -1.5)
+
 }
 \references{
-{
-\insertAllCited{}
-}
+\insertRef{ogundimu2016sample}{ssmodels}
 }

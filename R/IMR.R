@@ -1,15 +1,21 @@
-#' Inverse Mills Ratio
+#' Inverse Mills Ratio (IMR) Calculation
 #'
 #' @description
-#' Computes the column vector of the Inverse Mills Ratio (IMR)
-#' from a Probit selection equation.
+#' Computes the column vector of the Inverse Mills Ratio (IMR) from
+#' a Probit selection equation.
 #'
-#' @param selection A formula for the selection equation.
-#' @param data A data frame containing the variables.
+#' @details
+#' This function fits a Probit model to the provided selection equation
+#' and returns the Inverse Mills Ratio (IMR) for each observation.
+#' The IMR is useful for correcting sample selection bias in regression
+#' models, following the classical Heckman approach.
+#'
+#' @param selection A formula specifying the selection equation.
+#' @param data A data frame containing the variables in the model.
 #'
 #' @return
-#' A column vector (matrix with one column) containing the Inverse Mills Ratio
-#' computed from the Probit model fitted to the selection equation.
+#' A numeric matrix with one column containing the IMR values
+#' for each observation.
 #'
 #' @examples
 #' data(MEPS2001)

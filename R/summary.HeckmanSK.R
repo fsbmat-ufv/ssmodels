@@ -1,15 +1,45 @@
 #' Summary of Skew-Normal Heckman Model
 #'
 #' @description
-#' Print estimates of the parameters of the Heckman-SK model using Maximum Likelihood Estimation.
+#' Prints a detailed summary of the parameter estimates and model fit
+#' statistics for an object of class \code{HeckmanSK}.
 #'
-#' @param object An object of class \code{HeckmanSK}.
+#' @details
+#' This method displays the maximum likelihood estimation results
+#' for the Heckman sample selection model with Skew-Normal errors.
+#' It includes separate coefficient tables for:
+#' \itemize{
+#'   \item Selection equation (Probit model),
+#'   \item Outcome equation,
+#'   \item Error terms (\code{sigma}, \code{rho}, and \code{lambda}).
+#' }
+#' Additionally, it reports model fit statistics such as the log-likelihood,
+#' AIC, BIC, and the number of observations.
+#'
+#' @param object An object of class \code{HeckmanSK}, containing the
+#' fitted model results.
 #' @param ... Additional arguments (currently unused).
 #'
 #' @return
-#' Prints the summary output including coefficient tables and model fit statistics.
+#' Prints to the console:
+#' \itemize{
+#'   \item Model fit statistics (log-likelihood, AIC, BIC, number of observations).
+#'   \item Coefficient tables with standard errors and significance stars.
+#' }
+#' Invisibly returns \code{NULL}.
 #'
-#' @export summary.HeckmanSK
+#' @examples
+#' \dontrun{
+#' data(Mroz87)
+#' attach(Mroz87)
+#' selectEq <- lfp ~ huswage + kids5 + mtr + fatheduc + educ + city
+#' outcomeEq <- log(wage) ~ educ + city
+#' model <- HeckmanSK(selectEq, outcomeEq, data = Mroz87, lambda = -1.5)
+#' summary(model)
+#' }
+#'
+#' @seealso \code{\link{HeckmanSK}}
+#'
 #' @export
 summary.HeckmanSK <- function(object, ...) {
   # Extract components from the HeckmanSK object

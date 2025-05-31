@@ -1,37 +1,40 @@
 #' Post-process Parameter Vector for Generalized Heckman Models
 #'
 #' @description
-#' This internal helper function assigns meaningful names to a vector of estimated
-#' parameters and applies transformations (exponential or hyperbolic tangent)
-#' to the dispersion-related parameters to obtain interpretable values of \code{sigma} and \code{rho}.
+#' Internal helper function that assigns meaningful names to a vector of estimated
+#' parameters and applies transformations to \code{sigma} and \code{rho} parameters
+#' to obtain interpretable estimates.
 #'
 #' @details
-#' The parameter vector \code{theta_par} is assumed to follow the structure:
+#' The parameter vector \code{theta_par} is structured as follows:
 #' \itemize{
-#'   \item First \code{NXS} elements: coefficients for the selection equation.
-#'   \item Next \code{NXO} elements: coefficients for the outcome equation.
-#'   \item Next \code{NE} elements: coefficients (or log-sigma if \code{NE == 1}) for the scale model.
-#'   \item Next \code{NV} elements: coefficients (or atanh(rho) if \code{NV == 1}) for the correlation model.
+#'   \item The first \code{NXS} elements are coefficients for the selection equation.
+#'   \item The next \code{NXO} elements are coefficients for the outcome equation.
+#'   \item The next \code{NE} elements are coefficients (or log-sigma if \code{NE == 1}) for the scale model.
+#'   \item The next \code{NV} elements are coefficients (or atanh(rho) if \code{NV == 1}) for the correlation model.
 #' }
-#' This function labels each element and performs:
+#' For interpretation, the function applies:
 #' \itemize{
-#'   \item \code{exp()} transformation for \code{sigma} when \code{NE == 1}.
-#'   \item \code{tanh()} transformation for \code{rho} when \code{NV == 1}.
+#'   \item \code{exp()} transformation for \code{sigma} if \code{NE == 1}.
+#'   \item \code{tanh()} transformation for \code{rho} if \code{NV == 1}.
 #' }
 #'
-#' @param theta_par Numeric vector of estimated parameters.
+#' @param theta_par A numeric vector containing the estimated parameters.
 #' @param NXS Integer. Number of covariates in the selection equation.
 #' @param NXO Integer. Number of covariates in the outcome equation.
-#' @param NE Integer. Number of covariates (or 1 if intercept only) in the log-sigma model.
-#' @param NV Integer. Number of covariates (or 1 if intercept only) in the correlation model.
-#' @param XS Design matrix for the selection equation (used for labeling).
-#' @param XO Design matrix for the outcome equation (used for labeling).
-#' @param outcomeS Design matrix or variable for the scale model.
+#' @param NE Integer. Number of covariates (or 1 for intercept-only) in the scale model.
+#' @param NV Integer. Number of covariates (or 1 for intercept-only) in the correlation model.
+#' @param XS Design matrix for the selection equation (used for naming).
+#' @param XO Design matrix for the outcome equation (used for naming).
+#' @param outcomeS Design matrix or variable for the scale (variance) model.
 #' @param outcomeC Design matrix or variable for the correlation model.
 #'
 #' @return
-#' A named numeric vector with transformed values of \code{sigma} and \code{rho}
-#' when appropriate, and meaningful names for all parameters.
+#' A named numeric vector with:
+#' \itemize{
+#'   \item Transformed \code{sigma} and \code{rho} values (if needed),
+#'   \item Meaningful names assigned to all parameters.
+#' }
 #'
 #' @keywords internal
 #' @export

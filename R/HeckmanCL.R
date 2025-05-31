@@ -1,74 +1,61 @@
-#' Classic Heckman Model fit Function
+#' Classic Heckman Model Fit Function
 #'
 #' @description
-#' Estimates the parameters of the classic Heckman model
-#' via Maximum Likelihood method. The initial start is obtained
-#' via the two-step method.
+#' Fits the classical Heckman sample selection model using Maximum Likelihood Estimation (MLE).
+#' Initial parameter estimates are obtained via the two-step method.
 #'
-#' @return
-#' Returns a list with the following components.
+#' @details
+#' This function estimates the parameters of the classical Heckman sample selection model
+#' via MLE, accounting for potential sample selection bias. It uses the \code{optim} function
+#' with the BFGS method to find the parameter estimates that maximize the log-likelihood function.
+#' The initial values for optimization are obtained using the two-step Heckman method.
 #'
-#' Coefficients: Returns a numerical vector with the best estimated values
-#' of the model parameters;
+#' The function returns a rich set of results, including:
+#' \itemize{
+#'   \item Estimated coefficients for the selection and outcome equations.
+#'   \item Standard deviation of the outcome error term (\code{sigma}).
+#'   \item Correlation between the errors of the selection and outcome equations (\code{rho}).
+#'   \item Measures of model fit (AIC, BIC).
+#'   \item Standard errors (approximated by the square root of the Fisher information diagonal).
+#' }
 #'
-#' Value: The value of function to be minimized (or maximized) corresponding
-#' to par.
+#' @param selection A formula specifying the selection equation.
+#' @param outcome A formula specifying the primary outcome equation.
+#' @param data A data frame containing the variables in the model.
+#' @param start An optional numeric vector of initial parameter values. If not provided, default values are used.
 #'
-#' loglik: Negative of value. Minimum (or maximum) of the likelihood function
-#' calculated from the estimated coefficients.
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{coefficients}: A named numeric vector of estimated parameters.
+#'   \item \code{value}: The value of the (negative) log-likelihood at convergence.
+#'   \item \code{loglik}: The maximized log-likelihood.
+#'   \item \code{counts}: Number of gradient evaluations performed.
+#'   \item \code{hessian}: Hessian matrix at the optimum.
+#'   \item \code{fisher_infoHC}: The (approximate) Fisher information matrix.
+#'   \item \code{prop_sigmaHC}: Approximate standard errors.
+#'   \item \code{level}: Levels of the selection variable.
+#'   \item \code{nObs}: Number of observations.
+#'   \item \code{nParam}: Number of estimated parameters.
+#'   \item \code{N0}: Number of unobserved (censored) observations.
+#'   \item \code{N1}: Number of observed (uncensored) observations.
+#'   \item \code{NXS}: Number of parameters in the selection equation.
+#'   \item \code{NXO}: Number of parameters in the outcome equation.
+#'   \item \code{df}: Degrees of freedom (observations minus parameters).
+#'   \item \code{aic}: Akaike Information Criterion.
+#'   \item \code{bic}: Bayesian Information Criterion.
+#'   \item \code{initial.value}: Initial parameter values used in the optimization.
+#' }
 #'
-#' counts: Component of the Optim function. A two-element integer vector
-#' giving the number of calls to fn and gr respectively. This excludes
-#' those calls needed to compute the Hessian, if requested, and any calls
-#' to fn to compute a finite-difference approximation to the gradient.
-#'
-#' hessian: Component of the Optim function, with pre-defined option
-#' hessian=TRUE. A symmetric matrix giving an estimate of the Hessian
-#' at the solution found. Note that this is the Hessian of the unconstrained
-#' problem even if the box constraints are active.
-#'
-#' fisher_infoHC: Fisher information matrix
-#'
-#' prop_sigmaHC: Square root of the Fisher information matrix diagonal
-#'
-#' level: Selection variable levels
-#'
-#' nObs: Numeric value representing the size of the database
-#'
-#' nParam: Numerical value representing the number of model parameters
-#'
-#' N0: Numerical value representing the number of unobserved entries
-#'
-#' N1: Numerical value representing the number of complete entries
-#'
-#' NXS: Numerical value representing the number of parameters of the
-#' selection model
-#'
-#' NXO: Numerical value representing the number of parameters of the
-#' regression model
-#'
-#' df: Numerical value that represents the difference between the size
-#' of the response vector of the selection equation and the number of
-#' model parameters
-#'
-#' aic: Numerical value representing Akaike's information criterion.
-#'
-#' bic: Numerical value representing Schwarz's Bayesian Criterion
-#'
-#' initial.value: Numerical vector that represents the input values
-#' (Initial Values) used in the parameter estimation.
-#'
-#' @param selection Selection equation.
-#' @param outcome Primary Regression Equation.
-#' @param start initial values.
-#' @param data Database.
 #' @examples
 #' data(MEPS2001)
 #' attach(MEPS2001)
 #' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
 #' outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
 #' HeckmanCL(selectEq, outcomeEq, data = MEPS2001)
-#' @export HeckmanCL
+#'
+#' @references
+#' \insertRef{heckman1979sample}{ssmodels}
+#'
 #' @export
 HeckmanCL <- function(selection, outcome, data = sys.frame(sys.parent()), start = NULL) {
   # Extract model components from selection and outcome formulas

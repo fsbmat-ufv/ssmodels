@@ -4,77 +4,60 @@
 \name{ssmodels}
 \alias{ssmodels-package}
 \alias{ssmodels}
-\title{A package that provides functions to fit data affected by sample selection bias.}
+\title{ssmodels: Sample Selection Models in R}
 \arguments{
 \item{selection}{Selection equation.}
 
-\item{outcome}{Primary regression equation for the observed response.}
+\item{outcome}{Outcome regression equation.}
 
-\item{outcomeS}{Matrix of covariates for modeling the dispersion parameter (sigma).}
+\item{outcomeS}{Covariates for the dispersion model (optional).}
 
-\item{outcomeC}{Matrix of covariates for modeling the correlation parameter (rho).}
+\item{outcomeC}{Covariates for the correlation model (optional).}
 
-\item{df}{Initial value to the degree of freedom of Heckman-t model.}
+\item{df}{Initial value for the degrees of freedom (Heckman-t model).}
 
-\item{lambda}{Initial value for asymmetry parameter.}
+\item{lambda}{Initial value for the skewness parameter (Heckman-SK model).}
 
-\item{start}{initial values.}
+\item{start}{Optional vector of starting values for optimization.}
 
-\item{data}{Database.}
+\item{data}{Data frame containing all relevant variables.}
 }
 \value{
-A list containing the estimated parameters, Hessian matrix, number of observations,
-and additional diagnostic information. If initial values are not provided, they are
-automatically estimated using the Heckman two-step method.
+A list with estimated parameters, diagnostics (AIC, BIC, log-likelihood),
+standard errors, and other relevant information.
 }
 \description{
-Package that provides models to fit data with sample selection bias problems. Includes:
-\describe{
-\item{HeckmanCL(selectEq, outcomeEq, data = data, start)}{Heckman's classic model fit function. Sample selection
-usually arises in practice as a result of partial observability of the
-result of interest in a study. In the presence of sample selection, the
-observed data do not represent a random sample of the population, even
-after controlling for explanatory variables. #' That is, the data is not missing completely at random.
-Thus, standard analysis using only complete cases will lead to
-biased results. Heckman introduced a sample selection model to analyze
-this data and proposed a complete likelihood estimation method under the
-assumption of normality. Such model was called Heckman model or Tobit 2
-model.}
-\item{HeckmantS(selectEq, outcomeEq, data = data, df, start)}{Heckman-t model adjustment function. The Heckman-t model
-maintains the original parametric structure of the Classic Heckman model,
-but considers a bivariate Student's t distribution as the underlying joint
-distribution of the selection and primary regression variable and estimates
-the parameters by maximum likelihood.}
-\item{HeckmanSK(selectEq, outcomeEq, data = data, lambda, start)}{Heckman-SK model adjustment function. The Heckman-sk
-model maintains the original parametric structure of the Classic Heckman
-model, but considers a bivariate Skew-Normal distribution as the underlying
-joint distribution of the selection and primary regression variable and
-estimates the parameters by maximum likelihood.}
-\item{HeckmanBS(selectEq, outcomeBS, data = data, start)}{Heckman-BS model adjustment function. The Heckman-BS model
-maintains the original parametric structure of the Classic Heckman model,
-but considers a bivariate Birnbaum-Saunders distribution as the underlying
-joint distribution of the selection and primary regression variable and
-estimates the parameters by maximum likelihood.}
-\item{HeckmanGe(selectEq, outcomeEq,outcomeS, outcomeC, data = data)}{
-Function for fitting the Generalized Heckman model.
-This model generalizes the Classic Heckman model by including covariates
-in the dispersion and correlation structures. It allows identification
-of variables responsible for selection bias and heteroscedasticity.}
+The \code{ssmodels} package provides functions to fit data affected by sample selection bias.
+It includes several extensions of the classical Heckman selection model, allowing for different
+assumptions about the joint distribution of the selection and outcome equations.
 }
+\details{
+The following models are implemented:
+\describe{
+  \item{\code{HeckmanCL}}{Classic Heckman model (Tobit-2).}
+  \item{\code{HeckmantS}}{Heckman model with Student's t-distribution.}
+  \item{\code{HeckmanSK}}{Heckman model with Skew-Normal distribution.}
+  \item{\code{HeckmanBS}}{Heckman model with Birnbaum-Saunders distribution.}
+  \item{\code{HeckmanGe}}{Generalized Heckman model with covariates in the dispersion
+  and correlation structures.}
+}
+
+The package also includes helper functions for computing Inverse Mills Ratios (IMR),
+post-processing parameter vectors, and two-step initial value estimation.
+}
+\references{
+\insertRef{heckman1979sample}{ssmodels}
 }
 \seealso{
-\code{\link{HeckmanCL}}
-
-\code{\link{HeckmantS}}
-
-\code{\link{HeckmanSK}}
-
-\code{\link{HeckmanBS}}
-
-\code{\link{HeckmanGe}}
+\code{\link{HeckmanCL}}, \code{\link{HeckmantS}}, \code{\link{HeckmanSK}},
+\code{\link{HeckmanBS}}, \code{\link{HeckmanGe}}
 }
 \author{
 Fernando de Souza Bastos, Wagner Barreto de Souza
 }
-\keyword{Heckman}
-\keyword{internal}
+\keyword{Heckman,}
+\keyword{econometrics}
+\keyword{likelihood,}
+\keyword{maximum}
+\keyword{sample}
+\keyword{selection,}

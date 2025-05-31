@@ -1,15 +1,44 @@
 #' Summary of Birnbaum-Saunders Heckman Model
 #'
 #' @description
-#' Print estimates of the parameters of the Heckman-BS model using Maximum Likelihood Estimation.
+#' Prints a detailed summary of the parameter estimates and model fit
+#' statistics for an object of class \code{HeckmanBS}.
 #'
-#' @param object An object of class \code{HeckmanBS}.
+#' @details
+#' This method provides a summary of the maximum likelihood estimation results
+#' for the Heckman sample selection model with Birnbaum-Saunders errors.
+#' It includes separate coefficient tables for:
+#' \itemize{
+#'   \item Selection equation (Probit model),
+#'   \item Outcome equation,
+#'   \item Error terms (\code{sigma} and \code{rho}).
+#' }
+#' Model fit criteria such as the log-likelihood, AIC, and BIC are also reported.
+#'
+#' @param object An object of class \code{HeckmanBS}, containing
+#' the fitted model results.
 #' @param ... Additional arguments (currently unused).
 #'
 #' @return
-#' Prints the summary output including coefficient tables and model fit statistics.
+#' Prints to the console:
+#' \itemize{
+#'   \item Model fit statistics (log-likelihood, AIC, BIC, number of observations).
+#'   \item Coefficient tables with standard errors and significance stars.
+#' }
+#' Invisibly returns \code{NULL}.
 #'
-#' @export summary.HeckmanBS
+#' @examples
+#' \dontrun{
+#' data(MEPS2001)
+#' attach(MEPS2001)
+#' selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
+#' outcomeEq <- ambexp ~ age + female + educ + blhisp + totchr + ins
+#' model <- HeckmanBS(selectEq, outcomeEq, data = MEPS2001)
+#' summary(model)
+#' }
+#'
+#' @seealso \code{\link{HeckmanBS}}
+#'
 #' @export
 summary.HeckmanBS <- function(object, ...) {
 

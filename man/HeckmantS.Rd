@@ -2,91 +2,64 @@
 % Please edit documentation in R/HeckmantS.R
 \name{HeckmantS}
 \alias{HeckmantS}
-\title{Heckman-t Model fit Function}
+\title{Heckman-t Model Fit Function}
 \usage{
 HeckmantS(selection, outcome, data = sys.frame(sys.parent()), df, start = NULL)
 }
 \arguments{
-\item{selection}{Selection equation.}
+\item{selection}{A formula specifying the selection equation.}
 
-\item{outcome}{Primary Regression Equation.}
+\item{outcome}{A formula specifying the outcome equation.}
 
-\item{data}{Database.}
+\item{data}{A data frame containing the variables in the model.}
 
-\item{df}{Initial start to the degree of freedom.}
+\item{df}{Initial value for the degrees of freedom parameter of the t-distribution.}
 
-\item{start}{initial values.}
+\item{start}{Optional numeric vector of initial parameter values.}
 }
 \value{
-Returns a list with the following components.
-
-Coefficients: Returns a numerical vector with the best estimated values
-of the model parameters;
-
-Value: The value of function to be minimized (or maximized) corresponding
-to par.
-
-loglik: Negative of value. Minimum (or maximum) of the likelihood function
-calculated from the estimated coefficients.
-
-counts: Component of the Optim function. A two-element integer vector
-giving the number of calls to fn and gr respectively. This excludes
-those calls needed to compute the Hessian, if requested, and any calls
-to fn to compute a finite-difference approximation to the gradient.
-
-hessian: Component of the Optim function, with pre-defined option
-hessian=TRUE. A symmetric matrix giving an estimate of the Hessian
-at the solution found. Note that this is the Hessian of the unconstrained
-problem even if the box constraints are active.
-
-fisher_infotS: Fisher information matrix
-
-prop_sigmatS: Square root of the Fisher information matrix diagonal
-
-level: Selection variable levels
-
-nObs: Numeric value representing the size of the database
-
-nParam: Numerical value representing the number of model parameters
-
-N0: Numerical value representing the number of unobserved entries
-
-N1: Numerical value representing the number of complete entries
-
-NXS: Numerical value representing the number of parameters of the
-selection model
-
-NXO: Numerical value representing the number of parameters of the
-regression model
-
-df: Numerical value that represents the difference between the size
-of the response vector of the selection equation and the number of
-model parameters
-
-aic: Numerical value representing Akaike's information criterion.
-
-bic: Numerical value representing Schwarz's Bayesian Criterion
-
-initial.value: Numerical vector that represents the input values
-(Initial Values) used in the parameter estimation.
+A list containing:
+\itemize{
+  \item \code{coefficients}: Named vector of estimated model parameters.
+  \item \code{value}: Negative of the maximum log-likelihood.
+  \item \code{loglik}: Maximum log-likelihood.
+  \item \code{counts}: Number of gradient evaluations performed.
+  \item \code{hessian}: Hessian matrix at the optimum.
+  \item \code{fisher_infotS}: Approximate Fisher information matrix.
+  \item \code{prop_sigmatS}: Standard errors for the parameter estimates.
+  \item \code{level}: Levels of the selection variable.
+  \item \code{nObs}: Number of observations.
+  \item \code{nParam}: Number of model parameters.
+  \item \code{N0}: Number of censored (unobserved) observations.
+  \item \code{N1}: Number of uncensored (observed) observations.
+  \item \code{NXS}: Number of parameters in the selection equation.
+  \item \code{NXO}: Number of parameters in the outcome equation.
+  \item \code{df}: Degrees of freedom (observations minus parameters).
+  \item \code{aic}: Akaike Information Criterion.
+  \item \code{bic}: Bayesian Information Criterion.
+  \item \code{initial.value}: Initial parameter values used in the optimization.
+}
 }
 \description{
-Estimates the parameters of the Heckman-t model
+Fits a sample selection model based on the Student's t-distribution,
+extending the classical Heckman model to account for heavy-tailed error terms.
+The estimation is performed via Maximum Likelihood using the BFGS algorithm.
 }
 \details{
-The HeckmantS() function fits the Sample Selection Model
-based on the Student's t distribution. For more information see
-\insertCite{marchenko2012heckman;textual}{ssmodels}
+The function implements the Heckman sample selection model using
+the Student's t-distribution for the error terms, as proposed by
+\insertCite{marchenko2012heckman;textual}{ssmodels}. This extension
+allows for robustness against outliers and heavy-tailed distributions.
+Initial parameter values can be specified by the user or default to standard starting values.
 }
 \examples{
 data(MEPS2001)
 attach(MEPS2001)
 selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
 outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins
-HeckmantS(selectEq, outcomeEq, data = MEPS2001, df=12)
+HeckmantS(selectEq, outcomeEq, data = MEPS2001, df = 12)
+
 }
 \references{
-{
-\insertAllCited{}
-}
+\insertRef{marchenko2012heckman}{ssmodels}
 }
