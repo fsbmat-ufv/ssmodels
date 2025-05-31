@@ -48,5 +48,5 @@ summary(model)
 
 }
 \seealso{
-\code{\link{HeckmanSK}}, \code{\link{print.HeckmanSK}}
+\code{\link{HeckmanSK}}
 }

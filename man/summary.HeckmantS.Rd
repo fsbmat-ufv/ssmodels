@@ -48,5 +48,5 @@ summary(model)
 
 }
 \seealso{
-\code{\link{HeckmantS}}, \code{\link{print.HeckmantS}}
+\code{\link{HeckmantS}}
 }

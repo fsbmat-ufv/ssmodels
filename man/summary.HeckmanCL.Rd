@@ -48,5 +48,5 @@ summary(model)
 
 }
 \seealso{
-\code{\link{HeckmanCL}}, \code{\link{print.HeckmanCL}}
+\code{\link{HeckmanCL}}
 }

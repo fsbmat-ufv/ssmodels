@@ -47,5 +47,5 @@ summary(model)
 
 }
 \seealso{
-\code{\link{HeckmanBS}}, \code{\link{print.HeckmanBS}}
+\code{\link{HeckmanBS}}
 }

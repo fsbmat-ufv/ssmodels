@@ -51,5 +51,5 @@ summary(model)
 
 }
 \seealso{
-\code{\link{HeckmanGe}}, \code{\link{print.HeckmanGe}}
+\code{\link{HeckmanGe}}
 }
