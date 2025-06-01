@@ -3,7 +3,7 @@ template:
   bootswatch: darkly
   params:
     logo: man/figures/logo.png
-    includes:
+  includes:
     in_header: |
       <style>
         .navbar-brand img {
