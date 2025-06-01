@@ -1,5 +1,6 @@
 template:
   bootstrap: 5
+  bootswatch: darkly
   params:
     logo: man/figures/logo.png
 

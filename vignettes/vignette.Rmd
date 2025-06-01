@@ -70,7 +70,7 @@ The MEPS is a set of large-scale surveys of families, individuals and their medi
 <p style="text-align: justify;">
 These data were also used by @colin2009microeconometrics, @marchenko2012heckman and @zhelonkin2016robust to fit the classical Heckman and Heckman-t models and the robust version of the two-step method, respectively. We use the variable of interest $Y_{1}^{*}={\rm ambexp}$, which represents expenditure on medical services, on the logarithmic scale, since it is highly asymmetric, see `r figr("fig4", TRUE, type="Figura")`. The variable $Y_{2}^{*}={\rm dambexp},$ representing the willingness to spend, is not observed. We observe $U=1\{Y_{2}^{*}>0\},$ which represents the decision to spend on medical care.
 </p>
-```{r fig4, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura"}
+```{r fig4, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura", fig.alt= "Log of Expenditures Medical"}
 library(ssmodels)
 #Leitura do dados MEPS2001
 data(MEPS2001)
@@ -267,8 +267,7 @@ table <- data.frame("Variables" = Variables, "Percentage of Missing"= Percentage
 kable(table, format = "html", align = c("c", "c", "c"))
 ```
 
-```{r, warning=FALSE}
-library("ggplot2")
+```{r, warning=FALSE, fig.alt="Log Systolic blood pressure"}
 library("gridExtra")
 barfill <- "grey"
 barlines <- "black"

@@ -58,3 +58,4 @@ RoxygenNote: 7.3.2
 RdMacros: Rdpack
 BugReports: https://github.com/fsbmat-ufv/ssmodels/issues
 Config/testthat/edition: 3
+URL: https://fsbmat-ufv.github.io/ssmodels
