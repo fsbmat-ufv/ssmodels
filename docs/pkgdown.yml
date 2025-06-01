@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   vignette: vignette.html
-last_built: 2025-06-01T02:56Z
+last_built: 2025-06-01T03:03Z
 urls:
   reference: https://fsbmat-ufv.github.io/ssmodels/reference
   article: https://fsbmat-ufv.github.io/ssmodels/articles
