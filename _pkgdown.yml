@@ -3,6 +3,7 @@ template:
   bootswatch: darkly
   params:
     logo: man/figures/logo.png
+    logo_height: 120px  # ou outro tamanho que desejar
 
 home:
   title: "ssmodels"
