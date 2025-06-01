@@ -44,6 +44,7 @@ jobs:
         shell: Rscript {0}
 
 
+
       - name: Install package
         run: R CMD INSTALL .
 
