@@ -3,15 +3,6 @@ template:
   bootswatch: darkly
   params:
     logo: man/figures/logo.png
-  includes:
-    in_header: |
-      <style>
-        .navbar-brand img {
-          max-height: 20px;   /* ou outro tamanho desejado */
-          width: auto;
-        }
-      </style>
-
 home:
   title: "ssmodels"
   description: "Sample Selection Models in R"
