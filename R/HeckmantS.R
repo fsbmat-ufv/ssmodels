@@ -66,133 +66,168 @@ HeckmantS <- function(selection, outcome, data = sys.frame(sys.parent()), df, st
   # Step 2: Define the log-likelihood function for the Heckman-t model
   ################### Likelihood #
   loglik_tS <- function(start) {
-    NXS <- dim(model.matrix(~XS))[2] - 1  #Numero de colunas de XS+1
-    NXO <- dim(model.matrix(~XO))[2] - 1  #Numero de colunas de XO+1
-    ## parameter indices
+
+    # Parameter indices
     istartS <- 1:NXS
     istartO <- seq(tail(istartS, 1) + 1, length = NXO)
-    isigma <- tail(istartO, 1) + 1
-    irho <- tail(isigma, 1) + 1
-    iv <- tail(irho, 1) + 1
+    isigma  <- tail(istartO, 1) + 1
+    irho    <- tail(isigma, 1) + 1
+    iv      <- tail(irho, 1) + 1
+    nParam  <- iv
+    # Extract parameters
     g <- start[istartS]
     b <- start[istartO]
     sigma <- start[isigma]
-    if (sigma < 0)
-      return(NA)
+
+
     rho <- start[irho]
-    if ((rho < -1) || (rho > 1))
-      return(NA)
-    v <- start[iv]
+
+    # Check parameter validity
+    if (!is.finite(sigma) || sigma <= 0) return(NA)
+    if (!is.finite(rho) || abs(rho) >= 1) return(NA)
+
+
+    nu <- start[iv]
+
+    # Linear predictors
     XS.g <- (XS) %*% g
     XO.b <- (XO) %*% b
+
+    # Residuals
     u2 <- YO - XO.b
-    z <- u2/sigma
+    z <- u2 / sigma
     r <- sqrt(1 - rho^2)
-    Q <- ((v + 1)/(v + (z^2)))^(1/2)
-    eta <- Q * ((rho * z + XS.g)/r)
-    gam <- log(gamma((v + 1)/2)) - log(gamma(v/2)) - 0.5 * log(pi) - 0.5 * log(v) -
-      log(sigma)
-    ll <- ifelse(YS == 0, (pt(-XS.g, v, log.p = TRUE)), (gam - ((v + 1)/2) *
-                                                           log(1 + ((z^2)/v)) + pt(eta, v + 1, log.p = TRUE)))
+
+    # Scaling factor for eta
+    Q <- ((nu + 1) / (nu + (z^2)))^(1/2)
+
+    # Latent variable for observed data
+    eta <- Q * ((rho * z + XS.g) / r)
+
+    # Constant term for log-likelihood
+    gam <- log(gamma((nu + 1)/2)) - log(gamma(nu/2)) - 0.5 * log(pi) - 0.5 * log(nu) - log(sigma)
+
+    # Log-likelihood contributions
+    ll <- ifelse(YS == 0,
+                 pt(-XS.g, nu, log.p = TRUE),
+                 (gam - ((nu + 1)/2) * log(1 + ((z^2)/nu)) + pt(eta, nu + 1, log.p = TRUE)))
+
+    # Return total log-likelihood
     return(sum(ll))
   }
+
   ############## Gradient #
   gradlik_tS <- function(start) {
-    NXS <- dim(model.matrix(~XS))[2] - 1  #Numero de colunas de XS+1
-    NXO <- dim(model.matrix(~XO))[2] - 1  #Numero de colunas de XO+1
+
     nObs <- length(YS)
     NO <- length(YS[YS > 0])
-    nParam <- NXS + NXO + 3  #Total of parameters
+    nParam <- NXS + NXO + 3  # Total number of parameters
     N0 <- sum(YS == 0)
     N1 <- sum(YS == 1)
 
-    w <- rep(1, N0 + N1)
+    # Weight vectors
+    w  <- rep(1, N0 + N1)
     w0 <- rep(1, N0)
     w1 <- rep(1, N1)
 
-    ## parameter indices
+    # Parameter indices
     istartS <- 1:NXS
     istartO <- seq(tail(istartS, 1) + 1, length = NXO)
-    isigma <- tail(istartO, 1) + 1
-    irho <- tail(isigma, 1) + 1
-    iv <- tail(irho, 1) + 1
+    isigma  <- tail(istartO, 1) + 1
+    irho    <- tail(isigma, 1) + 1
+    iv      <- tail(irho, 1) + 1
+    nParam  <- iv
+    # Extract parameters and transformations
     g <- start[istartS]
     b <- start[istartO]
 
-    chuteS = start[isigma]
-    lns = log(chuteS)
-    sigma = exp(lns)
-    chuteR <- start[irho]
-    tau = log((1 + chuteR)/(1 - chuteR))/2
-    rho = (exp(2 * tau) - 1)/(exp(2 * tau) + 1)
-    chuteV = start[iv]
-    lndf = log(chuteV)
-    v = exp(lndf)
+    chuteS <- start[isigma]
+    lns <- log(chuteS)
+    sigma <- exp(lns)
 
+    chuteR <- start[irho]
+    tau <- log((1 + chuteR) / (1 - chuteR)) / 2
+    rho <- (exp(2 * tau) - 1) / (exp(2 * tau) + 1)
+    # Check parameter validity
+    if (!is.finite(sigma) || sigma <= 0) return(NA)
+    if (!is.finite(rho) || abs(rho) >= 1) return(NA)
+
+
+    chuteV <- start[iv]
+    lndf <- log(chuteV)
+    nu <- exp(lndf)
+
+    # Data subsets
     XS0 <- XS[YS == 0, , drop = FALSE]
     XS1 <- XS[YS == 1, , drop = FALSE]
     YO[is.na(YO)] <- 0
     YO1 <- YO[YS == 1]
     XO1 <- XO[YS == 1, , drop = FALSE]
+
+    # Linear predictors
     XS0.g <- as.numeric((XS0) %*% g)
     XS1.g <- as.numeric((XS1) %*% g)
     XO1.b <- as.numeric((XO1) %*% b)
-    # u2 <- YO1 - XO1.b u2S1 <- YO1 - XS1.g
+
+    # Residuals for observed data
     u2O <- YO1 - XO1.b
-    # u2 <- YO - XO.b
-    z0 <- u2O/sigma
+    z0 <- u2O / sigma
     r <- sqrt(1 - rho^2)
-    Qv <- ((v + 1)/(v + (z0)^2))^(1/2)
-    Ar <- 1/sqrt(1 - (rho^2))
+
+    # Scaling factors and transformations
+    Qv <- ((nu + 1) / (nu + (z0)^2))^(1/2)
+    Ar <- 1 / sqrt(1 - (rho^2))
     Arr <- rho * Ar
     QSI <- (Arr * z0) + Ar * XS1.g
     eta <- Qv * QSI
-    dr = 4 * exp(2 * tau)/((exp(2 * tau) + 1)^2)
+    dr <- 4 * exp(2 * tau) / ((exp(2 * tau) + 1)^2)
 
-    # tau <- XS1.g/r myenv <- new.env() assign('v', v, envir = myenv)
-    # #assign('XS0.g',XS0.g,envir = myenv) gv2 <-numericDeriv(quote(pt(-XS0.g,
-    # v,log.p=TRUE)), c('v'), myenv)
-
+    # Numerical derivatives for nu (censored and observed)
     f1 <- function(x) {
       ff <- pt(-XS0.g, x, log.p = TRUE)
       return(ff)
     }
 
-    gv2 <- numDeriv::grad(f1, rep(1, length(XS0.g)) * v)
-    # sum(gv2) myenv2 <- new.env() assign('v', v, envir = myenv2) assign( 'z0',z0,
-    # envir = myenv2) assign( 'QSI',QSI, envir = myenv2) f <-
-    # quote(pt((((v+1)/(v+(z0)^2))^(1/2))*QSI,v+1,log.p=TRUE)) gv <- numericDeriv(f,
-    # c('v'), myenv2)
+    gv2 <- numDeriv::grad(f1, rep(1, length(XS0.g)) * nu)
 
     f2 <- function(x) {
-      teste = (((x + 1)/(x + (z0)^2))^(1/2)) * QSI
+      teste <- (((x + 1)/(x + (z0)^2))^(1/2)) * QSI
       ff <- pt(teste, (x + 1), log.p = TRUE)
       return(ff)
     }
 
-    gv <- numDeriv::grad(f2, rep(1, length(z0)) * v)
+    gv <- numDeriv::grad(f2, rep(1, length(z0)) * nu)
 
+    # Auxiliary terms for gradient calculation
+    M_eta <- dt(eta, nu + 1) / pt(eta, nu + 1)
+    term1 <- Qv * z0
+    term2 <- (QSI / (nu + z0^2)) * z0 - Arr
+
+    # Initialize gradient matrix
     gradient <- matrix(0, nObs, nParam)
-    gradient[YS == 0, istartS] <- -w0 * (XS0) * (dt(-XS0.g, v)/pt(-XS0.g, v))
-    gradient[YS == 1, istartS] <- w1 * (XS1) * Ar * Qv * (dt(eta, v + 1)/pt(eta,
-                                                                            v + 1))
+
+    # Gradient for selection parameters
+    gradient[YS == 0, istartS] <- -w0 * (XS0) * (dt(-XS0.g, nu)/pt(-XS0.g, nu))
+    gradient[YS == 1, istartS] <- w1 * (XS1) * Ar * Qv * (dt(eta, nu + 1)/pt(eta, nu + 1))
+
+    # Gradient for outcome parameters
     gradient[YS == 1, istartO] <- w1 * (XO1) * (Qv/sigma) * ((Qv * z0) + (((QSI *
-                                                                              ((v + (z0^2))^(-1))) * z0 - Arr) * (dt(eta, v + 1)/pt(eta, v + 1))))
-    gradient[YS == 1, isigma] <- w1 * (-1 + (Qv * z0)^2 + (dt(eta, v + 1)/pt(eta,
-                                                                             v + 1)) * ((Qv * (z0)) * (QSI * ((v + (z0^2))^(-1)) * (z0) - Arr)))
-    gradient[YS == 1, irho] <- w1 * (dt(eta, v + 1)/pt(eta, v + 1)) * Qv * (Ar^(3)) *
-      (z0 + rho * XS1.g) * dr
-    # gradient[YS == 1, iv] <- w1 *
-    # (((1/2)*v*(digamma((v+1)/2)-digamma(v/2))-(1/2))-((1/2)*v*log(1+((z0^2)/v)))+
-    # (((Qv*(z0))^(2))/(2))+v*gv) gradient[YS == 0, iv] <- w0*v*gv2
-    # colSums(gradient)
-    gradient[YS == 1, iv] <- w1 * ((((1/2) * digamma((v + 1)/2) - (1/2) * digamma(v/2)) -
-                                      (1/(2 * v))) - ((1/2) * log(1 + ((z0^2)/v))) + (((Qv * (z0))^(2))/(2 *
-                                                                                                           v)) + gv)
+                                                                              ((nu + (z0^2))^(-1))) * z0 - Arr) * (dt(eta, nu + 1)/pt(eta, nu + 1))))
+
+    # Gradient for sigma
+    gradient[YS == 1, isigma] <- w1 * (-1 + (Qv * z0)^2 + M_eta * term1 * term2) / sigma
+
+    # Gradient for rho
+    gradient[YS == 1, irho] <- w1 * Qv * (z0 + rho * XS1.g) * (Ar^3) * M_eta
+
+    # Gradient for nu (observed and censored)
+    gradient[YS == 1, iv] <- w1 * ((((1/2) * digamma((nu + 1)/2) - (1/2) * digamma(nu/2)) -
+                                      (1/(2 * nu))) - ((1/2) * log(1 + ((z0^2)/nu))) + (((Qv * (z0))^(2)) / (2 * nu)) + gv)
     gradient[YS == 0, iv] <- w0 * gv2
+
+    # Return the sum of gradient contributions
     return(colSums(gradient))
   }
-
 
   # Step 4: Define initial values if not provided
   if (is.null(start)) {

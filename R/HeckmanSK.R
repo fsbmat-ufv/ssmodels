@@ -94,9 +94,11 @@ HeckmanSK <- function(selection, outcome, data = sys.frame(sys.parent()), lambda
     g      <- start[istartS]
     b      <- start[istartO]
     sigma  <- start[isigma]
-    if (sigma < 0) return(NA)
     rho    <- start[irho]
-    if ((rho < -1) || (rho > 1)) return(NA)
+    # Check parameter validity
+    if (!is.finite(sigma) || sigma <= 0) return(NA)
+    if (!is.finite(rho) || abs(rho) >= 1) return(NA)
+
     lamb1  <- start[ilamb1]
 
     # Linear predictors
@@ -153,9 +155,9 @@ HeckmanSK <- function(selection, outcome, data = sys.frame(sys.parent()), lambda
     g      <- start[istartS]
     b      <- start[istartO]
     sigma  <- start[isigma]
-    if (sigma < 0) return(matrix(NA, nObs, nParam))
     rho    <- start[irho]
-    if ((rho < -1) || (rho > 1)) return(matrix(NA, nObs, nParam))
+    if (!is.finite(sigma) || sigma <= 0) return(NA)
+    if (!is.finite(rho) || abs(rho) >= 1) return(NA)
     lamb1  <- start[ilamb1]
 
     # Linear predictors

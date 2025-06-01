@@ -124,8 +124,9 @@ HeckmanCL <- function(selection, outcome, data = sys.frame(sys.parent()), start 
     rho   <- start[irho]
 
     # Check parameter validity
-    if (!is.finite(sigma) || sigma <= 0) return(rep(NA, nParam))
-    if (!is.finite(rho) || abs(rho) >= 1) return(rep(NA, nParam))
+    if (!is.finite(sigma) || sigma <= 0) return(NA)
+    if (!is.finite(rho) || abs(rho) >= 1) return(NA)
+
 
     # Partition data based on selection indicator
     XS0 <- XS[YS == 0, , drop = FALSE]
