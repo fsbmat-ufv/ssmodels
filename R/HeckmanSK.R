@@ -224,7 +224,7 @@ HeckmanSK <- function(selection, outcome, data = sys.frame(sys.parent()), lambda
   result <- list(
     coefficients   = theta_SK$par,
     value          = theta_SK$value,
-    loglik         = -theta_SK$value,
+    loglik         = theta_SK$value,
     counts         = theta_SK$counts[2],
     hessian        = theta_SK$hessian,
     fisher_infoSK  = solve(-theta_SK$hessian),

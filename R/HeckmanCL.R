@@ -204,7 +204,7 @@ HeckmanCL <- function(selection, outcome, data = sys.frame(sys.parent()), start 
   # Create result object
   result <- list(coefficients   = a1,
                  value          = a2,
-                 loglik         = -a2,
+                 loglik         = a2,
                  counts         = a3,
                  hessian        = a4,
                  fisher_infoHC  = a5,

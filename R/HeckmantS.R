@@ -246,7 +246,7 @@ HeckmantS <- function(selection, outcome, data = sys.frame(sys.parent()), df, st
   result <- list(
     coefficients    = theta_tS$par,              # Estimated coefficients
     value           = theta_tS$value,            # Optim objective function value
-    loglik          = -theta_tS$value,           # Log-likelihood
+    loglik          = theta_tS$value,           # Log-likelihood
     counts          = theta_tS$counts[2],        # Number of iterations
     hessian         = theta_tS$hessian,          # Hessian matrix
     fisher_infotS   = solve(-theta_tS$hessian),  # Fisher Information Matrix

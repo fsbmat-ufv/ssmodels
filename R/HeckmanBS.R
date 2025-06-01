@@ -238,7 +238,7 @@ HeckmanBS <- function(selection, outcome, data = sys.frame(sys.parent()), start 
   result <- list(
     coefficients     = a1,
     value            = theta_BS$value,
-    loglik           = -theta_BS$value,
+    loglik           = theta_BS$value,
     counts           = theta_BS$counts[2],
     hessian          = a4,
     fisher_infoBS    = a5,

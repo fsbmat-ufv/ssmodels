@@ -283,7 +283,7 @@ HeckmanGe <- function(selection, outcome, outcomeS, outcomeC, data = sys.frame(s
   result <- list(
     coefficients   = theta_HG$par,
     value          = theta_HG$value,
-    loglik         = -theta_HG$value,
+    loglik         = theta_HG$value,
     counts         = theta_HG$counts[2],
     hessian        = theta_HG$hessian,
     fisher_infoHG  = fisher_infoHG,
