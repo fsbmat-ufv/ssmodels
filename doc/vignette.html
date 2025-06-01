@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>ssmodels: A package for fit the sample selection models</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">ssmodels: A package for fit the sample
+selection models</h1>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#real-databases" id="toc-real-databases"><span class="toc-section-number">2</span> Real Databases</a>
+<ul>
+<li><a href="#meps-2001" id="toc-meps-2001"><span class="toc-section-number">2.1</span> MEPS 2001</a></li>
+<li><a href="#nhanes-2003-2004" id="toc-nhanes-2003-2004"><span class="toc-section-number">2.2</span> Nhanes 2003-2004</a></li>
+</ul></li>
+<li><a href="#references" id="toc-references">References</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p style="text-align: justify;">
+In order to facilitate the adjustment of the sample selection models
+existing in the literature, we created the ssmodels package. Our package
+allows the adjustment of the classic Heckman model (<span class="citation">Heckman (1976)</span>, <span class="citation">Heckman
+(1979)</span>), and the estimation of the parameters of this model via
+the maximum likelihood method and two-step method, in addition to the
+adjustment of the Heckman-t models, introduced in the literature by
+<span class="citation">Marchenko and Genton (2012)</span> and the
+Heckman-Skew model introduced in the literature by <span class="citation">Ogundimu and Hutton (2016)</span>. We also implemented
+functions to adjust the generalized version of the Heckman model,
+introduced by <span class="citation">Bastos, Barreto-Souza, and Genton
+(2022)</span>, that allows the inclusion of covariables to the
+dispersion and correlation parameters and a function to adjust the
+Heckman-BS model introduced by <span class="citation">Bastos and
+Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution
+as a joint distribution of the selection and primary regression
+variables.
+</p>
+</div>
+<div id="real-databases" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Real Databases</h1>
+<div id="meps-2001" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> MEPS 2001</h2>
+<p style="text-align: justify;">
+The MEPS is a set of large-scale surveys of families, individuals and
+their medical providers (doctors, hospitals, pharmacies, etc.) in the
+United States. It has data on the health services Americans use, how
+often they use them, the cost of these services and how they are paid,
+as well as data on the cost and reach of health insurance available to
+American workers. The sample is restricted to persons aged between 21
+and 64 years and contains a variable response with 3328 observations of
+outpatient costs, of which 526 (15.8%) correspond to unobserved
+expenditure values and identified as zero expenditure for adjustment of
+the models. It also includes the following explanatory variables:
+</p>
+<ul>
+<li>educ: education status</li>
+<li>age: Age</li>
+<li>income: income</li>
+<li>female: gender</li>
+<li>vgood: a numeric vector</li>
+<li>good: a numeric vector</li>
+<li>hospexp: a numeric vector</li>
+<li>totchr: number of chronic diseases</li>
+<li>ffs: a numeric vector</li>
+<li>dhospexp: a numeric vector</li>
+<li>age2: a numeric vector</li>
+<li>agefem: a numeric vector</li>
+<li>fairpoor: a numeric vector</li>
+<li>year01: a numeric vector</li>
+<li>instype: a numeric vector</li>
+<li>ambexp: a numeric vector</li>
+<li>lambexp: log ambulatory expenditures</li>
+<li>blhisp: ethnicity</li>
+<li>instype_s1: a numeric vector</li>
+<li>dambexp: dummy variable, ambulatory expenditures</li>
+<li>lnambx: a numeric vector</li>
+<li>ins: insurance status
+<p style="text-align: justify;">
+These data were also used by <span class="citation">Colin and Trivedi
+(2009)</span>, <span class="citation">Marchenko and Genton (2012)</span>
+and <span class="citation">Zhelonkin, Genton, and Ronchetti
+(2016)</span> to fit the classical Heckman and Heckman-t models and the
+robust version of the two-step method, respectively. We use the variable
+of interest <span class="math inline">\(Y_{1}^{*}={\rm ambexp}\)</span>,
+which represents expenditure on medical services, on the logarithmic
+scale, since it is highly asymmetric, see <a href="#fig4">Figura 1</a>.
+The variable <span class="math inline">\(Y_{2}^{*}={\rm
+dambexp},\)</span> representing the willingness to spend, is not
+observed. We observe <span class="math inline">\(U=1\{Y_{2}^{*}&gt;0\},\)</span> which represents
+the decision to spend on medical care.
+</p>
+<a name="fig4"></a></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(ssmodels)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#Leitura do dados MEPS2001</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">data</span>(MEPS2001)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#tornando visiveis as colunas do data-frame</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">attach</span>(MEPS2001)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>barfill <span class="ot">&lt;-</span> <span class="st">&quot;grey&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>barlines <span class="ot">&lt;-</span> <span class="st">&quot;black&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(MEPS2001,<span class="fu">aes</span>(ambexp))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">colour =</span> barlines, <span class="at">fill =</span> barfill)<span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;(a) Expenditures Medical&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">15000</span>, <span class="dv">2500</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>                     <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15000</span>))<span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">800</span>, <span class="dv">100</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>                     <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">800</span>))</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(MEPS2001,<span class="fu">aes</span>(lambexp))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">colour =</span> barlines, <span class="at">fill =</span> barfill)<span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;(b) Log of Expenditures Medical&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">11</span>, <span class="dv">1</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>                     <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">11</span>))<span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">300</span>, <span class="dv">100</span>),</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>                     <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">300</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<img role="img" aria-label="Log of Expenditures Medical" src="data:image/png;base64,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" alt="Log of Expenditures Medical" style="display: block; margin: auto;" />
+<p style="text-align: justify;">
+According <span class="citation">Marchenko and Genton (2012)</span> and
+<span class="citation">Zhelonkin, Genton, and Ronchetti (2016)</span> it
+is natural to fit a sample selection model to such data, since the
+willingness to spend <span class="math inline">\((Y_{2}^{*})\)</span> is
+likely to be related to the expense amount <span class="math inline">\((Y_{1}^{*}).\)</span> However, after fitting the
+classic Heckman model and using the Wald, likelihood ratio, or gradient
+tests for <span class="math inline">\(H_{0}:\rho=0\)</span> against
+<span class="math inline">\(H_{1}:\rho\neq 0,\)</span> the conclusion is
+that there is not sufficient evidence <span class="math inline">\((p\textrm{-valor}&gt;0.1)\)</span> to reject <span class="math inline">\(H_{0},\)</span> that is, there is no bias of
+selection. <span class="citation">Colin and Trivedi (2009)</span>
+suspected this conclusion and <span class="citation">Marchenko and
+Genton (2012)</span> argued that a more robust model could evidence the
+selection bias present in the data and rejected the normality hypothesis
+of the data. However, we understand that the adjustment of the
+dispersion and/or the correlation can be an alternative to study these
+data without the need to modify the assumption of normality of the
+errors, because as our simulations indicate, the estimations of the
+parameters obtained by the adjustment of the model Heckman can be more
+severely affected by heteroscedasticity than by incorrect distribution
+of error terms.
+</p>
+<p style="text-align: justify;">
+However, due to data asymmetry, we also adjusted the Heckman-BS model.
+Thus, we consider the following system of equations for classic and
+generalized Heckman models, Heckman-t and Heckman-Skew:
+</p>
+<p><span class="math display">\[\begin{align}
+lnambx &amp;= \beta_{1}+ \beta_{2}age + \beta_{3}female + \beta_{4}educ
++ \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins + \epsilon_{1i},
+\label{eq_reg_aplic1} \\
+dambexp&amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female +
+\gamma_{4}educ + \gamma_{5}blhisp + \gamma_{6}totchr + \gamma_{7}ins +
+\gamma_{8}income + \epsilon_{2i}, \label{eq_sel_aplic1}
+\end{align}\]</span> where errors are defined for classic Heckman
+models, Heckman-t and Heckman-Skew according to <span class="math display">\[\begin{align}\label{2:disterro}
+\begin{pmatrix}\epsilon_{1i}\\
+\epsilon_{2i}
+\end{pmatrix} &amp;\overset{ind.}{\sim} \mathcal{N}
+\begin{bmatrix}
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}\!\!,&amp;
+\begin{pmatrix}
+\sigma^{2} &amp; \rho\sigma \\
+\sigma\rho &amp; 1
+\end{pmatrix}
+\end{bmatrix}, i=1,\cdots,n,
+\end{align}\]</span> and for generalized Heckman models how <span class="math display">\[\begin{align}\label{2:disterro1}
+\begin{pmatrix}\epsilon_{1i}\\
+\epsilon_{2i}
+\end{pmatrix} &amp;\overset{ind.}{\sim} \mathcal{N}
+\begin{bmatrix}
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}\!\!,&amp;
+\begin{pmatrix}
+\sigma_{i}^{2} &amp; \rho_{i}\sigma_{i} \\
+\sigma_{i}\rho_{i} &amp; 1
+\end{pmatrix}
+\end{bmatrix}, i=1,\cdots,n,
+\end{align}\]</span> in such a way that <span class="math display">\[\begin{align*}
+\log{(\sigma_{i})} &amp;= \lambda_{1}+\lambda_{2}age + \lambda_{3}female
++ \lambda_{4}totchr + \lambda_{5}ins\quad \textrm{and}\\
+\rho_{i}&amp;=\tanh{(\kappa_{0})}, i=1,\cdots, 3328.
+\end{align*}\]</span></p>
+To adjust the Heckman-BS model we consider <span class="math display">\[\begin{align*}
+\log\mu_{1i} &amp;= \beta_{1} + \beta_{2}age + \beta_{3}female  +
+\beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins,\\
+\log\mu_{2i} &amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female +
+\gamma_{4}educ + \gamma_{5}blhisp +
+\gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income,\quad
+i=1,2,\cdots,3328.
+\end{align*}\]</span>
+<p style="text-align: justify;">
+and <span class="math inline">\((ambexp,dambexp)\)</span> is
+independently distributed with Birnbaum-Saunders (BS) Bivariate
+parameter distribution <span class="math inline">\(\mu_{1}&gt;0,
+\mu_{2}&gt;0, \phi_{1}=\phi&gt;0, \phi_{2}=1\)</span> and <span class="math inline">\(-1&lt;\rho&lt;1,\)</span> that is, <span class="math display">\[(ambexp_{i},dambexp_{i})\stackrel{ind}{\sim}\mbox{
+BS}(\mu_{1i},\mu_{2i},
+\phi,1,\rho), \mu_{1i}&gt;0, \mu_{2i}&gt;0, \phi&gt;0\quad
+\textrm{and}\quad -1&lt;\rho&lt;1, i=1,\cdots, n\]</span>
+</p>
+<p style="text-align: justify;">
+We observed similar values for the parameters estimated by all models,
+mainly the parameters of the variable of interest. However, the only
+model that allows a direct interpretation of such parameters is the
+Heckman-BS model. We can, for example, affirm, based on the result of
+this model, that keeping the other parameters fixed, changing a unit in
+age represents an increase of <span class="math inline">\(24.6\%\)</span> in ambulatory expenses. For the
+other models, the interpretation is related to the log of outpatient
+expenses. See the results of the estimates of the parameters below:
+</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>selectEq <span class="ot">&lt;-</span> dambexp <span class="sc">~</span> age <span class="sc">+</span> female <span class="sc">+</span> educ <span class="sc">+</span> blhisp <span class="sc">+</span> totchr <span class="sc">+</span> ins <span class="sc">+</span> income</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>outcomeEq <span class="ot">&lt;-</span> lnambx <span class="sc">~</span> age <span class="sc">+</span> female <span class="sc">+</span> educ <span class="sc">+</span> blhisp <span class="sc">+</span> totchr <span class="sc">+</span> ins </span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>outcomeS <span class="ot">&lt;-</span> <span class="fu">cbind</span>(age,female,totchr,ins)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>outcomeC <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>outcomeBS <span class="ot">&lt;-</span> ambexp <span class="sc">~</span> age <span class="sc">+</span> female <span class="sc">+</span> educ <span class="sc">+</span> blhisp <span class="sc">+</span> totchr <span class="sc">+</span> ins </span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>mCL <span class="ot">&lt;-</span> <span class="fu">HeckmanCL</span>(selectEq, outcomeEq, <span class="at">data =</span> MEPS2001)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>mBS <span class="ot">&lt;-</span> <span class="fu">HeckmanBS</span>(selectEq, outcomeBS, <span class="at">data =</span> MEPS2001)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>mSK <span class="ot">&lt;-</span> <span class="fu">HeckmanSK</span>(selectEq, outcomeEq, <span class="at">data =</span> MEPS2001,<span class="at">lambda =</span> <span class="dv">1</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>mtS <span class="ot">&lt;-</span> <span class="fu">HeckmantS</span>(selectEq, outcomeEq, <span class="at">data =</span> MEPS2001,<span class="at">df=</span><span class="dv">12</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>mGe <span class="ot">&lt;-</span> <span class="fu">HeckmanGe</span>(selectEq, outcomeEq,outcomeS, outcomeC, <span class="at">data =</span> MEPS2001)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>Parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;blhisp&quot;</span>, <span class="st">&quot;totchr&quot;</span>, <span class="st">&quot;ins&quot;</span>, <span class="st">&quot;income&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>   <span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;blhisp&quot;</span>, <span class="st">&quot;totchr&quot;</span>, <span class="st">&quot;ins&quot;</span>, <span class="st">&quot;sigma&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;totchr&quot;</span>, <span class="st">&quot;ins&quot;</span>, <span class="st">&quot;rho&quot;</span>, <span class="st">&quot;nu&quot;</span>, <span class="st">&quot;lambda&quot;</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>HBS <span class="ot">&lt;-</span> <span class="fu">round</span>(mBS<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>HCL <span class="ot">&lt;-</span> <span class="fu">round</span>(mCL<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>HSK <span class="ot">&lt;-</span> <span class="fu">round</span>(mSK<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>HtS <span class="ot">&lt;-</span> <span class="fu">round</span>(mtS<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>HGe <span class="ot">&lt;-</span> <span class="fu">round</span>(mGe<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>Results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;Parameters&quot;</span><span class="ot">=</span> Parameters,</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>                      <span class="st">&quot;HeckmanGe&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HGe[<span class="dv">1</span><span class="sc">:</span><span class="dv">21</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>), </span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>                      <span class="st">&quot;HeckmanCL&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HCL[<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, HCL[<span class="dv">17</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>),</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>                      <span class="st">&quot;HeckmanBS&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HBS[<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, HBS[<span class="dv">17</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>), </span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>                      <span class="st">&quot;HeckmantS&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HtS[<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, HtS[<span class="dv">17</span><span class="sc">:</span><span class="dv">18</span>], <span class="st">&quot;NA&quot;</span> ),</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>                      <span class="st">&quot;HeckmanSK&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HSK[<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>, HSK[<span class="dv">17</span>], <span class="st">&quot;NA&quot;</span>, HSK[<span class="dv">18</span>]))</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="fu">kable</span>(Results, <span class="at">format =</span> <span class="st">&quot;html&quot;</span>, <span class="at">align =</span> <span class="fu">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:center;">
+Parameters
+</th>
+<th style="text-align:center;">
+HeckmanGe
+</th>
+<th style="text-align:center;">
+HeckmanCL
+</th>
+<th style="text-align:center;">
+HeckmanBS
+</th>
+<th style="text-align:center;">
+HeckmantS
+</th>
+<th style="text-align:center;">
+HeckmanSK
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Intercept
+</td>
+<td style="text-align:center;">
+-0.59
+</td>
+<td style="text-align:center;">
+-0.676
+</td>
+<td style="text-align:center;">
+0.117
+</td>
+<td style="text-align:center;">
+-0.748
+</td>
+<td style="text-align:center;">
+-0.899
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+age
+</td>
+<td style="text-align:center;">
+0.094
+</td>
+<td style="text-align:center;">
+0.088
+</td>
+<td style="text-align:center;">
+0.09
+</td>
+<td style="text-align:center;">
+0.099
+</td>
+<td style="text-align:center;">
+0.087
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+female
+</td>
+<td style="text-align:center;">
+0.632
+</td>
+<td style="text-align:center;">
+0.663
+</td>
+<td style="text-align:center;">
+0.722
+</td>
+<td style="text-align:center;">
+0.725
+</td>
+<td style="text-align:center;">
+0.645
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+educ
+</td>
+<td style="text-align:center;">
+0.055
+</td>
+<td style="text-align:center;">
+0.062
+</td>
+<td style="text-align:center;">
+0.068
+</td>
+<td style="text-align:center;">
+0.065
+</td>
+<td style="text-align:center;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+blhisp
+</td>
+<td style="text-align:center;">
+-0.33
+</td>
+<td style="text-align:center;">
+-0.364
+</td>
+<td style="text-align:center;">
+-0.399
+</td>
+<td style="text-align:center;">
+-0.394
+</td>
+<td style="text-align:center;">
+-0.351
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+totchr
+</td>
+<td style="text-align:center;">
+0.722
+</td>
+<td style="text-align:center;">
+0.797
+</td>
+<td style="text-align:center;">
+0.806
+</td>
+<td style="text-align:center;">
+0.89
+</td>
+<td style="text-align:center;">
+0.775
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+ins
+</td>
+<td style="text-align:center;">
+0.165
+</td>
+<td style="text-align:center;">
+0.17
+</td>
+<td style="text-align:center;">
+0.179
+</td>
+<td style="text-align:center;">
+0.18
+</td>
+<td style="text-align:center;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+income
+</td>
+<td style="text-align:center;">
+0.002
+</td>
+<td style="text-align:center;">
+0.003
+</td>
+<td style="text-align:center;">
+0.003
+</td>
+<td style="text-align:center;">
+0.003
+</td>
+<td style="text-align:center;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Intercept
+</td>
+<td style="text-align:center;">
+5.862
+</td>
+<td style="text-align:center;">
+5.044
+</td>
+<td style="text-align:center;">
+5.779
+</td>
+<td style="text-align:center;">
+5.206
+</td>
+<td style="text-align:center;">
+6.452
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+age
+</td>
+<td style="text-align:center;">
+0.172
+</td>
+<td style="text-align:center;">
+0.212
+</td>
+<td style="text-align:center;">
+0.246
+</td>
+<td style="text-align:center;">
+0.207
+</td>
+<td style="text-align:center;">
+0.202
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+female
+</td>
+<td style="text-align:center;">
+0.15
+</td>
+<td style="text-align:center;">
+0.348
+</td>
+<td style="text-align:center;">
+0.411
+</td>
+<td style="text-align:center;">
+0.307
+</td>
+<td style="text-align:center;">
+0.287
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+educ
+</td>
+<td style="text-align:center;">
+0.001
+</td>
+<td style="text-align:center;">
+0.019
+</td>
+<td style="text-align:center;">
+-0.007
+</td>
+<td style="text-align:center;">
+0.017
+</td>
+<td style="text-align:center;">
+0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+blhisp
+</td>
+<td style="text-align:center;">
+-0.135
+</td>
+<td style="text-align:center;">
+-0.219
+</td>
+<td style="text-align:center;">
+-0.215
+</td>
+<td style="text-align:center;">
+-0.193
+</td>
+<td style="text-align:center;">
+-0.201
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+totchr
+</td>
+<td style="text-align:center;">
+0.413
+</td>
+<td style="text-align:center;">
+0.54
+</td>
+<td style="text-align:center;">
+0.589
+</td>
+<td style="text-align:center;">
+0.513
+</td>
+<td style="text-align:center;">
+0.492
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+ins
+</td>
+<td style="text-align:center;">
+-0.109
+</td>
+<td style="text-align:center;">
+-0.03
+</td>
+<td style="text-align:center;">
+-0.061
+</td>
+<td style="text-align:center;">
+-0.053
+</td>
+<td style="text-align:center;">
+-0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+sigma
+</td>
+<td style="text-align:center;">
+0.613
+</td>
+<td style="text-align:center;">
+1.271
+</td>
+<td style="text-align:center;">
+0.703
+</td>
+<td style="text-align:center;">
+1.195
+</td>
+<td style="text-align:center;">
+1.736
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+age
+</td>
+<td style="text-align:center;">
+-0.029
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+female
+</td>
+<td style="text-align:center;">
+-0.13
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+totchr
+</td>
+<td style="text-align:center;">
+-0.119
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+ins
+</td>
+<td style="text-align:center;">
+-0.112
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+rho
+</td>
+<td style="text-align:center;">
+-0.742
+</td>
+<td style="text-align:center;">
+-0.131
+</td>
+<td style="text-align:center;">
+0.273
+</td>
+<td style="text-align:center;">
+-0.322
+</td>
+<td style="text-align:center;">
+-0.339
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+nu
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+12.934
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+lambda
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+-1.662
+</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: justify;">
+In addition, there are also the results of the significance of the
+parameters. The classic Heckman model adjusted to such data indicates no
+correlation between the variables value spent and the decision to spend.
+According to <span class="citation">Colin and Trivedi (2009)</span>,
+such a result is suspect and should be better analyzed.
+</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">summary</span>(mCL)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##           Classic Heckman Model (Package: ssmodels)           
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 62 
+## Log-Likelihood: -5836.219 
+## AIC: 11706.44 BIC: 11810.31 
+## Number of observations: ( 526 censored and 2802 observed ) 
+## 17 free parameters ( df = 3311 ) 
+## --------------------------------------------------------------
+## Probit selection equation:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.675796   0.194029  -3.483 0.000502 ***
+## age          0.087907   0.027421   3.206 0.001360 ** 
+## female       0.662658   0.060937  10.874  &lt; 2e-16 ***
+## educ         0.061937   0.012029   5.149 2.77e-07 ***
+## blhisp      -0.363964   0.061874  -5.882 4.45e-09 ***
+## totchr       0.796956   0.071131  11.204  &lt; 2e-16 ***
+## ins          0.170143   0.062871   2.706 0.006840 ** 
+## income       0.002708   0.001316   2.058 0.039677 *  
+## --------------------------------------------------------------
+## Outcome equation:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.04423    0.22812  22.112  &lt; 2e-16 ***
+## age          0.21196    0.02301   9.213  &lt; 2e-16 ***
+## female       0.34812    0.06012   5.791 7.65e-09 ***
+## educ         0.01871    0.01055   1.774 0.076175 .  
+## blhisp      -0.21858    0.05967  -3.663 0.000253 ***
+## totchr       0.53992    0.03933  13.727  &lt; 2e-16 ***
+## ins         -0.02999    0.05109  -0.587 0.557188    
+## --------------------------------------------------------------
+## Error terms:
+##       Estimate Std. Error t value Pr(&gt;|t|)    
+## sigma  1.27102    0.01838  69.155   &lt;2e-16 ***
+## rho   -0.13061    0.14709  -0.888    0.375    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+<p style="text-align: justify;">
+The generalized Heckman model, on the other hand, indicates that there
+is the presence of heteroscedasticity in the data and, probably, due to
+this, the classic Heckman model is not the most suitable for modeling
+these data. Our model, in addition to indicating the presence of
+variable dispersion, also indicates a significant correlation between
+the variables amount spent and the decision to spend.
+</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">summary</span>(mGe)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##        Generalized Heckman Model (Package: ssmodels)          
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 38 
+## Log-Likelihood: -5804.973 
+## AIC: 11651.95 BIC: 11780.26 
+## Number of observations: ( 526 censored and 2802 observed )
+## 21 free parameters ( df = 3307 )
+## --------------------------------------------------------------
+## Probit selection equation:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.589957   0.184520  -3.197 0.001400 ** 
+## age          0.093819   0.025969   3.613 0.000308 ***
+## female       0.631683   0.058819  10.739  &lt; 2e-16 ***
+## educ         0.055192   0.011359   4.859 1.24e-06 ***
+## blhisp      -0.329958   0.058876  -5.604 2.26e-08 ***
+## totchr       0.722141   0.068095  10.605  &lt; 2e-16 ***
+## ins          0.165037   0.060096   2.746 0.006061 ** 
+## income       0.002378   0.001208   1.968 0.049118 *  
+## --------------------------------------------------------------
+## Outcome equation:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.8619289  0.1932014  30.341  &lt; 2e-16 ***
+## age          0.1721778  0.0236643   7.276 4.28e-13 ***
+## female       0.1499038  0.0554250   2.705  0.00687 ** 
+## educ         0.0009773  0.0101715   0.096  0.92346    
+## blhisp      -0.1346999  0.0577302  -2.333  0.01969 *  
+## totchr       0.4131838  0.0285565  14.469  &lt; 2e-16 ***
+## ins         -0.1090714  0.0513530  -2.124  0.03375 *  
+## --------------------------------------------------------------
+## Dispersion terms:
+##            Estimate Std. Error t value Pr(&gt;|t|)    
+## interceptS  0.61318    0.06434   9.530  &lt; 2e-16 ***
+## age        -0.02862    0.01274  -2.247   0.0247 *  
+## female     -0.12977    0.02849  -4.555 5.44e-06 ***
+## totchr     -0.11852    0.01849  -6.410 1.66e-10 ***
+## ins        -0.11225    0.02792  -4.021 5.93e-05 ***
+## --------------------------------------------------------------
+## Correlation terms:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## correlation  -0.6305     0.1024  -6.157  8.3e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+<p style="text-align: justify;">
+On the other hand, as the observed data show asymmetry, the Heckman-BS
+model can be a good indication to adjust such data. Note that the
+Heckman-BS model also indicates the presence of a significant
+correlation. It also presents, as previously mentioned, the advantage of
+parsimony and the direct interpretation of the relationship of the
+parameters with the response variable of interest.
+</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">summary</span>(mBS)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##    Birnbaum-Saunders Heckman Model (Package: ssmodels)        
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 91 
+## Log-Likelihood: -24470.39 
+## AIC: 48974.79 BIC: 49078.66 
+## Number of observations: ( 526 censored and 2802 observed ) 
+## 17 free parameters ( df = 3311 ) 
+## --------------------------------------------------------------
+## Probit selection equation:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.117126   0.235264   0.498   0.6186    
+## age          0.089529   0.031571   2.836   0.0046 ** 
+## female       0.721894   0.069037  10.457  &lt; 2e-16 ***
+## educ         0.068323   0.014689   4.651 3.43e-06 ***
+## blhisp      -0.398979   0.074350  -5.366 8.59e-08 ***
+## totchr       0.805603   0.068208  11.811  &lt; 2e-16 ***
+## ins          0.179313   0.073103   2.453   0.0142 *  
+## income       0.003424   0.001430   2.394   0.0167 *  
+## --------------------------------------------------------------
+## Outcome equation:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.778625   0.172656  33.469  &lt; 2e-16 ***
+## age          0.246171   0.022143  11.117  &lt; 2e-16 ***
+## female       0.410567   0.048235   8.512  &lt; 2e-16 ***
+## educ        -0.006632   0.009890  -0.671    0.503    
+## blhisp      -0.215177   0.053171  -4.047 5.31e-05 ***
+## totchr       0.588729   0.034298  17.165  &lt; 2e-16 ***
+## ins         -0.061373   0.049609  -1.237    0.216    
+## --------------------------------------------------------------
+## Error terms:
+##       Estimate Std. Error t value Pr(&gt;|t|)    
+## sigma  0.70282    0.02072   33.92   &lt;2e-16 ***
+## rho    0.27307    0.11474    2.38   0.0174 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+<p style="text-align: justify;">
+The Heckman-t model, even adjusted to the expense log, indicates the
+presence of deviation from normality, since the degree of freedom
+parameter is approximately equal to <span class="math inline">\(13\)</span> and is significant. Such a model also
+observes the significant correlation parameter.
+</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">summary</span>(mtS)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##       t-Student Heckman Model (Package: ssmodels)             
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 69 
+## Log-Likelihood: -5822.076 
+## AIC: 11680.15 BIC: 11790.13 
+## Number of observations: ( 526 censored and 2802 observed )
+## 18 free parameters ( df = 3310 )
+## --------------------------------------------------------------
+## Probit selection equation:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.748019   0.207687  -3.602 0.000321 ***
+## age          0.098534   0.029744   3.313 0.000934 ***
+## female       0.724842   0.068540  10.575  &lt; 2e-16 ***
+## educ         0.064846   0.012805   5.064 4.32e-07 ***
+## blhisp      -0.393556   0.066523  -5.916 3.63e-09 ***
+## totchr       0.890059   0.087203  10.207  &lt; 2e-16 ***
+## ins          0.180016   0.068006   2.647 0.008157 ** 
+## income       0.002978   0.001447   2.059 0.039610 *  
+## --------------------------------------------------------------
+## Outcome equation:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.20589    0.20878  24.935  &lt; 2e-16 ***
+## age          0.20683    0.02259   9.156  &lt; 2e-16 ***
+## female       0.30651    0.05623   5.451 5.39e-08 ***
+## educ         0.01732    0.01025   1.690 0.091140 .  
+## blhisp      -0.19293    0.05769  -3.345 0.000833 ***
+## totchr       0.51269    0.03571  14.356  &lt; 2e-16 ***
+## ins         -0.05251    0.05046  -1.041 0.298161    
+## --------------------------------------------------------------
+## Error terms:
+##       Estimate Std. Error t value Pr(&gt;|t|)    
+## sigma  1.19489    0.02567  46.548  &lt; 2e-16 ***
+## rho   -0.32217    0.11454  -2.813  0.00494 ** 
+## df    12.93434    2.85502   4.530  6.1e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+<p style="text-align: justify;">
+Finally, the Heckman-Skew model also indicates the presence of a
+significant correlation between the variables of interest and selection.
+In addition, it also indicates deviation from the normality of the
+transformed data. It is important to note that without the data
+transformation, the iterative method of estimating the parameters of the
+Heckman-Skew model does not converge.
+</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">summary</span>(mSK)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##       Skew Normal Heckman Model (Package: ssmodels)           
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 79 
+## Log-Likelihood: -5805.744 
+## AIC: 11647.49 BIC: 11757.47 
+## Number of observations: ( 526 censored and 2802 observed )
+## 18 free parameters ( df = 3310 )
+## --------------------------------------------------------------
+## Probit selection equation:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.899099   0.205570  -4.374 1.26e-05 ***
+## age          0.086608   0.026563   3.260  0.00112 ** 
+## female       0.644807   0.061736  10.445  &lt; 2e-16 ***
+## educ         0.060281   0.011774   5.120 3.23e-07 ***
+## blhisp      -0.350940   0.060960  -5.757 9.35e-09 ***
+## totchr       0.774834   0.072534  10.682  &lt; 2e-16 ***
+## ins          0.169602   0.061055   2.778  0.00550 ** 
+## income       0.002657   0.001278   2.079  0.03770 *  
+## --------------------------------------------------------------
+## Outcome equation:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  6.45165    0.22388  28.818  &lt; 2e-16 ***
+## age          0.20218    0.02211   9.146  &lt; 2e-16 ***
+## female       0.28739    0.05507   5.218 1.92e-07 ***
+## educ         0.01334    0.01007   1.325 0.185146    
+## blhisp      -0.20148    0.05637  -3.575 0.000356 ***
+## totchr       0.49158    0.03589  13.696  &lt; 2e-16 ***
+## ins         -0.08050    0.04979  -1.617 0.106042    
+## --------------------------------------------------------------
+## Error terms:
+##        Estimate Std. Error t value Pr(&gt;|t|)    
+## sigma    1.7359     0.0470  36.938   &lt;2e-16 ***
+## rho     -0.3390     0.1411  -2.402   0.0164 *  
+## lambda  -1.6620     0.1434 -11.587   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+</div>
+<div id="nhanes-2003-2004" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Nhanes 2003-2004</h2>
+<p style="text-align: justify;">
+The US National Health and Nutrition Examination Study (NHANES) is a
+survey data collected by the US National Center for Health Statistics.
+The survey data dates back to 1999, where individuals of all ages are
+interviewed in their home annually and complete the health examination
+component of the survey. The study variables include demographic
+variables (e.g. age and annual household income), physical measurements
+(e.g. BMI – body mass index), health variables (e.g. diabetes status),
+and lifestyle variables (e.g. smoking status). This data frame contains
+the following columns:
+</p>
+<ul>
+<li>id: Individual identifier</li>
+<li>age: Age</li>
+<li>gender: Sex 1=male, 0=female</li>
+<li>educ: Education is dichotomized into high school and above versus
+less than high school</li>
+<li>race: categorical variable with five levels</li>
+<li>income: Household income ($1000 per year) was reported as a range of
+values in dollar (e.g. 0–4999, 5000–9999, etc.)</li>
+<li>and had 10 interval categories. *Income: Household income ($1000 per
+year) was reported as a range of values in dollar (e.g. 0–4999,
+5000–9999, etc.)</li>
+<li>and had 10 interval categories.</li>
+<li>bmi: body mass index</li>
+<li>sbp: systolic blood pressure</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">library</span>(ssmodels)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">data</span>(nhanes)</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="fu">attach</span>(nhanes)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>perc <span class="ot">&lt;-</span> <span class="cf">function</span>(x,data){</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>    nna <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(<span class="fu">is.na</span>(x))<span class="sc">!=</span><span class="dv">0</span>,<span class="fu">summary</span>(x)[[<span class="dv">7</span>]],<span class="dv">0</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    perc <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(<span class="fu">is.na</span>(x))<span class="sc">!=</span><span class="dv">0</span>,(nna<span class="sc">/</span><span class="fu">length</span>(data<span class="sc">$</span>id))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">0</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>   <span class="fu">return</span>(perc)</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>}</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>Variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SBP (mm Hg)&quot;</span>, <span class="st">&quot;Age (year)&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;BMI (Kg/$m^{2}$)&quot;</span>, <span class="st">&quot;Education (years)&quot;</span>, <span class="st">&quot;Race&quot;</span>, <span class="st">&quot;Income ($</span><span class="sc">\\</span><span class="st">$1000$ per year)&quot;</span>, <span class="st">&quot;Numbers Obs.&quot;</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>perc1 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(sbp,nhanes), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>perc2 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(age,nhanes), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>perc3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(gender,nhanes), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>perc4 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(bmi,nhanes), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>perc5 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(educ,nhanes), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>perc6 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(race,nhanes), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>perc7 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(Income,nhanes), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a>nObs <span class="ot">&lt;-</span> <span class="fu">length</span>(Income)</span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a>Percentage <span class="ot">&lt;-</span> <span class="fu">c</span>(perc1, perc2, perc3, perc4, perc5, perc6, perc7, nObs)</span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(nhanes, <span class="sc">!</span><span class="fu">is.na</span>(sbp))</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="sc">!</span><span class="fu">is.na</span>(bmi))</span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="fu">attach</span>(df)</span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a>perc11 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(sbp,df), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a>perc12 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(age,df), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a>perc13 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(gender,df), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a>perc14 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(bmi,df), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a>perc15 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(educ,df), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a>perc16 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(race,df), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a>perc17 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">perc</span>(Income,df), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a>nObs1 <span class="ot">&lt;-</span> <span class="fu">length</span>(Income)</span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a>Percentage1 <span class="ot">&lt;-</span> <span class="fu">c</span>(perc11, perc12, perc13, perc14, perc15, perc16, perc17, nObs1)</span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;Variables&quot;</span> <span class="ot">=</span> Variables, <span class="st">&quot;Percentage of Missing&quot;</span><span class="ot">=</span> Percentage, <span class="st">&quot;Without Missing&quot;</span><span class="ot">=</span> Percentage1)</span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="fu">kable</span>(table, <span class="at">format =</span> <span class="st">&quot;html&quot;</span>, <span class="at">align =</span> <span class="fu">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:center;">
+Variables
+</th>
+<th style="text-align:center;">
+Percentage.of.Missing
+</th>
+<th style="text-align:center;">
+Without.Missing
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+SBP (mm Hg)
+</td>
+<td style="text-align:center;">
+34.94
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Age (year)
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Gender
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+BMI (Kg/<span class="math inline">\(m^{2}\)</span>)
+</td>
+<td style="text-align:center;">
+9.91
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Education (years)
+</td>
+<td style="text-align:center;">
+17.22
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Race
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+<td style="text-align:center;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Income (<span class="math inline">\(\$1000\)</span> per year)
+</td>
+<td style="text-align:center;">
+24.41
+</td>
+<td style="text-align:center;">
+25.43
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Numbers Obs.
+</td>
+<td style="text-align:center;">
+9643.00
+</td>
+<td style="text-align:center;">
+6193.00
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;gridExtra&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>barfill <span class="ot">&lt;-</span> <span class="st">&quot;grey&quot;</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>barlines <span class="ot">&lt;-</span> <span class="st">&quot;black&quot;</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(Income)) <span class="sc">+</span> <span class="fu">geom_histogram</span>( <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="fl">0.5</span>), <span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">colour =</span> barlines, <span class="at">fill =</span> barfill)<span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Income&quot;</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>                   <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>),</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>                   <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>))</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="fu">log</span>(sbp))) <span class="sc">+</span> <span class="fu">geom_histogram</span>( <span class="at">colour =</span> barlines, <span class="at">fill =</span> barfill) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Log Systolic blood pressure&quot;</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img role="img" aria-label="Log Systolic blood pressure" src="data:image/png;base64,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" alt="Log Systolic blood pressure" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>df<span class="sc">$</span>YS <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(df<span class="sc">$</span>Income),<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>df<span class="sc">$</span>educ <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>educ<span class="sc">&lt;=</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>df<span class="sc">$</span>Income <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(df<span class="sc">$</span>Income),<span class="dv">0</span>,df<span class="sc">$</span>Income)</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="fu">attach</span>(df)</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>selectionEq <span class="ot">&lt;-</span> YS<span class="sc">~</span>age<span class="sc">+</span>gender<span class="sc">+</span>educ<span class="sc">+</span>race</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>outcomeEq   <span class="ot">&lt;-</span> <span class="fu">log</span>(sbp)<span class="sc">~</span>age<span class="sc">+</span>gender<span class="sc">+</span>educ<span class="sc">+</span>bmi<span class="sc">+</span>Income</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>outcomeBS   <span class="ot">&lt;-</span> sbp<span class="sc">~</span>age<span class="sc">+</span>gender<span class="sc">+</span>educ<span class="sc">+</span>bmi<span class="sc">+</span>Income</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>mCL <span class="ot">&lt;-</span> <span class="fu">HeckmanCL</span>(selectionEq, outcomeEq, <span class="at">data =</span> df)</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>mBS <span class="ot">&lt;-</span> <span class="fu">HeckmanBS</span>(selectionEq, outcomeBS, <span class="at">data =</span> df)</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>mSK <span class="ot">&lt;-</span> <span class="fu">HeckmanSK</span>(selectionEq, outcomeEq, <span class="at">data =</span> df, <span class="at">lambda =</span> <span class="dv">0</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>mtS <span class="ot">&lt;-</span> <span class="fu">HeckmantS</span>(selectionEq, outcomeEq, <span class="at">data =</span> df, <span class="at">df =</span> <span class="dv">15</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>    Parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;gender&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;race&quot;</span>, <span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="st">&quot;gender&quot;</span>, <span class="st">&quot;educ&quot;</span>, <span class="st">&quot;bmi&quot;</span>, <span class="st">&quot;income&quot;</span>, <span class="st">&quot;sigma&quot;</span>, <span class="st">&quot;rho&quot;</span>, <span class="st">&quot;nu&quot;</span>, <span class="st">&quot;lambda&quot;</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>HBS <span class="ot">&lt;-</span> <span class="fu">round</span>(mBS<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">5</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>HCL <span class="ot">&lt;-</span> <span class="fu">round</span>(mCL<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">5</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>HSK <span class="ot">&lt;-</span> <span class="fu">round</span>(mSK<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">5</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>HtS <span class="ot">&lt;-</span> <span class="fu">round</span>(mtS<span class="sc">$</span>coefficients, <span class="at">digits =</span> <span class="dv">5</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>Results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;Parameters&quot;</span><span class="ot">=</span> Parameters, </span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>                      <span class="st">&quot;HeckmanCL&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HCL[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>),</span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a>                      <span class="st">&quot;HeckmanBS&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HBS[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>], <span class="st">&quot;NA&quot;</span>, <span class="st">&quot;NA&quot;</span>), </span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a>                      <span class="st">&quot;HeckmantS&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HtS[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>], HtS[<span class="dv">14</span>], <span class="st">&quot;NA&quot;</span>),</span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a>                      <span class="st">&quot;HeckmanSK&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(HSK[<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>], <span class="st">&quot;NA&quot;</span>, HSK[<span class="dv">14</span>]))</span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a><span class="fu">kable</span>(Results, <span class="at">format =</span> <span class="st">&quot;html&quot;</span>, <span class="at">align =</span> <span class="fu">c</span>(<span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;c&quot;</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:center;">
+Parameters
+</th>
+<th style="text-align:center;">
+HeckmanCL
+</th>
+<th style="text-align:center;">
+HeckmanBS
+</th>
+<th style="text-align:center;">
+HeckmantS
+</th>
+<th style="text-align:center;">
+HeckmanSK
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Intercept
+</td>
+<td style="text-align:center;">
+0.44002
+</td>
+<td style="text-align:center;">
+1.35826
+</td>
+<td style="text-align:center;">
+0.59196
+</td>
+<td style="text-align:center;">
+0.83765
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+age
+</td>
+<td style="text-align:center;">
+0.01113
+</td>
+<td style="text-align:center;">
+0.01352
+</td>
+<td style="text-align:center;">
+0.01031
+</td>
+<td style="text-align:center;">
+0.01066
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+gender
+</td>
+<td style="text-align:center;">
+0.13623
+</td>
+<td style="text-align:center;">
+0.15014
+</td>
+<td style="text-align:center;">
+0.13286
+</td>
+<td style="text-align:center;">
+0.12074
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+educ
+</td>
+<td style="text-align:center;">
+-0.53594
+</td>
+<td style="text-align:center;">
+-0.67408
+</td>
+<td style="text-align:center;">
+-0.59159
+</td>
+<td style="text-align:center;">
+-0.42047
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+race
+</td>
+<td style="text-align:center;">
+-0.07011
+</td>
+<td style="text-align:center;">
+-0.09054
+</td>
+<td style="text-align:center;">
+-0.08609
+</td>
+<td style="text-align:center;">
+-0.04967
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Intercept
+</td>
+<td style="text-align:center;">
+4.51594
+</td>
+<td style="text-align:center;">
+4.52758
+</td>
+<td style="text-align:center;">
+4.54001
+</td>
+<td style="text-align:center;">
+4.63651
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+age
+</td>
+<td style="text-align:center;">
+0.00448
+</td>
+<td style="text-align:center;">
+0.00448
+</td>
+<td style="text-align:center;">
+0.00423
+</td>
+<td style="text-align:center;">
+0.00481
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+gender
+</td>
+<td style="text-align:center;">
+-0.0229
+</td>
+<td style="text-align:center;">
+-0.02341
+</td>
+<td style="text-align:center;">
+-0.02933
+</td>
+<td style="text-align:center;">
+-0.02081
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+educ
+</td>
+<td style="text-align:center;">
+-0.04787
+</td>
+<td style="text-align:center;">
+-0.04731
+</td>
+<td style="text-align:center;">
+-0.04199
+</td>
+<td style="text-align:center;">
+-0.05107
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+bmi
+</td>
+<td style="text-align:center;">
+0.00362
+</td>
+<td style="text-align:center;">
+0.00361
+</td>
+<td style="text-align:center;">
+0.0037
+</td>
+<td style="text-align:center;">
+0.00365
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+income
+</td>
+<td style="text-align:center;">
+0.00044
+</td>
+<td style="text-align:center;">
+0.00039
+</td>
+<td style="text-align:center;">
+0.00052
+</td>
+<td style="text-align:center;">
+0.00034
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+sigma
+</td>
+<td style="text-align:center;">
+0.14354
+</td>
+<td style="text-align:center;">
+96.78292
+</td>
+<td style="text-align:center;">
+0.11916
+</td>
+<td style="text-align:center;">
+0.21735
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+rho
+</td>
+<td style="text-align:center;">
+0.77447
+</td>
+<td style="text-align:center;">
+0.77144
+</td>
+<td style="text-align:center;">
+0.68082
+</td>
+<td style="text-align:center;">
+0.90901
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+nu
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+6.97216
+</td>
+<td style="text-align:center;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+lambda
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+NA
+</td>
+<td style="text-align:center;">
+-1.62376
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">summary</span>(mCL)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##           Classic Heckman Model (Package: ssmodels)           
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 72 
+## Log-Likelihood: -216.546 
+## AIC: 459.0919 BIC: 546.5972 
+## Number of observations: ( 1575 censored and 4618 observed ) 
+## 13 free parameters ( df = 6180 ) 
+## --------------------------------------------------------------
+## Probit selection equation:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.4400250  0.0751788   5.853 5.07e-09 ***
+## age          0.0111344  0.0008816  12.630  &lt; 2e-16 ***
+## gender       0.1362320  0.0344494   3.955 7.75e-05 ***
+## educ        -0.5359430  0.0384988 -13.921  &lt; 2e-16 ***
+## race        -0.0701079  0.0134076  -5.229 1.76e-07 ***
+## --------------------------------------------------------------
+## Outcome equation:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4.516e+00  1.080e-02 418.115  &lt; 2e-16 ***
+## age          4.477e-03  9.126e-05  49.064  &lt; 2e-16 ***
+## gender      -2.290e-02  4.027e-03  -5.687 1.35e-08 ***
+## educ        -4.787e-02  4.864e-03  -9.843  &lt; 2e-16 ***
+## bmi          3.623e-03  2.905e-04  12.474  &lt; 2e-16 ***
+## Income       4.369e-04  7.609e-04   0.574    0.566    
+## --------------------------------------------------------------
+## Error terms:
+##       Estimate Std. Error t value Pr(&gt;|t|)    
+## sigma 0.143540   0.002325   61.74   &lt;2e-16 ***
+## rho   0.774467   0.022220   34.85   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">summary</span>(mtS)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##       t-Student Heckman Model (Package: ssmodels)             
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 58 
+## Log-Likelihood: -160.4791 
+## AIC: 348.9582 BIC: 443.1946 
+## Number of observations: ( 1575 censored and 4618 observed )
+## 14 free parameters ( df = 6179 )
+## --------------------------------------------------------------
+## Probit selection equation:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.591958   0.086278   6.861 7.50e-12 ***
+## age          0.010313   0.001059   9.734  &lt; 2e-16 ***
+## gender       0.132856   0.038423   3.458 0.000548 ***
+## educ        -0.591590   0.043359 -13.644  &lt; 2e-16 ***
+## race        -0.086086   0.015529  -5.544 3.09e-08 ***
+## --------------------------------------------------------------
+## Outcome equation:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4.540e+00  1.065e-02 426.190  &lt; 2e-16 ***
+## age          4.229e-03  9.285e-05  45.552  &lt; 2e-16 ***
+## gender      -2.933e-02  3.754e-03  -7.814 6.46e-15 ***
+## educ        -4.199e-02  4.933e-03  -8.512  &lt; 2e-16 ***
+## bmi          3.702e-03  2.813e-04  13.160  &lt; 2e-16 ***
+## Income       5.151e-04  7.317e-04   0.704    0.481    
+## --------------------------------------------------------------
+## Error terms:
+##       Estimate Std. Error t value Pr(&gt;|t|)    
+## sigma 0.119159   0.003201  37.224   &lt;2e-16 ***
+## rho   0.680824   0.043463  15.664   &lt;2e-16 ***
+## df    6.972158   0.783271   8.901   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">summary</span>(mBS)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##    Birnbaum-Saunders Heckman Model (Package: ssmodels)        
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 74 
+## Log-Likelihood: -22281.2 
+## AIC: 44588.39 BIC: 44675.9 
+## Number of observations: ( 1575 censored and 4618 observed ) 
+## 13 free parameters ( df = 6180 ) 
+## --------------------------------------------------------------
+## Probit selection equation:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.358262   0.094763  14.333  &lt; 2e-16 ***
+## age          0.013520   0.001039  13.014  &lt; 2e-16 ***
+## gender       0.150139   0.043580   3.445 0.000574 ***
+## educ        -0.674081   0.049313 -13.669  &lt; 2e-16 ***
+## race        -0.090541   0.016972  -5.335 9.91e-08 ***
+## --------------------------------------------------------------
+## Outcome equation:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4.5275845  0.0107230 422.233  &lt; 2e-16 ***
+## age          0.0044785  0.0000910  49.213  &lt; 2e-16 ***
+## gender      -0.0234119  0.0040274  -5.813 6.44e-09 ***
+## educ        -0.0473051  0.0048504  -9.753  &lt; 2e-16 ***
+## bmi          0.0036104  0.0002907  12.421  &lt; 2e-16 ***
+## Income       0.0003931  0.0007620   0.516    0.606    
+## --------------------------------------------------------------
+## Error terms:
+##       Estimate Std. Error t value Pr(&gt;|t|)    
+## sigma 96.78292    3.15870   30.64   &lt;2e-16 ***
+## rho    0.77144    0.04535   17.01   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">summary</span>(mSK)</span></code></pre></div>
+<pre><code>## 
+## --------------------------------------------------------------
+##       Skew Normal Heckman Model (Package: ssmodels)           
+## --------------------------------------------------------------
+## --------------------------------------------------------------
+## Maximum Likelihood estimation 
+## optim function with method BFGS - iterations number: 45 
+## Log-Likelihood: -202.82 
+## AIC: 433.6401 BIC: 527.8765 
+## Number of observations: ( 1575 censored and 4618 observed )
+## 14 free parameters ( df = 6179 )
+## --------------------------------------------------------------
+## Probit selection equation:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.8376493  0.0577195  14.512  &lt; 2e-16 ***
+## age          0.0106572  0.0006882  15.486  &lt; 2e-16 ***
+## gender       0.1207434  0.0271668   4.445 8.96e-06 ***
+## educ        -0.4204717  0.0331856 -12.670  &lt; 2e-16 ***
+## race        -0.0496700  0.0105806  -4.694 2.73e-06 ***
+## --------------------------------------------------------------
+## Outcome equation:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4.6365130  0.0122797 377.575  &lt; 2e-16 ***
+## age          0.0048084  0.0001139  42.199  &lt; 2e-16 ***
+## gender      -0.0208051  0.0041517  -5.011 5.56e-07 ***
+## educ        -0.0510738  0.0048687 -10.490  &lt; 2e-16 ***
+## bmi          0.0036457  0.0002900  12.571  &lt; 2e-16 ***
+## Income       0.0003417  0.0007569   0.451    0.652    
+## --------------------------------------------------------------
+## Error terms:
+##        Estimate Std. Error t value Pr(&gt;|t|)    
+## sigma   0.21735    0.01093  19.885   &lt;2e-16 ***
+## rho     0.90901    0.01496  60.747   &lt;2e-16 ***
+## lambda -1.62376    0.18321  -8.863   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## --------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-bastos" class="csl-entry">
+Bastos, Fernando de Souza, and Wagner Barreto-Souza. 2020.
+<span>“Birnbaum–Saunders Sample Selection Model.”</span> <em>Journal of
+Applied Statistics</em>.
+</div>
+<div id="ref-bastosBarreto" class="csl-entry">
+Bastos, Fernando de Souza, Wagner Barreto-Souza, and Marc G Genton.
+2022. <span>“A Generalized Heckman Model with Varying Sample Selection
+Bias and Dispersion Parameters.”</span> <em>Statistica Sinica</em>.
+</div>
+<div id="ref-colin2009microeconometrics" class="csl-entry">
+Colin, Cameron A, and Pravin K Trivedi. 2009. <span>“Microeconometrics
+Using STATA.”</span> <em>Lakeway Drive, TX: Stata Press Books</em>.
+</div>
+<div id="ref-heckman1976common" class="csl-entry">
+Heckman, James J. 1976. <span>“The Common Structure of Statistical
+Models of Truncation, Sample Selection and Limited Dependent Variables
+and a Simple Estimator for Such Models.”</span> In <em>Annals of
+Economic and Social Measurement, Volume 5, Number 4</em>, 475–92. NBER.
+</div>
+<div id="ref-heckman1979sample" class="csl-entry">
+———. 1979. <span>“Sample Selection Bias as a Specification
+Error.”</span> <em>Econometrica: Journal of the Econometric
+Society</em>, 153–61.
+</div>
+<div id="ref-marchenko2012heckman" class="csl-entry">
+Marchenko, Yulia V, and Marc G Genton. 2012. <span>“A Heckman
+Selection-t Model.”</span> <em>Journal of the American Statistical
+Association</em> 107 (497): 304–17.
+</div>
+<div id="ref-ogundimu2016sample" class="csl-entry">
+Ogundimu, Emmanuel O, and Jane L Hutton. 2016. <span>“A Sample Selection
+Model with Skew-Normal Distribution.”</span> <em>Scandinavian Journal of
+Statistics</em> 43 (1): 172–90.
+</div>
+<div id="ref-zhelonkin2016robust" class="csl-entry">
+Zhelonkin, Mikhail, Marc G Genton, and Elvezio Ronchetti. 2016.
+<span>“Robust Inference in Sample Selection Models.”</span> <em>Journal
+of the Royal Statistical Society: Series B (Statistical
+Methodology)</em> 78 (4): 805–27.
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

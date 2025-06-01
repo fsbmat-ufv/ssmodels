@@ -1,0 +1,328 @@
+---
+title: "ssmodels: A package for fit the sample selection models"
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
+    force_captions: yes
+    #highlight: pygments
+    toc: yes
+    #Sumário flutuante
+    #toc_float: true
+    #numerar seções
+    number_sections: true
+    #Mostrar ou esconder os códigos (show ou hide)
+    #code_folding: hide
+    #Diversos modelos de documentos ver outros em http://bootswatch.com/
+    #theme: united
+vignette: >
+  %\VignetteIndexEntry{ssmodels: A package for fit the sample selection models}
+  %\VignetteEngine{knitr::rmarkdown}
+bibliography: "../inst/REFERENCES.bib"
+biblio-style: "apalike"
+---
+
+```{r setup, include=FALSE}
+library(ssmodels)
+library(ggplot2)
+require(knitr)
+require(kfigr)
+library(kableExtra)
+options(knitr.table.format = "latex")
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center", message=FALSE, 
+                      warning=FALSE, fig.height=5, fig.width=7.2)
+```
+
+# Introduction
+
+
+<p style="text-align: justify;">
+In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model (@heckman1976common, @heckman1979sample), and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature by @marchenko2012heckman and the Heckman-Skew model introduced in the literature by @ogundimu2016sample. We also implemented functions to adjust the generalized version of the Heckman model, introduced by @bastosBarreto, that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced by @bastos that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
+</p>
+
+# Real Databases
+
+## MEPS 2001
+<p style="text-align: justify;">
+The MEPS is a set of large-scale surveys of families, individuals and their medical providers (doctors, hospitals, pharmacies, etc.) in the United States. It has data on the health services Americans use, how often they use them, the cost of these services and how they are paid, as well as data on the cost and reach of health insurance available to American workers. The sample is restricted to persons aged between 21 and 64 years and contains a variable response with 3328 observations of outpatient costs, of which 526 (15.8%) correspond to unobserved expenditure values and identified as zero expenditure for adjustment of the models. It also includes the following explanatory variables:
+</p>
+* educ: education status
+* age: Age
+* income: income
+* female: gender
+* vgood: a numeric vector
+* good: a numeric vector
+* hospexp: a numeric vector
+* totchr: number of chronic diseases
+* ffs: a numeric vector
+* dhospexp: a numeric vector
+* age2: a numeric vector
+* agefem: a numeric vector
+* fairpoor: a numeric vector
+* year01: a numeric vector
+* instype: a numeric vector
+* ambexp: a numeric vector
+* lambexp: log ambulatory expenditures
+* blhisp: ethnicity
+* instype_s1: a numeric vector
+* dambexp: dummy variable, ambulatory expenditures
+* lnambx: a numeric vector
+* ins: insurance status
+<p style="text-align: justify;">
+These data were also used by @colin2009microeconometrics, @marchenko2012heckman and @zhelonkin2016robust to fit the classical Heckman and Heckman-t models and the robust version of the two-step method, respectively. We use the variable of interest $Y_{1}^{*}={\rm ambexp}$, which represents expenditure on medical services, on the logarithmic scale, since it is highly asymmetric, see `r figr("fig4", TRUE, type="Figura")`. The variable $Y_{2}^{*}={\rm dambexp},$ representing the willingness to spend, is not observed. We observe $U=1\{Y_{2}^{*}>0\},$ which represents the decision to spend on medical care.
+</p>
+```{r fig4, fig.align= "center", fig.width = 7.2, fig.height= 5, anchor="Figura", fig.alt= "Log of Expenditures Medical"}
+library(ssmodels)
+#Leitura do dados MEPS2001
+data(MEPS2001)
+#tornando visiveis as colunas do data-frame
+attach(MEPS2001)
+barfill <- "grey"
+barlines <- "black"
+p1 <- ggplot(MEPS2001,aes(ambexp))+geom_histogram(colour = barlines, fill = barfill)+
+  scale_x_continuous(name = "(a) Expenditures Medical",
+                     breaks = seq(0, 15000, 2500),
+                     limits=c(0, 15000))+
+  scale_y_continuous(name = "Count",
+                     breaks = seq(0, 800, 100),
+                     limits=c(0, 800))
+p2 <- ggplot(MEPS2001,aes(lambexp))+geom_histogram(colour = barlines, fill = barfill)+
+  scale_x_continuous(name = "(b) Log of Expenditures Medical",
+                     breaks = seq(0, 11, 1),
+                     limits=c(0, 11))+
+  scale_y_continuous(name = "Count",
+                     breaks = seq(0, 300, 100),
+                     limits=c(0, 300))
+gridExtra::grid.arrange(p1, p2, ncol=2)
+```
+<p style="text-align: justify;">
+According @marchenko2012heckman and @zhelonkin2016robust it is natural to fit a sample selection model to such data, since the willingness to spend $(Y_{2}^{*})$ is likely to be related to the expense amount $(Y_{1}^{*}).$ However, after fitting the classic Heckman model and using the Wald, likelihood ratio, or gradient tests for 
+$H_{0}:\rho=0$ against $H_{1}:\rho\neq 0,$ the conclusion is that there is not sufficient evidence $(p\textrm{-valor}>0.1)$ to reject $H_{0},$ that is, there is no bias of selection. @colin2009microeconometrics suspected this conclusion and @marchenko2012heckman argued that a more robust model could evidence the 
+selection bias present in the data and rejected the normality hypothesis of the data. However, we understand that the adjustment of the dispersion and/or the correlation can be an alternative to study these data without the need to modify the assumption of normality of the errors, because as our simulations indicate, the estimations of the parameters obtained by the adjustment of the model Heckman can be more severely affected by heteroscedasticity than by incorrect distribution of error terms.
+</p>
+<p style="text-align: justify;">
+However, due to data asymmetry, we also adjusted the Heckman-BS model. Thus, we consider the following system of equations for classic and generalized Heckman models, Heckman-t and Heckman-Skew:
+</p>
+\begin{align}
+lnambx &= \beta_{1}+ \beta_{2}age + \beta_{3}female + \beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins + \epsilon_{1i}, \label{eq_reg_aplic1} \\
+dambexp&= \gamma_{1}+\gamma_{2}age + \gamma_{3}female + \gamma_{4}educ + \gamma_{5}blhisp + \gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income + \epsilon_{2i}, \label{eq_sel_aplic1} 
+\end{align}
+where errors are defined for classic Heckman models, Heckman-t and Heckman-Skew according to 
+\begin{align}\label{2:disterro}
+\begin{pmatrix}\epsilon_{1i}\\
+\epsilon_{2i}
+\end{pmatrix} &\overset{ind.}{\sim} \mathcal{N}
+\begin{bmatrix}
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}\!\!,&
+\begin{pmatrix}
+\sigma^{2} & \rho\sigma \\
+\sigma\rho & 1
+\end{pmatrix}
+\end{bmatrix}, i=1,\cdots,n,
+\end{align}
+and for generalized Heckman models how
+\begin{align}\label{2:disterro1}
+\begin{pmatrix}\epsilon_{1i}\\
+\epsilon_{2i}
+\end{pmatrix} &\overset{ind.}{\sim} \mathcal{N}
+\begin{bmatrix}
+\begin{pmatrix}
+0\\
+0
+\end{pmatrix}\!\!,&
+\begin{pmatrix}
+\sigma_{i}^{2} & \rho_{i}\sigma_{i} \\
+\sigma_{i}\rho_{i} & 1
+\end{pmatrix}
+\end{bmatrix}, i=1,\cdots,n,
+\end{align}
+in such a way that
+\begin{align*}
+\log{(\sigma_{i})} &= \lambda_{1}+\lambda_{2}age + \lambda_{3}female + \lambda_{4}totchr + \lambda_{5}ins\quad \textrm{and}\\ 
+\rho_{i}&=\tanh{(\kappa_{0})}, i=1,\cdots, 3328.
+\end{align*}
+
+To adjust the Heckman-BS model we consider
+\begin{align*}
+\log\mu_{1i} &= \beta_{1} + \beta_{2}age + \beta_{3}female  + \beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins,\\
+\log\mu_{2i} &= \gamma_{1}+\gamma_{2}age + \gamma_{3}female + \gamma_{4}educ + \gamma_{5}blhisp + 
+\gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income,\quad i=1,2,\cdots,3328. 
+\end{align*}
+<p style="text-align: justify;">
+and $(ambexp,dambexp)$ is independently distributed with Birnbaum-Saunders (BS) Bivariate parameter distribution $\mu_{1}>0, \mu_{2}>0, \phi_{1}=\phi>0, \phi_{2}=1$ and $-1<\rho<1,$ that is, 
+$$(ambexp_{i},dambexp_{i})\stackrel{ind}{\sim}\mbox{ BS}(\mu_{1i},\mu_{2i}, 
+\phi,1,\rho), \mu_{1i}>0, \mu_{2i}>0, \phi>0\quad \textrm{and}\quad -1<\rho<1, i=1,\cdots, n$$
+</p>
+<p style="text-align: justify;">
+We observed similar values for the parameters estimated by all models, mainly the parameters of the variable of interest. However, the only model that allows a direct interpretation of such parameters is the Heckman-BS model. We can, for example, affirm, based on the result of this model, that keeping the other parameters fixed, changing a unit in age represents an increase of $24.6\%$ in ambulatory expenses. For the other models, the interpretation is related to the log of outpatient expenses. See the results of the estimates of the parameters below:
+</p>
+```{r, warning=FALSE}
+selectEq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
+outcomeEq <- lnambx ~ age + female + educ + blhisp + totchr + ins 
+outcomeS <- cbind(age,female,totchr,ins)
+outcomeC <- 1
+outcomeBS <- ambexp ~ age + female + educ + blhisp + totchr + ins 
+mCL <- HeckmanCL(selectEq, outcomeEq, data = MEPS2001)
+mBS <- HeckmanBS(selectEq, outcomeBS, data = MEPS2001)
+mSK <- HeckmanSK(selectEq, outcomeEq, data = MEPS2001,lambda = 1)
+mtS <- HeckmantS(selectEq, outcomeEq, data = MEPS2001,df=12)
+mGe <- HeckmanGe(selectEq, outcomeEq,outcomeS, outcomeC, data = MEPS2001)
+Parameters <- c("Intercept", "age", "female", "educ", "blhisp", "totchr", "ins", "income",
+   "Intercept", "age", "female", "educ", "blhisp", "totchr", "ins", "sigma", "age", "female", "totchr", "ins", "rho", "nu", "lambda")
+HBS <- round(mBS$coefficients, digits = 3)
+HCL <- round(mCL$coefficients, digits = 3)
+HSK <- round(mSK$coefficients, digits = 3)
+HtS <- round(mtS$coefficients, digits = 3)
+HGe <- round(mGe$coefficients, digits = 3)
+Results <- data.frame("Parameters"= Parameters,
+                      "HeckmanGe" = c(HGe[1:21], "NA", "NA"), 
+                      "HeckmanCL" = c(HCL[1:16], "NA", "NA", "NA", "NA", HCL[17], "NA", "NA"),
+                      "HeckmanBS" = c(HBS[1:16], "NA", "NA", "NA", "NA", HBS[17], "NA", "NA"), 
+                      "HeckmantS" = c(HtS[1:16], "NA", "NA", "NA", "NA", HtS[17:18], "NA" ),
+                      "HeckmanSK" = c(HSK[1:16], "NA", "NA", "NA", "NA", HSK[17], "NA", HSK[18]))
+kable(Results, format = "html", align = c("c", "c", "c", "c", "c"))
+```
+<p style="text-align: justify;">
+In addition, there are also the results of the significance of the parameters. The classic Heckman model adjusted to such data indicates no correlation between the variables value spent and the decision to spend. According to @colin2009microeconometrics, such a result is suspect and should be better analyzed. 
+</p>
+```{r, warning=FALSE}
+summary(mCL)
+```
+<p style="text-align: justify;">
+The generalized Heckman model, on the other hand, indicates that there is the presence of heteroscedasticity in the data and, probably, due to this, the classic Heckman model is not the most suitable for modeling these data. Our model, in addition to indicating the presence of variable dispersion, also indicates a significant correlation between the variables amount spent and the decision to spend.
+</p>
+```{r, warning=FALSE}
+summary(mGe)
+```
+<p style="text-align: justify;">
+On the other hand, as the observed data show asymmetry, the Heckman-BS model can be a good indication to adjust such data. Note that the Heckman-BS model also indicates the presence of a significant correlation. It also presents, as previously mentioned, the advantage of parsimony and the direct interpretation of the relationship of the parameters with the response variable of interest.
+</p>
+```{r, warning=FALSE}
+summary(mBS)
+```
+<p style="text-align: justify;">
+The Heckman-t model, even adjusted to the expense log, indicates the presence of deviation from normality, since the degree of freedom parameter is approximately equal to $13$ and is significant. Such a model also observes the significant correlation parameter.
+</p>
+```{r, warning=FALSE}
+summary(mtS)
+```
+<p style="text-align: justify;">
+Finally, the Heckman-Skew model also indicates the presence of a significant correlation between the variables of interest and selection. In addition, it also indicates deviation from the normality of the transformed data. It is important to note that without the data transformation, the iterative method of estimating the parameters of the Heckman-Skew model does not converge.
+</p>
+```{r, warning=FALSE}
+summary(mSK)
+```
+
+
+## Nhanes 2003-2004
+<p style="text-align: justify;">
+The US National Health and Nutrition Examination Study (NHANES) is a survey data collected by the US National Center for Health Statistics. The survey data dates back to 1999, where individuals of all ages are interviewed in their home annually and complete the health examination component of the survey. The study variables include demographic variables (e.g. age and annual household income), physical measurements (e.g. BMI – body mass index), health variables (e.g. diabetes status), and lifestyle variables (e.g. smoking status). This data frame contains the following columns:
+</p>
+* id: Individual identifier
+* age: Age
+* gender: Sex 1=male, 0=female
+* educ: Education is dichotomized into high school and above versus less than high school
+* race: categorical variable with five levels
+* income: Household income ($1000 per year) was reported as a range of values in dollar (e.g. 0–4999, 5000–9999, etc.)
+* and had 10 interval categories. 
+*Income: Household income ($1000 per year) was reported as a range of values in dollar (e.g. 0–4999, 5000–9999, etc.)
+* and had 10 interval categories. 
+* bmi: body mass index
+* sbp: systolic blood pressure
+
+```{r, warning=FALSE}
+library(ssmodels)
+data(nhanes)
+attach(nhanes)
+perc <- function(x,data){
+    nna <- ifelse(sum(is.na(x))!=0,summary(x)[[7]],0)
+    perc <- ifelse(sum(is.na(x))!=0,(nna/length(data$id))*100,0)
+   return(perc)
+}
+Variables <- c("SBP (mm Hg)", "Age (year)", "Gender", "BMI (Kg/$m^{2}$)", "Education (years)", "Race", "Income ($\\$1000$ per year)", "Numbers Obs.")
+perc1 <- round(perc(sbp,nhanes), digits = 2)
+perc2 <- round(perc(age,nhanes), digits = 2)
+perc3 <- round(perc(gender,nhanes), digits = 2)
+perc4 <- round(perc(bmi,nhanes), digits = 2)
+perc5 <- round(perc(educ,nhanes), digits = 2)
+perc6 <- round(perc(race,nhanes), digits = 2)
+perc7 <- round(perc(Income,nhanes), digits = 2)
+nObs <- length(Income)
+Percentage <- c(perc1, perc2, perc3, perc4, perc5, perc6, perc7, nObs)
+df <- subset(nhanes, !is.na(sbp))
+df <- subset(df, !is.na(bmi))
+attach(df)
+perc11 <- round(perc(sbp,df), digits = 2)
+perc12 <- round(perc(age,df), digits = 2)
+perc13 <- round(perc(gender,df), digits = 2)
+perc14 <- round(perc(bmi,df), digits = 2)
+perc15 <- round(perc(educ,df), digits = 2)
+perc16 <- round(perc(race,df), digits = 2)
+perc17 <- round(perc(Income,df), digits = 2)
+nObs1 <- length(Income)
+Percentage1 <- c(perc11, perc12, perc13, perc14, perc15, perc16, perc17, nObs1)
+table <- data.frame("Variables" = Variables, "Percentage of Missing"= Percentage, "Without Missing"= Percentage1)
+kable(table, format = "html", align = c("c", "c", "c"))
+```
+
+```{r, warning=FALSE, fig.alt="Log Systolic blood pressure"}
+library("gridExtra")
+barfill <- "grey"
+barlines <- "black"
+p1 <- ggplot(df, aes(Income)) + geom_histogram( breaks = seq(0, 10, 0.5), aes(y = ..density..), colour = barlines, fill = barfill)+
+  scale_x_continuous(name = "Income",
+                   breaks = seq(0, 10, 2),
+                   limits=c(0, 10))
+
+p2 <- ggplot(df, aes(log(sbp))) + geom_histogram( colour = barlines, fill = barfill) +
+  scale_x_continuous(name = "Log Systolic blood pressure")
+grid.arrange(p1, p2, ncol=2)
+```
+
+```{r, warning = FALSE}
+df$YS <- ifelse(is.na(df$Income),0,1)
+df$educ <- ifelse(df$educ<=2,0,1)
+df$Income <- ifelse(is.na(df$Income),0,df$Income)
+attach(df)
+selectionEq <- YS~age+gender+educ+race
+outcomeEq   <- log(sbp)~age+gender+educ+bmi+Income
+outcomeBS   <- sbp~age+gender+educ+bmi+Income
+mCL <- HeckmanCL(selectionEq, outcomeEq, data = df)
+mBS <- HeckmanBS(selectionEq, outcomeBS, data = df)
+mSK <- HeckmanSK(selectionEq, outcomeEq, data = df, lambda = 0)
+mtS <- HeckmantS(selectionEq, outcomeEq, data = df, df = 15)
+
+    Parameters <- c("Intercept", "age", "gender", "educ", "race", "Intercept", "age", "gender", "educ", "bmi", "income", "sigma", "rho", "nu", "lambda")
+HBS <- round(mBS$coefficients, digits = 5)
+HCL <- round(mCL$coefficients, digits = 5)
+HSK <- round(mSK$coefficients, digits = 5)
+HtS <- round(mtS$coefficients, digits = 5)
+Results <- data.frame("Parameters"= Parameters, 
+                      "HeckmanCL" = c(HCL[1:13], "NA", "NA"),
+                      "HeckmanBS" = c(HBS[1:13], "NA", "NA"), 
+                      "HeckmantS" = c(HtS[1:13], HtS[14], "NA"),
+                      "HeckmanSK" = c(HSK[1:13], "NA", HSK[14]))
+kable(Results, format = "html", align = c("c", "c", "c", "c", "c"))
+```
+
+```{r, warning = FALSE}
+summary(mCL)
+```
+
+```{r, warning = FALSE}
+summary(mtS)
+```
+
+```{r, warning = FALSE}
+summary(mBS)
+```
+
+```{r, warning = FALSE}
+summary(mSK)
+```
+
+
+
+# References
