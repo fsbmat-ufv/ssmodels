@@ -6,27 +6,24 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ssmodels: A package for fit the sample selection models • ssmodels</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- favicons --><link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="ssmodels: A package for fit the sample selection models">
-<meta property="og:description" content="ssmodels">
-<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -40,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ssmodels</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0</span>
       </span>
     </div>
 
@@ -52,7 +49,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -69,7 +66,7 @@
 <li>
   <a href="https://github.com/fsbmat-ufv/ssmodels/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -80,7 +77,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
@@ -117,552 +114,6 @@ Barreto-Souza (2020)</span> that uses the Birnbaum-Saunders distribution
 as a joint distribution of the selection and primary regression
 variables.
 </p>
-<!--
-
-<p style="text-align: justify;">
-Com o objetivo de facilitar o ajuste dos modelos de seleção amostral existentes na literatura, 
-criamos o pacote ssmodels. Nosso pacote permite o ajuste do modelo de Heckman clássico, e a estimação dos parâmetros desse modelo via método de máxima verossimilhança e método de dois passos, além do ajuste dos modelos Heckman-t, introduzido na literatura em 2012 por @marchenko2012heckman e do modelo Heckman-Skew introduzido na literatura por @ogundimu2016sample em 2016. Implementamos, ainda, funções para o ajuste da versão generalizada do modelo de Heckman que permite a inclusão de covariáveis aos parâmetros de dispersão e correlação e uma função para o ajuste do modelo Heckman-BS que utiliza a distribuição Birnbaum-Saunders como distribuição conjunta das variáveis de seleção e regressão primária. 
-</p>
-
-
-
-<p style="text-align: justify;">
-Comparamos nesse texto os resultados obtidos com o ajuste das funções do nosso pacote e funções do pacote sampleSelection de @sampleSelection a dados simulados e também a banco de dados reais que foram incluídos no pacote.
-</p>
-
-# Modelo de Heckman Generalizado
-
-## Simulated data with fixed dispersion and correlation 
-
-<p style="text-align: justify;">
-Inicialmente simulamos variáveis explicativas com distribuição uniforme padrão para as equações de seleção e regressão. Fixamos valores de alguns parâmetros e utilizamos a função ${\it mvtnorm()}$ do pacote mvtnorm de @mvtnorm para simular variáveis $y_{1}$ e $y_{2}$ bivariadas com distribuição normal. A variável $y_{1}$ foi utilizada como resposta de interesse e $y_{2}$ como equação de seleção de tal forma que observamos $yo=y_{1}*1(y_{2}>0).$ Abaixo segue os resultados da simulação.
-</p>
-
-
-```r
-library("mvtnorm") #Pacote para geração dos dados
-set.seed(0) 
-#Parâmetros utilizados:
-sigma <- 2.9
-rho   <- -0.5
-n     <- 100
-gamma0<- 2.2
-gamma1<- -3
-beta0 <- -1
-beta1 <- 2.7
-#Covariáveis
-xs    <- runif(n)
-xo    <- runif(n)
-#Vetor de parâmetros
-b     <- rbind(beta0,beta1)
-g     <- rbind(gamma0,gamma1)
-mu1   <- (as.numeric(model.matrix(~xo) %*% b))
-mu2   <- (as.numeric(model.matrix(~xs) %*% g))
-#Simulação das variáveis bivariadas com distribuição normal
-eps   <- matrix(NA,n,2)
-for(k in 1:n){
-  eps[k,] <- mvtnorm::rmvnorm(1,
-                            c(mu1[k], mu2[k]),
-                            matrix(c(sigma, rho*sigma, rho*sigma, 1), 2, 2))
-}
-#eps <- rmvnorm(1000, c(0,0), matrix(c(sigma, rho*sigma, rho*sigma, 1), 2, 2))
-y1 <- cbind(eps[,1])
-y2 <- cbind(eps[,2])>0
-#Variável de seleção
-ys<-1*y2
-#Variável de interesse primário
-yo<-y1*ys
-```
-
-<p style="text-align: justify;">
-Com os dados acima, obtemos um total de 30 observações censuradas. Ou seja, cerca de $30\%$ dos dados. É importante observar que as covariáveis são independentes e portanto a restrição de exclusão é garantida. Abaixo comparamos os resultados obtidos com o ajuste da função ${\it HeckmanCL()}$ do nosso pacote com a função ${\it selection()}$ do pacote sampleSelection. Observamos, como esperado, os mesmos resultados. Apresentamos na <a href="#fig1">Figura 1</a> o diagrama de dispersão dos dados, círculos negros são resultados observados e círculos vazios representam os dados não observados. A linha sólida representa o ajuste do modelo linear aos dados completos, ou seja, essa é a reta que melhor estima a variável de interesse. A reta tracejada, cor vermelha, representa o modelo de Heckman e a reta tracejada na cor azul representa o modelo linear simples ajustado aos dados observados. É possível inferir que na presença de dados censurados, o modelo de Heckman apresenta estimativas mais realistas do que o modelo linear simples ajustado somente aos dados observados.
-</p>
-
-
-```r
-library(ssmodels)
-m0 <- HeckmanCL(ys~xs,yo~xo)
-summary(m0)
-```
-
-```
-## 
-## --------------------------------------------------------------
-##           Classic Heckman Model (Package: ssmodels)           
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 12 
-## Log-Likelihood: -169.1171 
-## AIC: 350.2342 BIC: 365.8652 
-## Number of observations: ( 30 censored and 70 observed ) 
-## 6 free parameters ( df= 94 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   2.4221     0.4265   5.679 1.51e-07 ***
-## xs           -3.3010     0.6364  -5.187 1.23e-06 ***
-## --------------------------------------------------------------
-## Outcome equation:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -1.6114     0.4051  -3.977 0.000137 ***
-## xo            3.0975     0.6775   4.572 1.47e-05 ***
-## --------------------------------------------------------------
-## Error terms:
-##       Estimate Std. Error t value Pr(>|t|)    
-## sigma   1.5441     0.1508   10.24  < 2e-16 ***
-## rho    -0.6354     0.1775   -3.58 0.000546 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------
-```
-
-```r
-library("sampleSelection")
-m1 <- selection(ys~xs, yo ~xo, method = "ml")
-summary(m1)
-```
-
-```
-## --------------------------------------------
-## Tobit 2 model (sample selection model)
-## Maximum Likelihood estimation
-## Newton-Raphson maximisation, 7 iterations
-## Return code 1: gradient close to zero (gradtol)
-## Log-Likelihood: -169.1171 
-## 100 observations (30 censored and 70 observed)
-## 6 free parameters (df = 94)
-## Probit selection equation:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   2.4220     0.4265   5.679 1.51e-07 ***
-## xs           -3.3009     0.6364  -5.186 1.23e-06 ***
-## Outcome equation:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -1.6114     0.4051  -3.977 0.000137 ***
-## xo            3.0975     0.6775   4.572 1.47e-05 ***
-##    Error terms:
-##       Estimate Std. Error t value Pr(>|t|)    
-## sigma   1.5441     0.1508   10.24  < 2e-16 ***
-## rho    -0.6354     0.1775   -3.58 0.000546 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------
-```
-
-
-<a name="fig1"></a>
-
-```r
-opar <- par(mar=c(2,2,2,0) + 0.9, mgp=c(2,1,0))
-pch <- c(1, 16)
-plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.5, main = "Figura 1: Ajuste dos modelos de Heckman Clássico e modelo linear \n simples a dados simulados com censura.")
-# True dependence
-abline(a=beta0, b=beta1, lty=1, lwd=2)
-# Heckman's model
-abline(a=coef(m0)[3], b=coef(m0)[4], lty=2, col="red", lwd=2)
-# linear model
-cf <- coef(lm(yo ~ xo, subset=ys==1))
-abline(a=cf[1], b=cf[2], lty=3, col="blue", lwd=3)
-```
-
-<img src="vignette_files/figure-html/fig1-1.png" width="691.2" style="display: block; margin: auto;" />
-
-```r
-par(opar)
-```
-
-## Data with variable dispersion and correlation
-<p style="text-align: justify;">
-Simulamos dados normais bivariados com dispersão e correlação variáveis. Nesse caso, comparamos o modelo de Heckman generalizado contra o modelo de Heckman clássico e o modelo linear simples. Observamos que o modelo de Heckman clássico apresentou estimativas dos parâmetros da equação principal semelhantes as estimativas do modelo linear simples, já nosso modelo, apresentou resultados próximos aos valores verdadeiros como podemos observar na <a href="#fig2">Figura 2</a>. 
-</p>
-
-```r
-library("mvtnorm")
-set.seed(0)
-gamma0 <- 0.5
-gamma1 <- -1
-beta0 <- -2
-beta1 <- 2
-lambda0 <- 0.1
-lambda1<- 0.5
-kappa0 <- 0.3
-kappa1 <- -0.5
-a <- rbind(lambda0,lambda1)
-b <- rbind(beta0,beta1)
-g <- rbind(gamma0,gamma1)
-d <- rbind(kappa0,kappa1)
-n <- 200
-xs <- rnorm(n)
-xo <- rnorm(n)
-mu1 <- (as.numeric(model.matrix(~xo) %*% b))
-mu2 <- (as.numeric(model.matrix(~xs) %*% g))
-sigma <- exp(as.numeric(model.matrix(~xo) %*% a))
-rho   <- tanh(as.numeric(model.matrix(~xo) %*% d))
-eps <- matrix(NA,n,2)
-for(k in 1:n){
-  eps[k,] <- mvtnorm::rmvnorm(1,c(mu1[k],mu2[k]),matrix(c((sigma[k])^2,rho[k]*sigma[k],rho[k]*sigma[k],1),2,2))
-}
-y1 <- cbind(eps[,1])
-y2 <- cbind(eps[,2])>0
-ys<-1*y2
-yo<-y1*ys
-```
-
-No caso dos dados simulados acima, observamos 65 valores censurados.
-
-
-```r
-m0 <- HeckmanCL(ys~1+xs, yo ~1+xo)
-summary(m0)
-```
-
-```
-## 
-## --------------------------------------------------------------
-##           Classic Heckman Model (Package: ssmodels)           
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 10 
-## Log-Likelihood: -330.9163 
-## AIC: 673.8326 BIC: 693.6225 
-## Number of observations: ( 65 censored and 135 observed ) 
-## 6 free parameters ( df= 194 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   0.5728     0.1078   5.313 2.95e-07 ***
-## xs           -0.9607     0.1375  -6.989 4.34e-11 ***
-## --------------------------------------------------------------
-## Outcome equation:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -1.9661     0.1666  -11.80   <2e-16 ***
-## xo            1.7702     0.1178   15.03   <2e-16 ***
-## --------------------------------------------------------------
-## Error terms:
-##       Estimate Std. Error t value Pr(>|t|)    
-## sigma  1.40942    0.08715  16.172   <2e-16 ***
-## rho   -0.14490    0.20550  -0.705    0.482    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------
-```
-
-```r
-m1 <- HeckmanGe(ys~xs, yo ~xo, cbind(xo), cbind(xo))
-summary(m1)
-```
-
-```
-## 
-## --------------------------------------------------------------
-##        Generalized Heckman Model (Package: ssmodels)          
-## --------------------------------------------------------------
-## --------------------------------------------------------------
-## Maximum Likelihood estimation 
-## optim function with method BFGS-iterations numbers: 16 
-## Log-Likelihood: -289.7669 
-## AIC: 595.5338 BIC: 621.9204 
-## Number of observations: ( 65 censored and 135 observed ) 
-## 8 free parameters ( df= 192 ) 
-## --------------------------------------------------------------
-## Probit selection equation:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   0.5650     0.1058   5.340 2.61e-07 ***
-## xs           -0.9896     0.1359  -7.282 8.25e-12 ***
-## --------------------------------------------------------------
-## Outcome equation:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -1.89174    0.12762  -14.82   <2e-16 ***
-## xo           2.03231    0.08173   24.87   <2e-16 ***
-## --------------------------------------------------------------
-## Dispersion terms:
-##            Estimate Std. Error t value Pr(>|t|)    
-## interceptS  0.05481    0.06492   0.844      0.4    
-## xo          0.55189    0.06230   8.859 5.43e-16 ***
-## --------------------------------------------------------------
-## Correlation terms:
-##             Estimate Std. Error t value Pr(>|t|)   
-## interceptC -0.006671   0.210477  -0.032  0.97475   
-## xo         -0.635305   0.209722  -3.029  0.00279 **
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## --------------------------------------------------------------
-```
-
-Gráfico
-
-<a name="fig2"></a>
-
-```r
-opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
-pch <- c(1, 16)
-plot(xo, y1, pch=pch[1 + ys], cex=0.5, lwd=0.3, ylim = c(-8,8), main = "Figura 2: Ajuste dos modelos de Heckman Generalizados e Clássico \n e modelo linear simples a dados simulados com censura.")
-# True dependence
-abline(a=beta0, b=beta1, lty=1, lwd=2)
-# Heckman's model
-abline(a=coef(m0)[3], b=coef(m0)[4], lty=2, col="blue", lwd=2)
-# linear model
-m2 <- coef(lm(y1 ~ xo, subset=ys==1))
-abline(a=m2[1], b=m2[2], lty=3, col="green", lwd=2)
-# Heckman Generalized
-abline(a=coef(m1)[3], b=coef(m1)[4], lty=5, col="red")
-```
-
-<img src="vignette_files/figure-html/fig2-1.png" width="691.2" style="display: block; margin: auto;" />
-
-```r
-par(opar)
-```
-
-# Comparison of Parametric Sample Selection Models
-<p style="text-align: justify;">
-@heckman1976common introduziu o modelo de seleção amostral clássico. A maior crítica em relação ao modelo foi a sensibilidade da estimação dos parâmetros à suposição de normailidade dos erros, frequentemente violada na prática. Devido a isso, @heckman1979sample introduziu um método mais prático e eficiente para estimação de parâmetros, tal método ficou conhecido como método de dois passos e é utilizado principalmente como ferramenta para encontrar valores iniciais para algoritmos iterativos de estimação por máxima verossimilhança. Mesmo após os dois trabalhos de Heckman, houve ainda muita discussão em relação a distribuição bivariada dos termos de erro das equações de seleção e regressão. Diversos trabalhos sobre problemas de multicolinearidade, comparações do método de dois passos com outros procedimentos, problema de heterocedásticidade e outros foram publicados. Somente no trabalho de @marchenko2012heckman, 36 (trinta e seis) anos depois, conseguiram substituir a distribuição normal pela distribuição t de Student, que é uma distribuição mais robusta, no sentido de se ajustar melhor a distribuição de dados discrepantes (distantes da média). Após mais mais quatro anos, no trabalho de @ogundimu2016sample, foi introduzido o modelo Heckman-Skew, em que a distribuição normal foi substítuida pela distribuição Skew-Normal e o modelo foi sugerido para ser ajustado a dados assimétricos. 
-</p>
-<p style="text-align: justify;">
-O maior problema dos dois modelos, skew e t de Student, é a necessidade da estimação dos parâmetros de assimetria e de graus de liberdade, respectivamente. Ambos, reconhecidamente difíceis de serem estimados. Além disso, mesmo o modelo Skew sendo para dados assimétricos, em seu ajuste, a distribuição da variável de interesse não pode ser altamente assimétrica, quando este é o caso, devemos transformar a variável de interesse na tentiva de torna-la mais simétrica, o que afeta a interpretação dos parâmetros. Devido a isso, em 2018, introduzimos o modelo Heckman-BS, em que utilizamos a distribuição Birnbaum-Saunders em substituição a distribuição normal. Nosso modelo apresenta várias vantagens quando comparado aos modelos existentes na literatura, além de ser parcimonioso, pois possui a mesma quantidade de parâmetros do modelo clássico de Heckman, ele também é para dados assimétricos e positivos. E a maioria dos bancos de dados em que o modelo de Heckman é ajustado satisfaz tais premissas. Além disso, não necessita da transformação da variável de interesse para seu ajuste, em nenhum caso, o que torna a interpretação dos parâmetros mais realista e direta. Vamos comparar daqui em diante o ajuste e a estimação dos parâmetros dos modelos clássico de Heckman e os modelos Heckman-Skew, Heckman-t e Heckman-BS. Vamos simular dados assimétricos e positivos e também ajustar tais modelos a banco de dados com problemas de viés de seleção existentes na literatura.
-</p>
-## Simulation of asymmetric and positive data
-<p style="text-align: justify;">
-Quando desejamos ajustar um modelo de regressão a uma variável resposta que não é observada em sua totalidade e desconfiamos que a não observação é devido a alguma outra variável não observada, podemos estar diante de um problema de viés de seleção. Neste caso, o ajuste do modelo de Heckman é a principal indicação. No entanto, tais dados, podem ainda ser assimétricos, ou possuir muitas observações distantes da média, ou ainda apresentar heterocedasticidade, o que torna suspeita qualquer estimação obtida com a modelagem clássica de Heckman. Veremos adiante a comparação dos resultados obtidos com o ajuste dos modelos Clássico, Heckman-Skew, Heckman-t e Heckman-BS a dados simulados positivos e assimétricos.  
-</p>
-
-```r
-set.seed(0)
-n=200 #Tamanho das amostras
-#Valores iniciais dos parametros usados para gerar as variaveis. 
-#Ou seja, Valor verdadeiro dos parametros
-#Para manter 30% de censura, manter os seguintes parametros:
-gamma0 <- 1.6
-gamma1 <- 0.8
-gamma2 <- 0.2
-gamma3 <- 0.7
-beta0  <- 1
-beta1  <- 0.7
-beta2  <- 1.1
-phi1   <- 1.2
-phi2   <- 1
-rho    <- -0.5
-lambda <- 1
-nu <- 10
-#Matriz de covariaveis para gerar mu1
-X1 <- rep(1,n)
-X2 <- rnorm(n,0,1)
-X3 <- rnorm(n,0,1)
-X4 <- rnorm(n,0,1)
-XO <- cbind(X2,X3)
-#Matriz de covariaveis para gerar mu2, sem restriao de exclusao
-XS <- cbind(X2,X3,X4)
-#Vetor de valores verdadeiros dos parametros
-b <- rbind(beta0,beta1,beta2)
-g <- rbind(gamma0,gamma1,gamma2,gamma3)
-#Vetor de medias 1
-mu1 <- exp(as.numeric(model.matrix(~XO) %*% b))
-#Vetor de medias 2
-mu2 <- exp(as.numeric(model.matrix(~XS) %*% g))
-
-u1  <-rnorm(n)
-u2  <-rnorm(n)
-z1  <-(((sqrt(1+rho))+(sqrt(1-rho)))/2)*u1+(((sqrt(1+rho))-(sqrt(1-rho)))/2)*u2
-z2  <-(((sqrt(1+rho))-(sqrt(1-rho)))/2)*u1+(((sqrt(1+rho))+(sqrt(1-rho)))/2)*u2
-#################################################################
-#Variaveis (T1,T2)~BSB(mu1,phi1,mu2,1,rho)
-##########################################################
-T1<-(mu1/(1+(1/phi1)))*((1/2)*(sqrt(2/phi1))*z1+sqrt(1+((1/2)*(sqrt(2/phi1))*z1)^2))^2
-T2<-(mu2/(1+(1/phi2)))*((1/2)*(sqrt(2/phi2))*z2+sqrt(1+((1/2)*(sqrt(2/phi2))*z2)^2))^2
-################################################################
-#Variavel indicadora
-######################################
-YS<-1*(T2>1)
-#######################################################
-#Variavel de interesse cuja densidade eh obtida apartir da distribuicao
-#Birnbaum Saunders bivariada, observe que esta eh uma variavel com censura
-#e de acordo com a minha especificacao dos parametros a censura eh de
-#aproximadamente 30%.
-############################################################
-YO<-T1*YS
-```
-
-Observamos 66 valores censurados, ou seja, cerca de 33 porcento dos dados.
-
-
-```r
-#Data frame com os dados simulados
-dt1=data.frame(YO,YS,XO,XS)
-names(dt1) <- c("YO","YS","XO1","XO2","XS1","XS2","XS3")
-selectionEq <- YS~XS1+XS2+XS3
-outcomeEq <- YO~XO1+XO2
-mBS <- HeckmanBS(selectionEq,outcomeEq, data=dt1)
-#Transformacao de y para ajuste dos demais modelos 
-l_YO <- ifelse(YS==1,log(YO),0)
-#Variavel resposta para ajuste dos demais modelos
-dt2=data.frame(l_YO,YS,XO,XS)
-names(dt2) <- c("l_YO","YS","XO1","XO2","XS1","XS2","XS3")
-selection <- YS~XS1+XS2+XS3
-outcome <- l_YO~XO1+XO2
-mCL <- HeckmanCL(selection, outcome, data=dt2)
-mtS <- HeckmantS(selection, outcome, data=dt2, nu)
-mSK <- HeckmanSK(selection, outcome, data=dt2, lambda)
-```
-
-
-Grafico
-
-<a name="fig3"></a>
-
-```r
-opar <- par(mar=c(2,2,3,0) + 0.9, mgp=c(2,1,0))
-library("ggplot2")
-library("gridExtra")
-barfill <- "grey"
-barlines <- "black"
-p1 <- ggplot(dt1, aes(YO)) + geom_histogram(aes(y = ..density..), bins=10, colour = barlines, fill = barfill)+
-  scale_x_continuous(name = "(a) Values of the variable of interest")
-  #                    breaks = seq(0, 125, 25),
-  #                    limits=c(0, 125))+
-  # scale_y_continuous(name = "Count",
-  #                    breaks = seq(0, 0.01, 0.005),
-  #                    limits=c(0,  0.01))
-p2 <- ggplot(dt2, aes(l_YO)) + geom_histogram(aes(y = ..density..), bins=10, colour = barlines, fill = barfill) + scale_x_continuous(name = "(b) Log of values of variable of interest", limits=c(-5, 5))
-  #                    breaks = seq(-5, 5, 1),
-  #                    limits=c(-5, 5))+
-  # scale_y_continuous(name = "Count",
-  #                    breaks = seq(0, 1, 0.2),
-  #                    limits=c(0, 1))
-grid.arrange(p1, p2, ncol=2)
-```
-
-<img src="vignette_files/figure-html/fig3-1.png" width="691.2" style="display: block; margin: auto;" />
-<p style="text-align: justify;">
-O modelo Heckman-BS é ajustado aos dados simulados sem nenhuma transformação, os demais modelos são ajustados ao logaritmo dos dados, os resultados da estimação seguem abaixo. Observem que o modelo Heckman-BS apresenta os melhores resultados, além disso, o intercepto da equação de interesse primário é altamente viesado quando estimado pelos demais modelos. @marchenko2012heckman justifica a importância deste parâmetro na interpretação prática do ajuste do modelo, principalmente em aplicações Econômicas. 
-</p>
-
-```r
-Parameters <- c("$\\gamma_{0}$", "$\\gamma_{1}$", "$\\gamma_{2}$", "$\\gamma_{3}$", "$\\beta_{0}$", "$\\beta_{1}$", "$\\beta_{2}$", "$\\phi$", "$\\rho$", "$\\lambda$", "$\\nu$")
-truevalue <- c(gamma0, gamma1, gamma2, gamma3, beta0, beta1, beta2, phi1, rho, lambda, nu)
-HBS <- round(mBS$coefficients, digits = 3)
-HCL <- round(mCL$coefficients, digits = 3)
-HSK <- round(mSK$coefficients, digits = 3)
-HtS <- round(mtS$coefficients, digits = 3)
-Results <- data.frame("Parameters"= Parameters,
-                      "truevalue" = truevalue,
-                      "HeckmanBS" = c(HBS, "NA", "NA"), 
-                      "HeckmanCL" = c(HCL, "NA", "NA"),
-                      "HeckmantS" = c(HtS[1:9], "NA", HtS[10]),
-                      "HeckmanSK" = c(HSK[1:9], HSK[10], "NA"))
-kable(Results, format = "html", align = c("c", "c", "c", "c", "c"))
-```
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:center;"> Parameters </th>
-   <th style="text-align:center;"> truevalue </th>
-   <th style="text-align:center;"> HeckmanBS </th>
-   <th style="text-align:center;"> HeckmanCL </th>
-   <th style="text-align:center;"> HeckmantS </th>
-   <th style="text-align:center;"> HeckmanSK </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> $\gamma_{0}$ </td>
-   <td style="text-align:center;"> 1.6 </td>
-   <td style="text-align:center;"> 1.54 </td>
-   <td style="text-align:center;"> 0.659 </td>
-   <td style="text-align:center;"> 0.662 </td>
-   <td style="text-align:center;"> 0.685 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\gamma_{1}$ </td>
-   <td style="text-align:center;"> 0.8 </td>
-   <td style="text-align:center;"> 0.816 </td>
-   <td style="text-align:center;"> 0.643 </td>
-   <td style="text-align:center;"> 0.646 </td>
-   <td style="text-align:center;"> 0.642 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\gamma_{2}$ </td>
-   <td style="text-align:center;"> 0.2 </td>
-   <td style="text-align:center;"> 0.018 </td>
-   <td style="text-align:center;"> 0.024 </td>
-   <td style="text-align:center;"> 0.025 </td>
-   <td style="text-align:center;"> 0.024 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\gamma_{3}$ </td>
-   <td style="text-align:center;"> 0.7 </td>
-   <td style="text-align:center;"> 0.747 </td>
-   <td style="text-align:center;"> 0.593 </td>
-   <td style="text-align:center;"> 0.596 </td>
-   <td style="text-align:center;"> 0.593 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\beta_{0}$ </td>
-   <td style="text-align:center;"> 1.0 </td>
-   <td style="text-align:center;"> 0.857 </td>
-   <td style="text-align:center;"> 0.319 </td>
-   <td style="text-align:center;"> 0.32 </td>
-   <td style="text-align:center;"> 0.258 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\beta_{1}$ </td>
-   <td style="text-align:center;"> 0.7 </td>
-   <td style="text-align:center;"> 0.936 </td>
-   <td style="text-align:center;"> 0.972 </td>
-   <td style="text-align:center;"> 0.974 </td>
-   <td style="text-align:center;"> 0.972 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\beta_{2}$ </td>
-   <td style="text-align:center;"> 1.1 </td>
-   <td style="text-align:center;"> 1.136 </td>
-   <td style="text-align:center;"> 1.183 </td>
-   <td style="text-align:center;"> 1.184 </td>
-   <td style="text-align:center;"> 1.183 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\phi$ </td>
-   <td style="text-align:center;"> 1.2 </td>
-   <td style="text-align:center;"> 1.344 </td>
-   <td style="text-align:center;"> 1.086 </td>
-   <td style="text-align:center;"> 1.081 </td>
-   <td style="text-align:center;"> 1.088 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\rho$ </td>
-   <td style="text-align:center;"> -0.5 </td>
-   <td style="text-align:center;"> -0.481 </td>
-   <td style="text-align:center;"> -0.47 </td>
-   <td style="text-align:center;"> -0.47 </td>
-   <td style="text-align:center;"> -0.472 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\lambda$ </td>
-   <td style="text-align:center;"> 1.0 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 0.072 </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> $\nu$ </td>
-   <td style="text-align:center;"> 10.0 </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> NA </td>
-   <td style="text-align:center;"> 137.677 </td>
-   <td style="text-align:center;"> NA </td>
-  </tr>
-</tbody>
-</table>
-
-```r
-#kable_styling(, bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE)
-```
-<p style="text-align: justify;">
-É importante ainda observar que os valores estimados do parâmetro de graus de liberdade do modelo Heckman-t e do parâmetro estimado pelo modelo Heckman-Skew indicam que os dados transformados possuem distribuição normal e, provavelmente por isso, apresentam resultados tão próximos do modelo clássico de Heckman. 
-</p>
--->
 </div>
 <div class="section level2">
 <h2 id="real-databases">Real Databases<a class="anchor" aria-label="anchor" href="#real-databases"></a>
@@ -711,13 +162,13 @@ These data were also used by <span class="citation">Colin and Trivedi
 and <span class="citation">Zhelonkin, Genton, and Ronchetti
 (2016)</span> to fit the classical Heckman and Heckman-t models and the
 robust version of the two-step method, respectively. We use the variable
-of interest <span class="math inline">\(Y_{1}^{*}={\rm ambexp}\)</span>,
+of interest <span class="math inline">$Y_{1}^{*}={\rm ambexp}$</span>,
 which represents expenditure on medical services, on the logarithmic
-scale, since it is highly asymmetric, see <a href="#fig4">Figura 4</a>.
-The variable <span class="math inline">\(Y_{2}^{*}={\rm
-dambexp},\)</span> representing the willingness to spend, is not
-observed. We observe <span class="math inline">\(U=1\{Y_{2}^{*}&gt;0\},\)</span> which represents
-the decision to spend on medical care.
+scale, since it is highly asymmetric, see <a href="#fig4">Figura 1</a>.
+The variable <span class="math inline">$Y_{2}^{*}={\rm dambexp},$</span>
+representing the willingness to spend, is not observed. We observe
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="prefix">{</mo><msubsup><mi>Y</mi><mn>2</mn><mo>*</mo></msubsup><mo>&gt;</mo><mn>0</mn><mo stretchy="false" form="postfix">}</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">U=1\{Y_{2}^{*}&gt;0\},</annotation></semantics></math>
+which represents the decision to spend on medical care.
 </p>
 <a name="fig4"></a>
 </li>
@@ -744,43 +195,46 @@ the decision to spend on medical care.
 <span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Count"</span>,</span>
 <span>                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">300</span>, <span class="fl">100</span><span class="op">)</span>,</span>
 <span>                     limits<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">300</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">grid.arrange</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">gridExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <img src="vignette_files/figure-html/fig4-1.png" width="691.2" style="display: block; margin: auto;"><p style="text-align: justify;">
 According <span class="citation">Marchenko and Genton (2012)</span> and
 <span class="citation">Zhelonkin, Genton, and Ronchetti (2016)</span> it
 is natural to fit a sample selection model to such data, since the
-willingness to spend <span class="math inline">\((Y_{2}^{*})\)</span> is
-likely to be related to the expense amount <span class="math inline">\((Y_{1}^{*}).\)</span> However, after fitting the
-classic Heckman model and using the Wald, likelihood ratio, or gradient
-tests for <span class="math inline">\(H_{0}:\rho=0\)</span> against
-<span class="math inline">\(H_{1}:\rho\neq 0,\)</span> the conclusion is
-that there is not sufficient evidence <span class="math inline">\((p\textrm{-valor}&gt;0.1)\)</span> to reject <span class="math inline">\(H_{0},\)</span> that is, there is no bias of
-selection. <span class="citation">Colin and Trivedi (2009)</span>
-suspected this conclusion and <span class="citation">Marchenko and
-Genton (2012)</span> argued that a more robust model could evidence the
-selection bias present in the data and rejected the normality hypothesis
-of the data. However, we understand that the adjustment of the
-dispersion and/or the correlation can be an alternative to study these
-data without the need to modify the assumption of normality of the
-errors, because as our simulations indicate, the estimations of the
-parameters obtained by the adjustment of the model Heckman can be more
-severely affected by heteroscedasticity than by incorrect distribution
-of error terms.
+willingness to spend
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>Y</mi><mn>2</mn><mo>*</mo></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Y_{2}^{*})</annotation></semantics></math>
+is likely to be related to the expense amount
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>Y</mi><mn>1</mn><mo>*</mo></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">(Y_{1}^{*}).</annotation></semantics></math>
+However, after fitting the classic Heckman model and using the Wald,
+likelihood ratio, or gradient tests for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub><mo>:</mo><mi>ρ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">H_{0}:\rho=0</annotation></semantics></math>
+against
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>1</mn></msub><mo>:</mo><mi>ρ</mi><mo>≠</mo><mn>0</mn><mo>,</mo></mrow><annotation encoding="application/x-tex">H_{1}:\rho\neq 0,</annotation></semantics></math>
+the conclusion is that there is not sufficient evidence
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mtext mathvariant="normal">-valor</mtext><mo>&gt;</mo><mn>0.1</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(p\textrm{-valor}&gt;0.1)</annotation></semantics></math>
+to reject
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">H_{0},</annotation></semantics></math>
+that is, there is no bias of selection. <span class="citation">Colin and
+Trivedi (2009)</span> suspected this conclusion and <span class="citation">Marchenko and Genton (2012)</span> argued that a more
+robust model could evidence the selection bias present in the data and
+rejected the normality hypothesis of the data. However, we understand
+that the adjustment of the dispersion and/or the correlation can be an
+alternative to study these data without the need to modify the
+assumption of normality of the errors, because as our simulations
+indicate, the estimations of the parameters obtained by the adjustment
+of the model Heckman can be more severely affected by heteroscedasticity
+than by incorrect distribution of error terms.
 </p>
 <p style="text-align: justify;">
 However, due to data asymmetry, we also adjusted the Heckman-BS model.
 Thus, we consider the following system of equations for classic and
 generalized Heckman models, Heckman-t and Heckman-Skew:
 </p>
-<p><span class="math display">\[\begin{align}
-lnambx &amp;= \beta_{1}+ \beta_{2}age + \beta_{3}female + \beta_{4}educ
-+ \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins + \epsilon_{1i},
-\label{eq_reg_aplic1} \\
-dambexp&amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female +
-\gamma_{4}educ + \gamma_{5}blhisp + \gamma_{6}totchr + \gamma_{7}ins +
-\gamma_{8}income + \epsilon_{2i}, \label{eq_sel_aplic1}
-\end{align}\]</span> where errors are defined for classic Heckman
-models, Heckman-t and Heckman-Skew according to <span class="math display">\[\begin{align}\label{2:disterro}
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mi>l</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>b</mi><mi>x</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>β</mi><mn>1</mn></msub><mo>+</mo><msub><mi>β</mi><mn>2</mn></msub><mi>a</mi><mi>g</mi><mi>e</mi><mo>+</mo><msub><mi>β</mi><mn>3</mn></msub><mi>f</mi><mi>e</mi><mi>m</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>+</mo><msub><mi>β</mi><mn>4</mn></msub><mi>e</mi><mi>d</mi><mi>u</mi><mi>c</mi><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mi>b</mi><mi>l</mi><mi>h</mi><mi>i</mi><mi>s</mi><mi>p</mi><mo>+</mo><msub><mi>β</mi><mn>6</mn></msub><mi>t</mi><mi>o</mi><mi>t</mi><mi>c</mi><mi>h</mi><mi>r</mi><mo>+</mo><msub><mi>β</mi><mn>7</mn></msub><mi>i</mi><mi>n</mi><mi>s</mi><mo>+</mo><msub><mi>ϵ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>d</mi><mi>a</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>x</mi><mi>p</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>γ</mi><mn>1</mn></msub><mo>+</mo><msub><mi>γ</mi><mn>2</mn></msub><mi>a</mi><mi>g</mi><mi>e</mi><mo>+</mo><msub><mi>γ</mi><mn>3</mn></msub><mi>f</mi><mi>e</mi><mi>m</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>+</mo><msub><mi>γ</mi><mn>4</mn></msub><mi>e</mi><mi>d</mi><mi>u</mi><mi>c</mi><mo>+</mo><msub><mi>γ</mi><mn>5</mn></msub><mi>b</mi><mi>l</mi><mi>h</mi><mi>i</mi><mi>s</mi><mi>p</mi><mo>+</mo><msub><mi>γ</mi><mn>6</mn></msub><mi>t</mi><mi>o</mi><mi>t</mi><mi>c</mi><mi>h</mi><mi>r</mi><mo>+</mo><msub><mi>γ</mi><mn>7</mn></msub><mi>i</mi><mi>n</mi><mi>s</mi><mo>+</mo><msub><mi>γ</mi><mn>8</mn></msub><mi>i</mi><mi>n</mi><mi>c</mi><mi>o</mi><mi>m</mi><mi>e</mi><mo>+</mo><msub><mi>ϵ</mi><mrow><mn>2</mn><mi>i</mi></mrow></msub><mo>,</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align}
+lnambx &amp;= \beta_{1}+ \beta_{2}age + \beta_{3}female + \beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins + \epsilon_{1i}, \label{eq_reg_aplic1} \\
+dambexp&amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female + \gamma_{4}educ + \gamma_{5}blhisp + \gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income + \epsilon_{2i}, \label{eq_sel_aplic1} 
+\end{align}</annotation></semantics></math> where errors are defined for
+classic Heckman models, Heckman-t and Heckman-Skew according to
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>ϵ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>ϵ</mi><mrow><mn>2</mn><mi>i</mi></mrow></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mover><mo>∼</mo><mrow><mi>i</mi><mi>n</mi><mi>d</mi><mi>.</mi></mrow></mover><mi>𝒩</mi><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="-0.167em"></mspace><mspace width="-0.167em"></mspace><mo>,</mo></mtd><mtd columnalign="center" style="text-align: center"><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msup><mi>σ</mi><mn>2</mn></msup></mtd><mtd columnalign="center" style="text-align: center"><mi>ρ</mi><mi>σ</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>σ</mi><mi>ρ</mi></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>,</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mi>n</mi><mo>,</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align}\label{2:disterro}
 \begin{pmatrix}\epsilon_{1i}\\
 \epsilon_{2i}
 \end{pmatrix} &amp;\overset{ind.}{\sim} \mathcal{N}
@@ -794,7 +248,9 @@ models, Heckman-t and Heckman-Skew according to <span class="math display">\[\be
 \sigma\rho &amp; 1
 \end{pmatrix}
 \end{bmatrix}, i=1,\cdots,n,
-\end{align}\]</span> and for generalized Heckman models how <span class="math display">\[\begin{align}\label{2:disterro1}
+\end{align}</annotation></semantics></math> and for generalized Heckman
+models how
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>ϵ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>ϵ</mi><mrow><mn>2</mn><mi>i</mi></mrow></msub></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mover><mo>∼</mo><mrow><mi>i</mi><mi>n</mi><mi>d</mi><mi>.</mi></mrow></mover><mi>𝒩</mi><mrow><mo stretchy="true" form="prefix">[</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="-0.167em"></mspace><mspace width="-0.167em"></mspace><mo>,</mo></mtd><mtd columnalign="center" style="text-align: center"><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msubsup><mi>σ</mi><mi>i</mi><mn>2</mn></msubsup></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>ρ</mi><mi>i</mi></msub><msub><mi>σ</mi><mi>i</mi></msub></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>σ</mi><mi>i</mi></msub><msub><mi>ρ</mi><mi>i</mi></msub></mtd><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><mo stretchy="true" form="postfix">]</mo></mrow><mo>,</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mi>n</mi><mo>,</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align}\label{2:disterro1}
 \begin{pmatrix}\epsilon_{1i}\\
 \epsilon_{2i}
 \end{pmatrix} &amp;\overset{ind.}{\sim} \mathcal{N}
@@ -808,37 +264,38 @@ models, Heckman-t and Heckman-Skew according to <span class="math display">\[\be
 \sigma_{i}\rho_{i} &amp; 1
 \end{pmatrix}
 \end{bmatrix}, i=1,\cdots,n,
-\end{align}\]</span> in such a way that <span class="math display">\[\begin{align*}
-\log{(\sigma_{i})} &amp;= \lambda_{1}+\lambda_{2}age + \lambda_{3}female
-+ \lambda_{4}totchr + \lambda_{5}ins\quad \textrm{and}\\
+\end{align}</annotation></semantics></math> in such a way that
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>σ</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>λ</mi><mn>1</mn></msub><mo>+</mo><msub><mi>λ</mi><mn>2</mn></msub><mi>a</mi><mi>g</mi><mi>e</mi><mo>+</mo><msub><mi>λ</mi><mn>3</mn></msub><mi>f</mi><mi>e</mi><mi>m</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>+</mo><msub><mi>λ</mi><mn>4</mn></msub><mi>t</mi><mi>o</mi><mi>t</mi><mi>c</mi><mi>h</mi><mi>r</mi><mo>+</mo><msub><mi>λ</mi><mn>5</mn></msub><mi>i</mi><mi>n</mi><mi>s</mi><mspace width="1.0em"></mspace><mtext mathvariant="normal">and</mtext></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>ρ</mi><mi>i</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mo>tanh</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>κ</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mn>3328</mn><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+\log{(\sigma_{i})} &amp;= \lambda_{1}+\lambda_{2}age + \lambda_{3}female + \lambda_{4}totchr + \lambda_{5}ins\quad \textrm{and}\\ 
 \rho_{i}&amp;=\tanh{(\kappa_{0})}, i=1,\cdots, 3328.
-\end{align*}\]</span></p>
-To adjust the Heckman-BS model we consider <span class="math display">\[\begin{align*}
-\log\mu_{1i} &amp;= \beta_{1} + \beta_{2}age + \beta_{3}female  +
-\beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins,\\
-\log\mu_{2i} &amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female +
-\gamma_{4}educ + \gamma_{5}blhisp +
-\gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income,\quad
-i=1,2,\cdots,3328.
-\end{align*}\]</span>
-<p style="text-align: justify;">
-and <span class="math inline">\((ambexp,dambexp)\)</span> is
-independently distributed with Birnbaum-Saunders (BS) Bivariate
-parameter distribution <span class="math inline">\(\mu_{1}&gt;0,
-\mu_{2}&gt;0, \phi_{1}=\phi&gt;0, \phi_{2}=1\)</span> and <span class="math inline">\(-1&lt;\rho&lt;1,\)</span> that is, <span class="math display">\[(ambexp_{i},dambexp_{i})\stackrel{ind}{\sim}\mbox{
-BS}(\mu_{1i},\mu_{2i},
-\phi,1,\rho), \mu_{1i}&gt;0, \mu_{2i}&gt;0, \phi&gt;0\quad
-\textrm{and}\quad -1&lt;\rho&lt;1, i=1,\cdots, n\]</span>
-</p>
+\end{align*}</annotation></semantics></math></p>
+To adjust the Heckman-BS model we consider
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mo>log</mo><msub><mi>μ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>β</mi><mn>1</mn></msub><mo>+</mo><msub><mi>β</mi><mn>2</mn></msub><mi>a</mi><mi>g</mi><mi>e</mi><mo>+</mo><msub><mi>β</mi><mn>3</mn></msub><mi>f</mi><mi>e</mi><mi>m</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>+</mo><msub><mi>β</mi><mn>4</mn></msub><mi>e</mi><mi>d</mi><mi>u</mi><mi>c</mi><mo>+</mo><msub><mi>β</mi><mn>5</mn></msub><mi>b</mi><mi>l</mi><mi>h</mi><mi>i</mi><mi>s</mi><mi>p</mi><mo>+</mo><msub><mi>β</mi><mn>6</mn></msub><mi>t</mi><mi>o</mi><mi>t</mi><mi>c</mi><mi>h</mi><mi>r</mi><mo>+</mo><msub><mi>β</mi><mn>7</mn></msub><mi>i</mi><mi>n</mi><mi>s</mi><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mo>log</mo><msub><mi>μ</mi><mrow><mn>2</mn><mi>i</mi></mrow></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msub><mi>γ</mi><mn>1</mn></msub><mo>+</mo><msub><mi>γ</mi><mn>2</mn></msub><mi>a</mi><mi>g</mi><mi>e</mi><mo>+</mo><msub><mi>γ</mi><mn>3</mn></msub><mi>f</mi><mi>e</mi><mi>m</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>+</mo><msub><mi>γ</mi><mn>4</mn></msub><mi>e</mi><mi>d</mi><mi>u</mi><mi>c</mi><mo>+</mo><msub><mi>γ</mi><mn>5</mn></msub><mi>b</mi><mi>l</mi><mi>h</mi><mi>i</mi><mi>s</mi><mi>p</mi><mo>+</mo><msub><mi>γ</mi><mn>6</mn></msub><mi>t</mi><mi>o</mi><mi>t</mi><mi>c</mi><mi>h</mi><mi>r</mi><mo>+</mo><msub><mi>γ</mi><mn>7</mn></msub><mi>i</mi><mi>n</mi><mi>s</mi><mo>+</mo><msub><mi>γ</mi><mn>8</mn></msub><mi>i</mi><mi>n</mi><mi>c</mi><mi>o</mi><mi>m</mi><mi>e</mi><mo>,</mo><mspace width="1.0em"></mspace><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mn>3328</mn><mi>.</mi></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{align*}
+\log\mu_{1i} &amp;= \beta_{1} + \beta_{2}age + \beta_{3}female  + \beta_{4}educ + \beta_{5}blhisp + \beta_{6}totchr + \beta_{7}ins,\\
+\log\mu_{2i} &amp;= \gamma_{1}+\gamma_{2}age + \gamma_{3}female + \gamma_{4}educ + \gamma_{5}blhisp + 
+\gamma_{6}totchr + \gamma_{7}ins + \gamma_{8}income,\quad i=1,2,\cdots,3328. 
+\end{align*}</annotation></semantics></math><p style="text-align: justify;">
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>x</mi><mi>p</mi><mo>,</mo><mi>d</mi><mi>a</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(ambexp,dambexp)</annotation></semantics></math>
+is independently distributed with Birnbaum-Saunders (BS) Bivariate
+parameter distribution
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi><mn>1</mn></msub><mo>&gt;</mo><mn>0</mn><mo>,</mo><msub><mi>μ</mi><mn>2</mn></msub><mo>&gt;</mo><mn>0</mn><mo>,</mo><msub><mi>ϕ</mi><mn>1</mn></msub><mo>=</mo><mi>ϕ</mi><mo>&gt;</mo><mn>0</mn><mo>,</mo><msub><mi>ϕ</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\mu_{1}&gt;0, \mu_{2}&gt;0, \phi_{1}=\phi&gt;0, \phi_{2}=1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn><mo>&lt;</mo><mi>ρ</mi><mo>&lt;</mo><mn>1</mn><mo>,</mo></mrow><annotation encoding="application/x-tex">-1&lt;\rho&lt;1,</annotation></semantics></math>
+that is,
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>x</mi><msub><mi>p</mi><mi>i</mi></msub><mo>,</mo><mi>d</mi><mi>a</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>x</mi><msub><mi>p</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mover><mo>∼</mo><mrow><mi>i</mi><mi>n</mi><mi>d</mi></mrow></mover><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> BS</mtext></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>μ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><mo>,</mo><msub><mi>μ</mi><mrow><mn>2</mn><mi>i</mi></mrow></msub><mo>,</mo><mi>ϕ</mi><mo>,</mo><mn>1</mn><mo>,</mo><mi>ρ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><msub><mi>μ</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><mo>&gt;</mo><mn>0</mn><mo>,</mo><msub><mi>μ</mi><mrow><mn>2</mn><mi>i</mi></mrow></msub><mo>&gt;</mo><mn>0</mn><mo>,</mo><mi>ϕ</mi><mo>&gt;</mo><mn>0</mn><mspace width="1.0em"></mspace><mtext mathvariant="normal">and</mtext><mspace width="1.0em"></mspace><mo>−</mo><mn>1</mn><mo>&lt;</mo><mi>ρ</mi><mo>&lt;</mo><mn>1</mn><mo>,</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>⋯</mi><mo>,</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">(ambexp_{i},dambexp_{i})\stackrel{ind}{\sim}\mbox{ BS}(\mu_{1i},\mu_{2i}, 
+\phi,1,\rho), \mu_{1i}&gt;0, \mu_{2i}&gt;0, \phi&gt;0\quad \textrm{and}\quad -1&lt;\rho&lt;1, i=1,\cdots, n</annotation></semantics></math></p>
 <p style="text-align: justify;">
 We observed similar values for the parameters estimated by all models,
 mainly the parameters of the variable of interest. However, the only
 model that allows a direct interpretation of such parameters is the
 Heckman-BS model. We can, for example, affirm, based on the result of
 this model, that keeping the other parameters fixed, changing a unit in
-age represents an increase of <span class="math inline">\(24.6\%\)</span> in ambulatory expenses. For the
-other models, the interpretation is related to the log of outpatient
-expenses. See the results of the estimates of the parameters below:
+age represents an increase of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>24.6</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">24.6\%</annotation></semantics></math>
+in ambulatory expenses. For the other models, the interpretation is
+related to the log of outpatient expenses. See the results of the
+estimates of the parameters below:
 </p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selectEq</span> <span class="op">&lt;-</span> <span class="va">dambexp</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">blhisp</span> <span class="op">+</span> <span class="va">totchr</span> <span class="op">+</span> <span class="va">ins</span> <span class="op">+</span> <span class="va">income</span></span>
@@ -1181,7 +638,7 @@ ins
 -0.061
 </td>
 <td style="text-align:center;">
--0.052
+-0.053
 </td>
 <td style="text-align:center;">
 -0.08
@@ -1321,7 +778,7 @@ NA
 NA
 </td>
 <td style="text-align:center;">
-12.93
+12.934
 </td>
 <td style="text-align:center;">
 NA
@@ -1364,37 +821,37 @@ such a result is suspect and should be better analyzed.
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 22 </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 62 </span></span>
 <span><span class="co">## Log-Likelihood: -5836.219 </span></span>
 <span><span class="co">## AIC: 11706.44 BIC: 11810.31 </span></span>
 <span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
-<span><span class="co">## 17 free parameters ( df= 3311 ) </span></span>
+<span><span class="co">## 17 free parameters ( df = 3311 ) </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept) -0.676054   0.194029  -3.484  0.00050 ***</span></span>
-<span><span class="co">## age          0.087936   0.027421   3.207  0.00135 ** </span></span>
-<span><span class="co">## female       0.662665   0.060937  10.875  &lt; 2e-16 ***</span></span>
-<span><span class="co">## educ         0.061948   0.012029   5.150 2.76e-07 ***</span></span>
-<span><span class="co">## blhisp      -0.363937   0.061874  -5.882 4.46e-09 ***</span></span>
-<span><span class="co">## totchr       0.796952   0.071130  11.204  &lt; 2e-16 ***</span></span>
-<span><span class="co">## ins          0.170137   0.062871   2.706  0.00684 ** </span></span>
-<span><span class="co">## income       0.002708   0.001316   2.057  0.03973 *  </span></span>
+<span><span class="co">## (Intercept) -0.675796   0.194029  -3.483 0.000502 ***</span></span>
+<span><span class="co">## age          0.087907   0.027421   3.206 0.001360 ** </span></span>
+<span><span class="co">## female       0.662658   0.060937  10.874  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.061937   0.012029   5.149 2.77e-07 ***</span></span>
+<span><span class="co">## blhisp      -0.363964   0.061874  -5.882 4.45e-09 ***</span></span>
+<span><span class="co">## totchr       0.796956   0.071131  11.204  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.170143   0.062871   2.706 0.006840 ** </span></span>
+<span><span class="co">## income       0.002708   0.001316   2.058 0.039677 *  </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Outcome equation:</span></span>
 <span><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  5.04406    0.22813  22.111  &lt; 2e-16 ***</span></span>
-<span><span class="co">## age          0.21197    0.02301   9.213  &lt; 2e-16 ***</span></span>
-<span><span class="co">## female       0.34814    0.06011   5.791 7.64e-09 ***</span></span>
-<span><span class="co">## educ         0.01872    0.01055   1.774 0.076078 .  </span></span>
-<span><span class="co">## blhisp      -0.21857    0.05967  -3.663 0.000253 ***</span></span>
+<span><span class="co">## (Intercept)  5.04423    0.22812  22.112  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.21196    0.02301   9.213  &lt; 2e-16 ***</span></span>
+<span><span class="co">## female       0.34812    0.06012   5.791 7.65e-09 ***</span></span>
+<span><span class="co">## educ         0.01871    0.01055   1.774 0.076175 .  </span></span>
+<span><span class="co">## blhisp      -0.21858    0.05967  -3.663 0.000253 ***</span></span>
 <span><span class="co">## totchr       0.53992    0.03933  13.727  &lt; 2e-16 ***</span></span>
-<span><span class="co">## ins         -0.02999    0.05109  -0.587 0.557260    </span></span>
+<span><span class="co">## ins         -0.02999    0.05109  -0.587 0.557188    </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Error terms:</span></span>
 <span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## sigma  1.27102    0.01838  69.157   &lt;2e-16 ***</span></span>
-<span><span class="co">## rho   -0.13060    0.14708  -0.888    0.375    </span></span>
+<span><span class="co">## sigma  1.27102    0.01838  69.155   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho   -0.13061    0.14709  -0.888    0.375    </span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
@@ -1414,44 +871,44 @@ the variables amount spent and the decision to spend.
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 68 </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 38 </span></span>
 <span><span class="co">## Log-Likelihood: -5804.973 </span></span>
 <span><span class="co">## AIC: 11651.95 BIC: 11780.26 </span></span>
-<span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
-<span><span class="co">## 21 free parameters ( df= 3307 ) </span></span>
+<span><span class="co">## Number of observations: ( 526 censored and 2802 observed )</span></span>
+<span><span class="co">## 21 free parameters ( df = 3307 )</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept) -0.589895   0.184517  -3.197 0.001402 ** </span></span>
-<span><span class="co">## age          0.093828   0.025969   3.613 0.000307 ***</span></span>
-<span><span class="co">## female       0.631622   0.058818  10.739  &lt; 2e-16 ***</span></span>
-<span><span class="co">## educ         0.055187   0.011359   4.858 1.24e-06 ***</span></span>
-<span><span class="co">## blhisp      -0.329940   0.058875  -5.604 2.27e-08 ***</span></span>
-<span><span class="co">## totchr       0.722090   0.068092  10.605  &lt; 2e-16 ***</span></span>
-<span><span class="co">## ins          0.164968   0.060096   2.745 0.006082 ** </span></span>
-<span><span class="co">## income       0.002379   0.001208   1.969 0.049045 *  </span></span>
+<span><span class="co">## (Intercept) -0.589957   0.184520  -3.197 0.001400 ** </span></span>
+<span><span class="co">## age          0.093819   0.025969   3.613 0.000308 ***</span></span>
+<span><span class="co">## female       0.631683   0.058819  10.739  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.055192   0.011359   4.859 1.24e-06 ***</span></span>
+<span><span class="co">## blhisp      -0.329958   0.058876  -5.604 2.26e-08 ***</span></span>
+<span><span class="co">## totchr       0.722141   0.068095  10.605  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.165037   0.060096   2.746 0.006061 ** </span></span>
+<span><span class="co">## income       0.002378   0.001208   1.968 0.049118 *  </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Outcome equation:</span></span>
 <span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  5.8622175  0.1931949  30.344  &lt; 2e-16 ***</span></span>
-<span><span class="co">## age          0.1721672  0.0236647   7.275  4.3e-13 ***</span></span>
-<span><span class="co">## female       0.1498488  0.0554233   2.704  0.00689 ** </span></span>
-<span><span class="co">## educ         0.0009664  0.0101716   0.095  0.92431    </span></span>
-<span><span class="co">## blhisp      -0.1346592  0.0577309  -2.333  0.01973 *  </span></span>
-<span><span class="co">## totchr       0.4131455  0.0285553  14.468  &lt; 2e-16 ***</span></span>
-<span><span class="co">## ins         -0.1090664  0.0513537  -2.124  0.03376 *  </span></span>
+<span><span class="co">## (Intercept)  5.8619289  0.1932014  30.341  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.1721778  0.0236643   7.276 4.28e-13 ***</span></span>
+<span><span class="co">## female       0.1499038  0.0554250   2.705  0.00687 ** </span></span>
+<span><span class="co">## educ         0.0009773  0.0101715   0.096  0.92346    </span></span>
+<span><span class="co">## blhisp      -0.1346999  0.0577302  -2.333  0.01969 *  </span></span>
+<span><span class="co">## totchr       0.4131838  0.0285565  14.469  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins         -0.1090714  0.0513530  -2.124  0.03375 *  </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Dispersion terms:</span></span>
 <span><span class="co">##            Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## interceptS  0.61322    0.06434   9.531  &lt; 2e-16 ***</span></span>
-<span><span class="co">## age        -0.02863    0.01274  -2.247   0.0247 *  </span></span>
-<span><span class="co">## female     -0.12974    0.02849  -4.554 5.46e-06 ***</span></span>
-<span><span class="co">## totchr     -0.11853    0.01849  -6.411 1.66e-10 ***</span></span>
-<span><span class="co">## ins        -0.11224    0.02792  -4.021 5.93e-05 ***</span></span>
+<span><span class="co">## interceptS  0.61318    0.06434   9.530  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age        -0.02862    0.01274  -2.247   0.0247 *  </span></span>
+<span><span class="co">## female     -0.12977    0.02849  -4.555 5.44e-06 ***</span></span>
+<span><span class="co">## totchr     -0.11852    0.01849  -6.410 1.66e-10 ***</span></span>
+<span><span class="co">## ins        -0.11225    0.02792  -4.021 5.93e-05 ***</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Correlation terms:</span></span>
-<span><span class="co">##     Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## rho  -0.6306     0.1024  -6.159  8.2e-10 ***</span></span>
+<span><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## correlation  -0.6305     0.1024  -6.157  8.3e-10 ***</span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
@@ -1471,45 +928,47 @@ parameters with the response variable of interest.
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 26 </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 91 </span></span>
 <span><span class="co">## Log-Likelihood: -24470.39 </span></span>
 <span><span class="co">## AIC: 48974.79 BIC: 49078.66 </span></span>
 <span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
-<span><span class="co">## 17 free parameters ( df= 3311 ) </span></span>
+<span><span class="co">## 17 free parameters ( df = 3311 ) </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  0.117214   0.235265   0.498  0.61836    </span></span>
-<span><span class="co">## age          0.089502   0.031571   2.835  0.00461 ** </span></span>
-<span><span class="co">## female       0.721876   0.069037  10.456  &lt; 2e-16 ***</span></span>
-<span><span class="co">## educ         0.068319   0.014689   4.651 3.43e-06 ***</span></span>
-<span><span class="co">## blhisp      -0.399014   0.074350  -5.367 8.57e-08 ***</span></span>
-<span><span class="co">## totchr       0.805651   0.068209  11.812  &lt; 2e-16 ***</span></span>
-<span><span class="co">## ins          0.179379   0.073102   2.454  0.01419 *  </span></span>
-<span><span class="co">## income       0.003425   0.001430   2.395  0.01668 *  </span></span>
+<span><span class="co">## (Intercept)  0.117126   0.235264   0.498   0.6186    </span></span>
+<span><span class="co">## age          0.089529   0.031571   2.836   0.0046 ** </span></span>
+<span><span class="co">## female       0.721894   0.069037  10.457  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.068323   0.014689   4.651 3.43e-06 ***</span></span>
+<span><span class="co">## blhisp      -0.398979   0.074350  -5.366 8.59e-08 ***</span></span>
+<span><span class="co">## totchr       0.805603   0.068208  11.811  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.179313   0.073103   2.453   0.0142 *  </span></span>
+<span><span class="co">## income       0.003424   0.001430   2.394   0.0167 *  </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Outcome equation:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  5.778691   0.172658  33.469  &lt; 2e-16 ***</span></span>
-<span><span class="co">## age          0.246156   0.022143  11.117  &lt; 2e-16 ***</span></span>
-<span><span class="co">## female       0.410538   0.048236   8.511  &lt; 2e-16 ***</span></span>
+<span><span class="co">## (Intercept)  5.778625   0.172656  33.469  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.246171   0.022143  11.117  &lt; 2e-16 ***</span></span>
+<span><span class="co">## female       0.410567   0.048235   8.512  &lt; 2e-16 ***</span></span>
 <span><span class="co">## educ        -0.006632   0.009890  -0.671    0.503    </span></span>
-<span><span class="co">## blhisp      -0.215212   0.053172  -4.047  5.3e-05 ***</span></span>
-<span><span class="co">## totchr       0.588751   0.034299  17.165  &lt; 2e-16 ***</span></span>
-<span><span class="co">## ins         -0.061326   0.049610  -1.236    0.216    </span></span>
+<span><span class="co">## blhisp      -0.215177   0.053171  -4.047 5.31e-05 ***</span></span>
+<span><span class="co">## totchr       0.588729   0.034298  17.165  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins         -0.061373   0.049609  -1.237    0.216    </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Error terms:</span></span>
 <span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## sigma  0.70281    0.02072  33.917  &lt; 2e-16 ***</span></span>
-<span><span class="co">## rho    0.27305    0.05737   4.759 2.02e-06 ***</span></span>
+<span><span class="co">## sigma  0.70282    0.02072   33.92   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho    0.27307    0.11474    2.38   0.0174 *  </span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
 <p style="text-align: justify;">
 The Heckman-t model, even adjusted to the expense log, indicates the
 presence of deviation from normality, since the degree of freedom
-parameter is approximately equal to <span class="math inline">\(13\)</span> and is significant. Such a model also
-observes the significant correlation parameter.
+parameter is approximately equal to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>13</mn><annotation encoding="application/x-tex">13</annotation></semantics></math>
+and is significant. Such a model also observes the significant
+correlation parameter.
 </p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mtS</span><span class="op">)</span></span></code></pre></div>
@@ -1519,38 +978,38 @@ observes the significant correlation parameter.
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 25 </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 69 </span></span>
 <span><span class="co">## Log-Likelihood: -5822.076 </span></span>
 <span><span class="co">## AIC: 11680.15 BIC: 11790.13 </span></span>
-<span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
-<span><span class="co">## 18 free parameters ( df= 3310 ) </span></span>
+<span><span class="co">## Number of observations: ( 526 censored and 2802 observed )</span></span>
+<span><span class="co">## 18 free parameters ( df = 3310 )</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept) -0.747972   0.207700  -3.601 0.000321 ***</span></span>
-<span><span class="co">## age          0.098549   0.029746   3.313 0.000933 ***</span></span>
-<span><span class="co">## female       0.724862   0.068559  10.573  &lt; 2e-16 ***</span></span>
-<span><span class="co">## educ         0.064839   0.012805   5.063 4.34e-07 ***</span></span>
-<span><span class="co">## blhisp      -0.393569   0.066529  -5.916 3.64e-09 ***</span></span>
-<span><span class="co">## totchr       0.890081   0.087252  10.201  &lt; 2e-16 ***</span></span>
-<span><span class="co">## ins          0.180029   0.068010   2.647 0.008157 ** </span></span>
-<span><span class="co">## income       0.002978   0.001447   2.058 0.039636 *  </span></span>
+<span><span class="co">## (Intercept) -0.748019   0.207687  -3.602 0.000321 ***</span></span>
+<span><span class="co">## age          0.098534   0.029744   3.313 0.000934 ***</span></span>
+<span><span class="co">## female       0.724842   0.068540  10.575  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ         0.064846   0.012805   5.064 4.32e-07 ***</span></span>
+<span><span class="co">## blhisp      -0.393556   0.066523  -5.916 3.63e-09 ***</span></span>
+<span><span class="co">## totchr       0.890059   0.087203  10.207  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins          0.180016   0.068006   2.647 0.008157 ** </span></span>
+<span><span class="co">## income       0.002978   0.001447   2.059 0.039610 *  </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Outcome equation:</span></span>
 <span><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  5.20584    0.20961  24.835  &lt; 2e-16 ***</span></span>
-<span><span class="co">## age          0.20683    0.02260   9.152  &lt; 2e-16 ***</span></span>
-<span><span class="co">## female       0.30653    0.05640   5.435 5.87e-08 ***</span></span>
-<span><span class="co">## educ         0.01731    0.01026   1.688 0.091591 .  </span></span>
-<span><span class="co">## blhisp      -0.19297    0.05775  -3.342 0.000842 ***</span></span>
-<span><span class="co">## totchr       0.51271    0.03583  14.310  &lt; 2e-16 ***</span></span>
-<span><span class="co">## ins         -0.05250    0.05048  -1.040 0.298439    </span></span>
+<span><span class="co">## (Intercept)  5.20589    0.20878  24.935  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.20683    0.02259   9.156  &lt; 2e-16 ***</span></span>
+<span><span class="co">## female       0.30651    0.05623   5.451 5.39e-08 ***</span></span>
+<span><span class="co">## educ         0.01732    0.01025   1.690 0.091140 .  </span></span>
+<span><span class="co">## blhisp      -0.19293    0.05769  -3.345 0.000833 ***</span></span>
+<span><span class="co">## totchr       0.51269    0.03571  14.356  &lt; 2e-16 ***</span></span>
+<span><span class="co">## ins         -0.05251    0.05046  -1.041 0.298161    </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Error terms:</span></span>
 <span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## sigma  1.19485    0.02365  50.524  &lt; 2e-16 ***</span></span>
-<span><span class="co">## rho   -0.32199    0.12210  -2.637   0.0084 ** </span></span>
-<span><span class="co">## df    12.93032    2.85903   4.523 6.32e-06 ***</span></span>
+<span><span class="co">## sigma  1.19489    0.02567  46.548  &lt; 2e-16 ***</span></span>
+<span><span class="co">## rho   -0.32217    0.11454  -2.813  0.00494 ** </span></span>
+<span><span class="co">## df    12.93434    2.85502   4.530  6.1e-06 ***</span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
@@ -1570,11 +1029,11 @@ Heckman-Skew model does not converge.
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 79 </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 79 </span></span>
 <span><span class="co">## Log-Likelihood: -5805.744 </span></span>
 <span><span class="co">## AIC: 11647.49 BIC: 11757.47 </span></span>
-<span><span class="co">## Number of observations: ( 526 censored and 2802 observed ) </span></span>
-<span><span class="co">## 18 free parameters ( df= 3310 ) </span></span>
+<span><span class="co">## Number of observations: ( 526 censored and 2802 observed )</span></span>
+<span><span class="co">## 18 free parameters ( df = 3310 )</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
@@ -1717,7 +1176,8 @@ Gender
 </tr>
 <tr>
 <td style="text-align:center;">
-BMI (Kg/<span class="math inline">\(m^{2}\)</span>)
+BMI
+(Kg/<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>m</mi><mn>2</mn></msup><annotation encoding="application/x-tex">m^{2}</annotation></semantics></math>)
 </td>
 <td style="text-align:center;">
 9.91
@@ -1750,7 +1210,9 @@ Race
 </tr>
 <tr>
 <td style="text-align:center;">
-Income (<span class="math inline">\(\$1000\)</span> per year)
+Income
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>$</mi><mn>1000</mn></mrow><annotation encoding="application/x-tex">\$1000</annotation></semantics></math>
+per year)
 </td>
 <td style="text-align:center;">
 24.41
@@ -1785,7 +1247,7 @@ Numbers Obs.
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">sbp</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span> colour <span class="op">=</span> <span class="va">barlines</span>, fill <span class="op">=</span> <span class="va">barfill</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Log Systolic blood pressure"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="vignette_files/figure-html/unnamed-chunk-15-1.png" width="691.2" style="display: block; margin: auto;"></p>
+<p><img src="vignette_files/figure-html/unnamed-chunk-8-1.png" width="691.2" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span><span class="op">$</span><span class="va">YS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">Income</span><span class="op">)</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">df</span><span class="op">$</span><span class="va">educ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">educ</span><span class="op">&lt;=</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span>
@@ -1834,13 +1296,13 @@ HeckmanSK
 Intercept
 </td>
 <td style="text-align:center;">
-0.44001
+0.44002
 </td>
 <td style="text-align:center;">
-1.35518
+1.35826
 </td>
 <td style="text-align:center;">
-0.50396
+0.59196
 </td>
 <td style="text-align:center;">
 0.83765
@@ -1854,10 +1316,10 @@ age
 0.01113
 </td>
 <td style="text-align:center;">
-0.01349
+0.01352
 </td>
 <td style="text-align:center;">
-0.01079
+0.01031
 </td>
 <td style="text-align:center;">
 0.01066
@@ -1868,13 +1330,13 @@ age
 gender
 </td>
 <td style="text-align:center;">
-0.13624
+0.13623
 </td>
 <td style="text-align:center;">
-0.15098
+0.15014
 </td>
 <td style="text-align:center;">
-0.1373
+0.13286
 </td>
 <td style="text-align:center;">
 0.12074
@@ -1888,10 +1350,10 @@ educ
 -0.53594
 </td>
 <td style="text-align:center;">
--0.67172
+-0.67408
 </td>
 <td style="text-align:center;">
--0.55715
+-0.59159
 </td>
 <td style="text-align:center;">
 -0.42047
@@ -1905,10 +1367,10 @@ race
 -0.07011
 </td>
 <td style="text-align:center;">
--0.09013
+-0.09054
 </td>
 <td style="text-align:center;">
--0.07708
+-0.08609
 </td>
 <td style="text-align:center;">
 -0.04967
@@ -1922,10 +1384,10 @@ Intercept
 4.51594
 </td>
 <td style="text-align:center;">
-4.52773
+4.52758
 </td>
 <td style="text-align:center;">
-4.52781
+4.54001
 </td>
 <td style="text-align:center;">
 4.63651
@@ -1942,7 +1404,7 @@ age
 0.00448
 </td>
 <td style="text-align:center;">
-0.00435
+0.00423
 </td>
 <td style="text-align:center;">
 0.00481
@@ -1956,10 +1418,10 @@ gender
 -0.0229
 </td>
 <td style="text-align:center;">
--0.02355
+-0.02341
 </td>
 <td style="text-align:center;">
--0.02622
+-0.02933
 </td>
 <td style="text-align:center;">
 -0.02081
@@ -1970,13 +1432,13 @@ gender
 educ
 </td>
 <td style="text-align:center;">
--0.04788
+-0.04787
 </td>
 <td style="text-align:center;">
--0.0474
+-0.04731
 </td>
 <td style="text-align:center;">
--0.04532
+-0.04199
 </td>
 <td style="text-align:center;">
 -0.05107
@@ -1993,7 +1455,7 @@ bmi
 0.00361
 </td>
 <td style="text-align:center;">
-0.00367
+0.0037
 </td>
 <td style="text-align:center;">
 0.00365
@@ -2007,10 +1469,10 @@ income
 0.00044
 </td>
 <td style="text-align:center;">
-4e-04
+0.00039
 </td>
 <td style="text-align:center;">
-0.00049
+0.00052
 </td>
 <td style="text-align:center;">
 0.00034
@@ -2024,10 +1486,10 @@ sigma
 0.14354
 </td>
 <td style="text-align:center;">
-96.68214
+96.78292
 </td>
 <td style="text-align:center;">
-0.13023
+0.11916
 </td>
 <td style="text-align:center;">
 0.21735
@@ -2038,13 +1500,13 @@ sigma
 rho
 </td>
 <td style="text-align:center;">
-0.77446
+0.77447
 </td>
 <td style="text-align:center;">
-0.77208
+0.77144
 </td>
 <td style="text-align:center;">
-0.7398
+0.68082
 </td>
 <td style="text-align:center;">
 0.90901
@@ -2061,7 +1523,7 @@ NA
 NA
 </td>
 <td style="text-align:center;">
-14.40706
+6.97216
 </td>
 <td style="text-align:center;">
 NA
@@ -2094,33 +1556,33 @@ NA
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 27 </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 72 </span></span>
 <span><span class="co">## Log-Likelihood: -216.546 </span></span>
 <span><span class="co">## AIC: 459.0919 BIC: 546.5972 </span></span>
 <span><span class="co">## Number of observations: ( 1575 censored and 4618 observed ) </span></span>
-<span><span class="co">## 13 free parameters ( df= 6180 ) </span></span>
+<span><span class="co">## 13 free parameters ( df = 6180 ) </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  0.4400117  0.0751789   5.853 5.08e-09 ***</span></span>
-<span><span class="co">## age          0.0111345  0.0008816  12.630  &lt; 2e-16 ***</span></span>
-<span><span class="co">## gender       0.1362360  0.0344494   3.955 7.75e-05 ***</span></span>
-<span><span class="co">## educ        -0.5359397  0.0384988 -13.921  &lt; 2e-16 ***</span></span>
-<span><span class="co">## race        -0.0701069  0.0134076  -5.229 1.76e-07 ***</span></span>
+<span><span class="co">## (Intercept)  0.4400250  0.0751788   5.853 5.07e-09 ***</span></span>
+<span><span class="co">## age          0.0111344  0.0008816  12.630  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender       0.1362320  0.0344494   3.955 7.75e-05 ***</span></span>
+<span><span class="co">## educ        -0.5359430  0.0384988 -13.921  &lt; 2e-16 ***</span></span>
+<span><span class="co">## race        -0.0701079  0.0134076  -5.229 1.76e-07 ***</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Outcome equation:</span></span>
 <span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  4.516e+00  1.080e-02 418.113  &lt; 2e-16 ***</span></span>
+<span><span class="co">## (Intercept)  4.516e+00  1.080e-02 418.115  &lt; 2e-16 ***</span></span>
 <span><span class="co">## age          4.477e-03  9.126e-05  49.064  &lt; 2e-16 ***</span></span>
 <span><span class="co">## gender      -2.290e-02  4.027e-03  -5.687 1.35e-08 ***</span></span>
-<span><span class="co">## educ        -4.788e-02  4.864e-03  -9.844  &lt; 2e-16 ***</span></span>
+<span><span class="co">## educ        -4.787e-02  4.864e-03  -9.843  &lt; 2e-16 ***</span></span>
 <span><span class="co">## bmi          3.623e-03  2.905e-04  12.474  &lt; 2e-16 ***</span></span>
 <span><span class="co">## Income       4.369e-04  7.609e-04   0.574    0.566    </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Error terms:</span></span>
 <span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## sigma 0.143541   0.002325   61.74   &lt;2e-16 ***</span></span>
-<span><span class="co">## rho   0.774464   0.022220   34.85   &lt;2e-16 ***</span></span>
+<span><span class="co">## sigma 0.143540   0.002325   61.74   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho   0.774467   0.022220   34.85   &lt;2e-16 ***</span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
@@ -2132,34 +1594,34 @@ NA
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 100 </span></span>
-<span><span class="co">## Log-Likelihood: -172.8373 </span></span>
-<span><span class="co">## AIC: 373.6746 BIC: 467.911 </span></span>
-<span><span class="co">## Number of observations: ( 1575 censored and 4618 observed ) </span></span>
-<span><span class="co">## 14 free parameters ( df= 6179 ) </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 58 </span></span>
+<span><span class="co">## Log-Likelihood: -160.4791 </span></span>
+<span><span class="co">## AIC: 348.9582 BIC: 443.1946 </span></span>
+<span><span class="co">## Number of observations: ( 1575 censored and 4618 observed )</span></span>
+<span><span class="co">## 14 free parameters ( df = 6179 )</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  0.503962   0.079702   6.323 2.74e-10 ***</span></span>
-<span><span class="co">## age          0.010794   0.001004  10.747  &lt; 2e-16 ***</span></span>
-<span><span class="co">## gender       0.137302   0.036467   3.765 0.000168 ***</span></span>
-<span><span class="co">## educ        -0.557147   0.040707 -13.687  &lt; 2e-16 ***</span></span>
-<span><span class="co">## race        -0.077080   0.014286  -5.395 7.09e-08 ***</span></span>
+<span><span class="co">## (Intercept)  0.591958   0.086278   6.861 7.50e-12 ***</span></span>
+<span><span class="co">## age          0.010313   0.001059   9.734  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender       0.132856   0.038423   3.458 0.000548 ***</span></span>
+<span><span class="co">## educ        -0.591590   0.043359 -13.644  &lt; 2e-16 ***</span></span>
+<span><span class="co">## race        -0.086086   0.015529  -5.544 3.09e-08 ***</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Outcome equation:</span></span>
 <span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  4.528e+00  1.044e-02 433.844  &lt; 2e-16 ***</span></span>
-<span><span class="co">## age          4.348e-03  8.977e-05  48.436  &lt; 2e-16 ***</span></span>
-<span><span class="co">## gender      -2.622e-02  3.844e-03  -6.822  9.8e-12 ***</span></span>
-<span><span class="co">## educ        -4.532e-02  4.959e-03  -9.139  &lt; 2e-16 ***</span></span>
-<span><span class="co">## bmi          3.672e-03  2.854e-04  12.864  &lt; 2e-16 ***</span></span>
-<span><span class="co">## Income       4.896e-04  7.432e-04   0.659     0.51    </span></span>
+<span><span class="co">## (Intercept)  4.540e+00  1.065e-02 426.190  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          4.229e-03  9.285e-05  45.552  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender      -2.933e-02  3.754e-03  -7.814 6.46e-15 ***</span></span>
+<span><span class="co">## educ        -4.199e-02  4.933e-03  -8.512  &lt; 2e-16 ***</span></span>
+<span><span class="co">## bmi          3.702e-03  2.813e-04  13.160  &lt; 2e-16 ***</span></span>
+<span><span class="co">## Income       5.151e-04  7.317e-04   0.704    0.481    </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Error terms:</span></span>
-<span><span class="co">##        Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## sigma  0.130226   0.001353   96.26   &lt;2e-16 ***</span></span>
-<span><span class="co">## rho    0.739803   0.050805   14.56   &lt;2e-16 ***</span></span>
-<span><span class="co">## df    14.407064   1.097547   13.13   &lt;2e-16 ***</span></span>
+<span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## sigma 0.119159   0.003201  37.224   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho   0.680824   0.043463  15.664   &lt;2e-16 ***</span></span>
+<span><span class="co">## df    6.972158   0.783271   8.901   &lt;2e-16 ***</span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
@@ -2171,33 +1633,33 @@ NA
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 76 </span></span>
-<span><span class="co">## Log-Likelihood: -22281.19 </span></span>
-<span><span class="co">## AIC: 44588.38 BIC: 44675.89 </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 74 </span></span>
+<span><span class="co">## Log-Likelihood: -22281.2 </span></span>
+<span><span class="co">## AIC: 44588.39 BIC: 44675.9 </span></span>
 <span><span class="co">## Number of observations: ( 1575 censored and 4618 observed ) </span></span>
-<span><span class="co">## 13 free parameters ( df= 6180 ) </span></span>
+<span><span class="co">## 13 free parameters ( df = 6180 ) </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  1.355185   0.094721  14.307  &lt; 2e-16 ***</span></span>
-<span><span class="co">## age          0.013492   0.001039  12.984  &lt; 2e-16 ***</span></span>
-<span><span class="co">## gender       0.150982   0.043582   3.464 0.000535 ***</span></span>
-<span><span class="co">## educ        -0.671716   0.049316 -13.621  &lt; 2e-16 ***</span></span>
-<span><span class="co">## race        -0.090127   0.016965  -5.313 1.12e-07 ***</span></span>
+<span><span class="co">## (Intercept)  1.358262   0.094763  14.333  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.013520   0.001039  13.014  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender       0.150139   0.043580   3.445 0.000574 ***</span></span>
+<span><span class="co">## educ        -0.674081   0.049313 -13.669  &lt; 2e-16 ***</span></span>
+<span><span class="co">## race        -0.090541   0.016972  -5.335 9.91e-08 ***</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Outcome equation:</span></span>
 <span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)  4.528e+00  1.072e-02 422.194  &lt; 2e-16 ***</span></span>
-<span><span class="co">## age          4.478e-03  9.105e-05  49.182  &lt; 2e-16 ***</span></span>
-<span><span class="co">## gender      -2.355e-02  4.029e-03  -5.844 5.36e-09 ***</span></span>
-<span><span class="co">## educ        -4.740e-02  4.851e-03  -9.772  &lt; 2e-16 ***</span></span>
-<span><span class="co">## bmi          3.610e-03  2.907e-04  12.418  &lt; 2e-16 ***</span></span>
-<span><span class="co">## Income       3.974e-04  7.621e-04   0.522    0.602    </span></span>
+<span><span class="co">## (Intercept)  4.5275845  0.0107230 422.233  &lt; 2e-16 ***</span></span>
+<span><span class="co">## age          0.0044785  0.0000910  49.213  &lt; 2e-16 ***</span></span>
+<span><span class="co">## gender      -0.0234119  0.0040274  -5.813 6.44e-09 ***</span></span>
+<span><span class="co">## educ        -0.0473051  0.0048504  -9.753  &lt; 2e-16 ***</span></span>
+<span><span class="co">## bmi          0.0036104  0.0002907  12.421  &lt; 2e-16 ***</span></span>
+<span><span class="co">## Income       0.0003931  0.0007620   0.516    0.606    </span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Error terms:</span></span>
 <span><span class="co">##       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## sigma 96.68214    3.15376   30.66   &lt;2e-16 ***</span></span>
-<span><span class="co">## rho    0.77208    0.02258   34.20   &lt;2e-16 ***</span></span>
+<span><span class="co">## sigma 96.78292    3.15870   30.64   &lt;2e-16 ***</span></span>
+<span><span class="co">## rho    0.77144    0.04535   17.01   &lt;2e-16 ***</span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span></code></pre>
@@ -2209,11 +1671,11 @@ NA
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Maximum Likelihood estimation </span></span>
-<span><span class="co">## optim function with method BFGS-iterations numbers: 45 </span></span>
+<span><span class="co">## optim function with method BFGS - iterations number: 45 </span></span>
 <span><span class="co">## Log-Likelihood: -202.82 </span></span>
 <span><span class="co">## AIC: 433.6401 BIC: 527.8765 </span></span>
-<span><span class="co">## Number of observations: ( 1575 censored and 4618 observed ) </span></span>
-<span><span class="co">## 14 free parameters ( df= 6179 ) </span></span>
+<span><span class="co">## Number of observations: ( 1575 censored and 4618 observed )</span></span>
+<span><span class="co">## 14 free parameters ( df = 6179 )</span></span>
 <span><span class="co">## --------------------------------------------------------------</span></span>
 <span><span class="co">## Probit selection equation:</span></span>
 <span><span class="co">##               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
@@ -2245,7 +1707,7 @@ NA
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-bastos" class="csl-entry">
 Bastos, Fernando de Souza, and Wagner Barreto-Souza. 2020.
 <span>“Birnbaum–Saunders Sample Selection Model.”</span> <em>Journal of
@@ -2293,9 +1755,7 @@ Methodology)</em> 78 (4): 805–27.
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -2308,16 +1768,16 @@ Methodology)</em> 78 (4): 805–27.
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>

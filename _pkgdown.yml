@@ -1,0 +1,10 @@
+template:
+  bootstrap: 5
+  params:
+    logo: man/figures/logo.png
+
+home:
+  title: "ssmodels"
+  description: "Sample Selection Models in R"
+
+url: https://fsbmat-ufv.github.io/ssmodels/
