@@ -1,84 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/vignette.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HCinitial.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HeckmanBS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HeckmanCL.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HeckmanGe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HeckmanSK.html</loc>
-  </url>
-  <url>
-    <loc>/reference/HeckmantS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/IMR.html</loc>
-  </url>
-  <url>
-    <loc>/reference/MEPS2001.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Mroz87.html</loc>
-  </url>
-  <url>
-    <loc>/reference/PSID2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/RandHIE.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nhanes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ssmodels.html</loc>
-  </url>
-  <url>
-    <loc>/reference/step2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.HeckmanBS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.HeckmanCL.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.HeckmanGe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.HeckmanSK.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.HeckmantS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/twostep.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/404.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/articles/index.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/articles/vignette.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/authors.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/index.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/news/index.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/HCinitial.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/HeckmanBS.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/HeckmanCL.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/HeckmanGe.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/HeckmanSK.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/HeckmantS.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/IMR.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/MEPS2001.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/Mroz87.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/PSID2.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/RandHIE.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/extract_model_components.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/index.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/nhanes.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/postprocess_theta.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/ssmodels.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/step2.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmanBS.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmanCL.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmanGe.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmanSK.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmantS.html</loc></url>
+<url><loc>https://fsbmat-ufv.github.io/ssmodels/reference/twostep.html</loc></url>
 </urlset>
+
