@@ -19,33 +19,43 @@
 #' The package also includes helper functions for computing Inverse Mills Ratios (IMR),
 #' post-processing parameter vectors, and two-step initial value estimation.
 #'
-#' @param selection Selection equation.
-#' @param outcome Outcome regression equation.
-#' @param outcomeS Covariates for the dispersion model (optional).
-#' @param outcomeC Covariates for the correlation model (optional).
-#' @param df Initial value for the degrees of freedom (Heckman-t model).
-#' @param lambda Initial value for the skewness parameter (Heckman-SK model).
-#' @param start Optional vector of starting values for optimization.
-#' @param data Data frame containing all relevant variables.
-#'
-#' @return
-#' A list with estimated parameters, diagnostics (AIC, BIC, log-likelihood),
-#' standard errors, and other relevant information.
-#'
 #' @seealso \code{\link{HeckmanCL}}, \code{\link{HeckmantS}}, \code{\link{HeckmanSK}},
 #' \code{\link{HeckmanBS}}, \code{\link{HeckmanGe}}
 #'
 #' @references
+#' \insertRef{heckman1976common}{ssmodels}
+#'
 #' \insertRef{heckman1979sample}{ssmodels}
 #'
-#' @author Fernando de Souza Bastos, Wagner Barreto de Souza
-#' @keywords sample selection, Heckman, maximum likelihood, econometrics
+#' \insertRef{mroz1987}{ssmodels}
+#'
+#' \insertRef{sampleSelection}{ssmodels}
+#'
+#' \insertRef{marchenko2012heckman}{ssmodels}
+#'
+#' \insertRef{ogundimu2016sample}{ssmodels}
+#'
+#' \insertRef{zhelonkin2016robust}{ssmodels}
+#'
+#' \insertRef{ssmrob}{ssmodels}
+#'
+#' \insertRef{ogundimu2019robust}{ssmodels}
+#'
+#' \insertRef{bastos}{ssmodels}
+#'
+#' \insertRef{bastosBarreto}{ssmodels}
+#'
+#' @author
+#' Fernando de Souza Bastos, Wagner Barreto de Souza
+#'
+#' @keywords sample selection Heckman maximum likelihood econometrics
 #' @importFrom stats binomial coef dnorm dt glm lm model.matrix model.response na.pass optim pnorm printCoefmat pt qnorm terms
 #' @importFrom utils tail
 #' @importFrom Rdpack reprompt
 #' @name ssmodels
 #' @docType package
 "_PACKAGE"
+
 
 
 #' Medical Expenditure Panel Survey
@@ -264,7 +274,7 @@
 #'  \item{binexp: 1 if \code{meddol} > 0.}
 #'  }
 #'
-#' @source \url{http://cameron.econ.ucdavis.edu/mmabook/mmadata.html}
+#' @source \url{https://cameron.econ.ucdavis.edu/mmabook/mmadata.html}
 #'
 #' @references{
 #'   \insertRef{cameron2005}{ssmodels}
@@ -317,7 +327,7 @@
 #'   \item{lnw2: Log of real average hourly earnings}
 #'   \item{Lnw: Log of real average hourly earnings}
 #' }
-#' @source \url{http://simba.isr.umich.edu/}
+#' @source \url{https://simba.isr.umich.edu/}
 #'
 #' @references{
 #'   \insertRef{semykina2013estimation}{ssmodels}

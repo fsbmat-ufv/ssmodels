@@ -8,7 +8,7 @@
 An object of class \code{data.frame} with 20190 rows and 45 columns.
 }
 \source{
-\url{http://cameron.econ.ucdavis.edu/mmabook/mmadata.html}
+\url{https://cameron.econ.ucdavis.edu/mmabook/mmadata.html}
 }
 \usage{
 RandHIE

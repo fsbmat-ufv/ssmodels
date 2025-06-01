@@ -8,7 +8,7 @@
 An object of class \code{data.frame} with 6948 rows and 13 columns.
 }
 \source{
-\url{http://simba.isr.umich.edu/}
+\url{https://simba.isr.umich.edu/}
 }
 \usage{
 PSID2

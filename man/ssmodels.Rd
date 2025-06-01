@@ -5,27 +5,6 @@
 \alias{ssmodels-package}
 \alias{ssmodels}
 \title{ssmodels: Sample Selection Models in R}
-\arguments{
-\item{selection}{Selection equation.}
-
-\item{outcome}{Outcome regression equation.}
-
-\item{outcomeS}{Covariates for the dispersion model (optional).}
-
-\item{outcomeC}{Covariates for the correlation model (optional).}
-
-\item{df}{Initial value for the degrees of freedom (Heckman-t model).}
-
-\item{lambda}{Initial value for the skewness parameter (Heckman-SK model).}
-
-\item{start}{Optional vector of starting values for optimization.}
-
-\item{data}{Data frame containing all relevant variables.}
-}
-\value{
-A list with estimated parameters, diagnostics (AIC, BIC, log-likelihood),
-standard errors, and other relevant information.
-}
 \description{
 The \code{ssmodels} package provides functions to fit data affected by sample selection bias.
 It includes several extensions of the classical Heckman selection model, allowing for different
@@ -46,7 +25,27 @@ The package also includes helper functions for computing Inverse Mills Ratios (I
 post-processing parameter vectors, and two-step initial value estimation.
 }
 \references{
+\insertRef{heckman1976common}{ssmodels}
+
 \insertRef{heckman1979sample}{ssmodels}
+
+\insertRef{mroz1987}{ssmodels}
+
+\insertRef{sampleSelection}{ssmodels}
+
+\insertRef{marchenko2012heckman}{ssmodels}
+
+\insertRef{ogundimu2016sample}{ssmodels}
+
+\insertRef{zhelonkin2016robust}{ssmodels}
+
+\insertRef{ssmrob}{ssmodels}
+
+\insertRef{ogundimu2019robust}{ssmodels}
+
+\insertRef{bastos}{ssmodels}
+
+\insertRef{bastosBarreto}{ssmodels}
 }
 \seealso{
 \code{\link{HeckmanCL}}, \code{\link{HeckmantS}}, \code{\link{HeckmanSK}},
@@ -55,9 +54,9 @@ post-processing parameter vectors, and two-step initial value estimation.
 \author{
 Fernando de Souza Bastos, Wagner Barreto de Souza
 }
-\keyword{Heckman,}
+\keyword{Heckman}
 \keyword{econometrics}
-\keyword{likelihood,}
+\keyword{likelihood}
 \keyword{maximum}
 \keyword{sample}
-\keyword{selection,}
+\keyword{selection}
