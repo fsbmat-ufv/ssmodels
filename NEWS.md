@@ -1,3 +1,9 @@
+# ssmodels 2.0.1
+
+## Bug Fixes
+- Corrected the initialization of the `start` values in the `HeckmanSK` function. Previously, it was relying on a two-step method to generate starting values, which could lead to numerical instability in some cases. Now, a more robust initialization is implemented to ensure better convergence and numerical stability.
+- Fixed the display of the log-likelihood in the `summary` methods of all functions (e.g., `summary.HeckmanSK`, `summary.HeckmanCL`, `summary.HeckmanBS`, etc.). Previously, these were reporting the negative of the log-likelihood. They now correctly display the log-likelihood value as returned by the optimization procedure.
+
 # ssmodels 2.0.0
 
 ## Major updates

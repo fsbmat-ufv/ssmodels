@@ -202,12 +202,26 @@ HeckmanSK <- function(selection, outcome, data = sys.frame(sys.parent()), lambda
     return(colSums(gradient))
   }
 
+  # -------------------------------------------------------------
+  # Ensure that the log-likelihood and gradient functions have access
+  # to the local variables (XS, YS, XO, YO, etc.) defined within the
+  # HeckmanSK() function environment. This avoids potential issues
+  # where these functions would otherwise search for variables in the
+  # global environment or parent frames, leading to NA values or
+  # errors during optimization. The explicit assignment of the environment
+  # ensures that the optimizer (optim()) receives valid, finite evaluations
+  # of the objective and gradient, thus maintaining numerical stability
+  # and successful convergence.
+  # -------------------------------------------------------------
+  environment(loglik_SK) <- environment()
+  environment(gradlik_SK) <- environment()
+
   #############################
   # Initial values
   #############################
   if (is.null(start)) {
     message("Start not provided using default start values.")
-    start <- c(step2(YS, XS, YO, XO), lambda)
+    start <- c(rep(0, NXS + NXO), 1, 0, lambda)
   }
 
   #############################
