@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use ssmodels in your research, please cite the package and the methodological paper corresponding to the model used."
+title: "ssmodels: Sample Selection Models"
+type: software
+authors:
+  - family-names: "de Souza Bastos"
+    given-names: "Fernando"
+    orcid: "https://orcid.org/0000-0003-1503-4599"
+  - family-names: "Barreto de Souza"
+    given-names: "Wagner"
+version: "2.0.1"
+date-released: "2026"
+repository-code: "https://github.com/fsbmat-ufv/ssmodels"
+url: "https://fsbmat-ufv.github.io/ssmodels/"
+license: "GPL-2.0-or-later"
+keywords:
+  - "sample selection"
+  - "Heckman model"
+  - "selection bias"
+  - "R package"

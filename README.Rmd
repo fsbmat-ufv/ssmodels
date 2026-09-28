@@ -6,42 +6,95 @@ biblio-style: "apalike"
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ssmodels <a href='https://fsbmat-ufv.github.io/ssmodels/'><img src='man/figures/logo.png' align="right" height="80" style="margin:10px;" /></a>
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
-# ssmodels
+# ssmodels <a href="https://fsbmat-ufv.github.io/ssmodels/"><img src="man/figures/logo.png" align="right" height="100" alt="ssmodels logo" /></a>
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/ssmodels)](https://CRAN.R-project.org/package=ssmodels)
+[![R-CMD-check](https://github.com/fsbmat-ufv/ssmodels/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/fsbmat-ufv/ssmodels/actions/workflows/R-CMD-check.yaml)
+[![License: GPL (>= 2)](https://img.shields.io/badge/license-GPL%20(%3E%3D%202)-blue.svg)](https://www.gnu.org/licenses/)
 <!-- badges: end -->
-<p style="text-align: justify;">
-In order to facilitate the adjustment of the sample selection models existing in the literature, we created the ssmodels package. Our package allows the adjustment of the classic Heckman model (@heckman1976common, @heckman1979sample), and the estimation of the parameters of this model via the maximum likelihood method and two-step method, in addition to the adjustment of the Heckman-t models, introduced in the literature by @marchenko2012heckman and the Heckman-Skew model introduced in the literature by @ogundimu2016sample. We also implemented functions to adjust the generalized version of the Heckman model, introduced by @bastosBarreto, that allows the inclusion of covariables to the dispersion and correlation parameters and a function to adjust the Heckman-BS model introduced by @bastos that uses the Birnbaum-Saunders distribution as a joint distribution of the selection and primary regression variables.
-</p>
+
+**Sample Selection Models in R**
+
+`ssmodels` provides a unified implementation of classical and extended sample selection models. It supports the classical Gaussian Heckman model, the Heckman selection-t model, a skew-normal sample selection model, the generalized Heckman model with covariate-dependent dispersion and correlation parameters, and a Birnbaum--Saunders sample selection model.
+
+The package is intended for researchers and practitioners working with non-random sample selection, missing outcomes induced by selection mechanisms, and flexible extensions of the classical Heckman framework.
 
 ## Installation
 
-You can install the released version of ssmodels from [CRAN](https://CRAN.R-project.org) with:
+Install the released version from CRAN:
 
-``` r
+```r
 install.packages("ssmodels")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+Install the development version from GitHub:
 
-``` r
-# install.packages("devtools")
-devtools::install_github("fsbmat-ufv/ssmodels")
+```r
+# install.packages("remotes")
+remotes::install_github("fsbmat-ufv/ssmodels")
 ```
-## Code of Conduct
 
-`{ssmodels}` is released with a [Contributor Code of
-Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+## Quick start
+
+A classical Heckman sample selection model can be fitted using the `MEPS2001` data included with the package:
+
+```r
+library(ssmodels)
+
+data("MEPS2001")
+
+selection_eq <- dambexp ~ age + female + educ + blhisp + totchr + ins + income
+outcome_eq   <- lnambx  ~ age + female + educ + blhisp + totchr + ins
+
+fit <- HeckmanCL(selection_eq, outcome_eq, data = MEPS2001)
+summary(fit)
+```
+
+## Implemented models
+
+| Model | Main function | Reference |
+|---|---|---|
+| Classical Heckman | `HeckmanCL()` | Heckman (1976, 1979) |
+| Heckman selection-t | `HeckmantS()` | Marchenko & Genton (2012) |
+| Skew-normal sample selection | `HeckmanSK()` | Ogundimu & Hutton (2016) |
+| Generalized Heckman | `HeckmanGe()` | Bastos, Barreto-Souza & Genton (2021) |
+| Birnbaum--Saunders sample selection | `HeckmanBS()` | Bastos & Barreto-Souza (2020) |
+
+## Associated research
+
+The package implements methodology developed in, among others:
+
+- Bastos, F. S., Barreto-Souza, W., & Genton, M. G. (2021). *A Generalized Heckman Model with Varying Sample Selection Bias and Dispersion Parameters*. **Statistica Sinica**. https://doi.org/10.5705/ss.202021.0068
+- Bastos, F. S., & Barreto-Souza, W. (2020). *Birnbaum--Saunders Sample Selection Model*. **Journal of Applied Statistics**. https://doi.org/10.1080/02664763.2020.1780570
+- Marchenko, Y. V., & Genton, M. G. (2012). *A Heckman Selection-t Model*. **Journal of the American Statistical Association**. https://doi.org/10.1080/01621459.2012.656011
+- Ogundimu, E. O., & Hutton, J. L. (2016). *A Sample Selection Model with Skew-Normal Distribution*. **Scandinavian Journal of Statistics**. https://doi.org/10.1111/sjos.12171
+
+## Documentation
+
+Full documentation, function references, and vignettes are available on the [pkgdown website](https://fsbmat-ufv.github.io/ssmodels/).
+
+## Citation
+
+If `ssmodels` contributes to your research, please cite the package and the methodological paper corresponding to the model used. Citation metadata are provided in `CITATION.cff`; package citation information can also be obtained in R with:
+
+```r
+citation("ssmodels")
+```
+
+## Contributing and issues
+
+Bug reports, reproducible examples, and feature requests are welcome through the [GitHub issue tracker](https://github.com/fsbmat-ufv/ssmodels/issues).
+
+`ssmodels` is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/).
+
+## Authors
+
+- **Fernando de Souza Bastos** — Federal University of Viçosa (UFV), Brazil — [ORCID](https://orcid.org/0000-0003-1503-4599)
+- **Wagner Barreto de Souza** — co-author
+
+## License
+
+`ssmodels` is distributed under the GPL (>= 2) license.
 
 ## References
