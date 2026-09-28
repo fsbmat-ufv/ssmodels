@@ -1,0 +1,122 @@
+# ssmodels
+
+# ssmodels
+
+In order to facilitate the adjustment of the sample selection models
+existing in the literature, we created the ssmodels package. Our package
+allows the adjustment of the classic Heckman model (Heckman (1976),
+Heckman (1979)), and the estimation of the parameters of this model via
+the maximum likelihood method and two-step method, in addition to the
+adjustment of the Heckman-t models, introduced in the literature by
+Marchenko and Genton (2012) and the Heckman-Skew model introduced in the
+literature by Ogundimu and Hutton (2016). We also implemented functions
+to adjust the generalized version of the Heckman model, introduced by
+Bastos, Barreto-Souza, and Genton (2021), that allows the inclusion of
+covariables to the dispersion and correlation parameters and a function
+to adjust the Heckman-BS model introduced by Bastos and Barreto-Souza
+(2020) that uses the Birnbaum-Saunders distribution as a joint
+distribution of the selection and primary regression variables.
+
+## Installation
+
+You can install the released version of ssmodels from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+
+install.packages("ssmodels")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+
+# install.packages("devtools")
+devtools::install_github("fsbmat-ufv/ssmodels")
+```
+
+## Code of Conduct
+
+[ssmodels](https://fsbmat-ufv.github.io/ssmodels/) is released with a
+[Contributor Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+
+## References
+
+Bastos, Fernando de Souza, and Wagner Barreto-Souza. 2020.
+“Birnbaum–Saunders Sample Selection Model.” *Journal of Applied
+Statistics*.
+
+Bastos, Fernando de Souza, Wagner Barreto-Souza, and Marc G Genton.
+2021. “A Generalized Heckman Model with Varying Sample Selection Bias
+and Dispersion Parameters.” *Statistica Sinica*.
+
+Heckman, James J. 1976. “The Common Structure of Statistical Models of
+Truncation, Sample Selection and Limited Dependent Variables and a
+Simple Estimator for Such Models.” In *Annals of Economic and Social
+Measurement, Volume 5, Number 4*, 475–92. NBER.
+
+———. 1979. “Sample Selection Bias as a Specification Error.”
+*Econometrica: Journal of the Econometric Society*, 153–61.
+
+Marchenko, Yulia V, and Marc G Genton. 2012. “A Heckman Selection-t
+Model.” *Journal of the American Statistical Association* 107 (497):
+304–17.
+
+Ogundimu, Emmanuel O, and Jane L Hutton. 2016. “A Sample Selection Model
+with Skew-Normal Distribution.” *Scandinavian Journal of Statistics* 43
+(1): 172–90.
+
+# Package index
+
+## All functions
+
+- [`HCinitial()`](https://fsbmat-ufv.github.io/ssmodels/reference/HCinitial.md)
+  : Two-Step Method for Parameter Estimation of the Classical Heckman
+  Model
+- [`HeckmanBS()`](https://fsbmat-ufv.github.io/ssmodels/reference/HeckmanBS.md)
+  : Heckman-BS Model Fit Function
+- [`HeckmanCL()`](https://fsbmat-ufv.github.io/ssmodels/reference/HeckmanCL.md)
+  : Classic Heckman Model Fit Function
+- [`HeckmanGe()`](https://fsbmat-ufv.github.io/ssmodels/reference/HeckmanGe.md)
+  : Generalized Heckman Model Estimation
+- [`HeckmanSK()`](https://fsbmat-ufv.github.io/ssmodels/reference/HeckmanSK.md)
+  : Skew-Normal Sample Selection Model Fit Function
+- [`HeckmantS()`](https://fsbmat-ufv.github.io/ssmodels/reference/HeckmantS.md)
+  : Heckman-t Model Fit Function
+- [`IMR()`](https://fsbmat-ufv.github.io/ssmodels/reference/IMR.md) :
+  Inverse Mills Ratio (IMR) Calculation
+- [`MEPS2001`](https://fsbmat-ufv.github.io/ssmodels/reference/MEPS2001.md)
+  : Medical Expenditure Panel Survey
+- [`Mroz87`](https://fsbmat-ufv.github.io/ssmodels/reference/Mroz87.md)
+  : U.S. Women's Labor Force Participation
+- [`PSID2`](https://fsbmat-ufv.github.io/ssmodels/reference/PSID2.md) :
+  Panel Study of Income Dynamics
+- [`RandHIE`](https://fsbmat-ufv.github.io/ssmodels/reference/RandHIE.md)
+  : RAND Health Insurance Experiment
+- [`nhanes`](https://fsbmat-ufv.github.io/ssmodels/reference/nhanes.md)
+  : US National Health and Nutrition Examination Study
+- [`ssmodels-package`](https://fsbmat-ufv.github.io/ssmodels/reference/ssmodels.md)
+  [`ssmodels`](https://fsbmat-ufv.github.io/ssmodels/reference/ssmodels.md)
+  : ssmodels: Sample Selection Models in R
+- [`step2()`](https://fsbmat-ufv.github.io/ssmodels/reference/step2.md)
+  : Heckman's Two-Step Method
+- [`summary(`*`<HeckmanBS>`*`)`](https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmanBS.md)
+  : Summary of Birnbaum-Saunders Heckman Model
+- [`summary(`*`<HeckmanCL>`*`)`](https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmanCL.md)
+  : Summary of Classic Heckman Model
+- [`summary(`*`<HeckmanGe>`*`)`](https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmanGe.md)
+  : Summary of Generalized Heckman Model
+- [`summary(`*`<HeckmanSK>`*`)`](https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmanSK.md)
+  : Summary of Skew-Normal Heckman Model
+- [`summary(`*`<HeckmantS>`*`)`](https://fsbmat-ufv.github.io/ssmodels/reference/summary.HeckmantS.md)
+  : Summary of Heckman-t Model
+- [`twostep()`](https://fsbmat-ufv.github.io/ssmodels/reference/twostep.md)
+  : Two-Step Estimation of the Classic Heckman Model
+
+# Articles
+
+### All vignettes
+
+- [ssmodels: A package for fit the sample selection
+  models](https://fsbmat-ufv.github.io/ssmodels/articles/vignette.md):
